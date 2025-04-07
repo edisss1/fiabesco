@@ -1,5 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 @import "tailwindcss";
 
+@theme {
+    --spacing-xxl: clamp(1rem, 5vw, 4rem);
+
+    --color-primary: #ffa500;
+    --color-secondary: #008080;
+    --color-background: #f5f5dc;
+    --color-text-primary: #708090;
+    --color-text-secondary: #333333;
+}
+
 body {
-  min-height: 100vh;
+    min-height: 100vh;
+    font-family: "Nunito", sans-serif;
+    @apply bg-background;
 }

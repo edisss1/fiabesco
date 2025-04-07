@@ -1,6 +1,12 @@
+import Hero from "../components/molecules/Hero"
+import NavBar from "../components/organisms/NavBar"
+
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <NavBar/>
+      <Hero/>
+    </>
   )
 }
 export default Home

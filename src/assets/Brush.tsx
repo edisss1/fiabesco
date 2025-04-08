@@ -1,7 +1,7 @@
 const Brush = () => {
     return (
         <svg
-            className="absolute right-[10%] top-[10%] -z-10 max-lg:top-full max-lg:right-[5%]"
+            className="absolute right-[10%] top-[10%] -z-10 max-lg:top-[70%] max-lg:right-[5%]"
             width="343"
             height="163"
             viewBox="0 0 343 163"

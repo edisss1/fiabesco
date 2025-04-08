@@ -1,7 +1,7 @@
 const Curve = () => {
     return (
         <svg
-            className="absolute -top-16"
+            className="absolute -top-16 max-md:hidden"
             width="458"
             height="75"
             viewBox="0 0 458 75"

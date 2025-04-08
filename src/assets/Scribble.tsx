@@ -1,7 +1,7 @@
 const Scribble = () => {
     return (
         <svg
-            className="absolute left-[15%] -z-10 max-lg:top-[40%] max-lg:left-[5%]"
+            className="absolute left-[15%] -z-10 max-lg:top-[40%] max-lg:left-[40%]"
             width="151"
             height="183"
             viewBox="0 0 151 183"

@@ -17,3 +17,40 @@ body {
     font-family: "Nunito", sans-serif;
     @apply bg-background;
 }
+
+.carousel-wrapper {
+    @apply mt-6;
+}
+.carousel {
+    animation: scroll 20s linear infinite;
+}
+
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+    content: "";
+    width: 50px;
+    background: var(--color-background);
+    position: absolute;
+    height: 120%;
+    filter: blur(10px);
+    top: -16px;
+    z-index: 40;
+}
+
+.carousel-wrapper::after {
+    right: -20px;
+}
+
+.carousel-wrapper::before {
+    left: -20px;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translatex(0);
+    }
+}

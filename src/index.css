@@ -22,7 +22,12 @@ body {
     @apply mt-6;
 }
 .carousel {
-    animation: scroll 20s linear infinite;
+    animation: scroll 30s linear infinite;
+}
+
+.carousel-wrapper:hover .carousel {
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
 }
 
 .carousel-wrapper::before,

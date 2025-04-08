@@ -4,10 +4,12 @@ interface CarouselImageProps {
 
 const CarouselImage = ({ src }: CarouselImageProps) => {
     return (
-        <img
-            className=" block object-cover max-w-[170px] h-[170px] aspect-square"
-            src={src}
-        />
+        <div className="relative h-min group">
+            <img
+                className="object-cover  max-w-[170px] h-[170px] aspect-square"
+                src={src}
+            />
+        </div>
     )
 }
 

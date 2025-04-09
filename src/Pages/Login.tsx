@@ -5,10 +5,37 @@ import Form from "../components/atoms/Form"
 import FormInput from "../components/atoms/FormInput"
 import Arrow from "../assets/Arrow"
 import Fiabesco from "../assets/Fiabesco"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "../redux/store"
+import axios from "axios"
+import { setToken } from "../redux/slices/authSlice"
 
 const Login = () => {
-    const handleSubmit = (e: React.FormEvent) => {
+    const dispatch = useDispatch<AppDispatch>()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+
+        try {
+            const res = await axios.post(
+                import.meta.env.VITE_BASE_URL + "/auth/login",
+                {
+                    email: email,
+                    password: password
+                }
+            )
+
+            const data = res.data
+
+            if (data) {
+                dispatch(setToken(data.token as string))
+            }
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
@@ -25,14 +52,19 @@ const Login = () => {
                 </div>
                 <div className="flex flex-col gap-4 w-full max-w-[400px] mx-auto">
                     <FormInput
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         id="email"
                         label="Email"
                         placeholder="e.g. you@example.com"
                     />
                     <FormInput
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         id="pwd"
                         label="Password"
                         placeholder="Enter your password"
+                        type="password"
                     />
 
                     <Button

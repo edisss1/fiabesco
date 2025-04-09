@@ -19,11 +19,12 @@ const FormInput = ({
         <div className="flex flex-col gap-2 text-text-primary ">
             <label htmlFor={id}>{label}</label>
             <input
-                className=" border-2 border-text-primary focus:outline-primary p-2 rounded-lg"
+                className=" border-2 user-invalid:border-danger border-text-primary focus:outline-primary p-2 rounded-lg"
                 type={type ?? "text"}
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
+                required
             />
         </div>
     )

@@ -8,32 +8,35 @@ import { setUser } from "../../redux/slices/authSlice"
 
 const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     const dispatch = useDispatch<AppDispatch>()
-    const { token, user } = useSelector((state: RootState) => state.auth)
+    const { token, user, emailForData } = useSelector(
+        (state: RootState) => state.auth
+    )
 
     const { data: userData } = useQuery<User>({
         queryKey: ["userData"],
         queryFn: async () => {
-            if (!user) throw new Error("User is not defined")
-
             try {
-                const res = await axios.post(
-                    import.meta.env.VITE_BASE_URL + `/users/${user._id}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            "Content-Type": "application/json"
+                if (emailForData) {
+                    const res = await axios.post(
+                        import.meta.env.VITE_BASE_URL + `/users/me`,
+                        { email: emailForData },
+                        {
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                                "Content-Type": "application/json"
+                            }
                         }
-                    }
-                )
+                    )
 
-                const data = res.data
+                    const data = res.data
+                    console.log(data)
 
-                return data
+                    return data
+                }
             } catch (error) {
                 console.error(error)
             }
-        },
-        enabled: !!user && !!token
+        }
     })
 
     useEffect(() => {

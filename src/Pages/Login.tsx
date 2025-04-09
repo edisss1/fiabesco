@@ -9,7 +9,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../redux/store"
 import axios from "axios"
-import { setToken } from "../redux/slices/authSlice"
+import { setEmailForData, setToken } from "../redux/slices/authSlice"
 
 const Login = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -18,6 +18,7 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        if (!email || !password) return
 
         try {
             const res = await axios.post(
@@ -31,6 +32,7 @@ const Login = () => {
             const data = res.data
 
             if (data) {
+                dispatch(setEmailForData(email))
                 dispatch(setToken(data.token as string))
             }
         } catch (error) {

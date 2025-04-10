@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import AuthWrapper from "../components/atoms/AuthWrapper"
 import Button from "../components/atoms/Button"
 import Form from "../components/atoms/Form"
@@ -8,36 +8,23 @@ import Fiabesco from "../assets/Fiabesco"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../redux/store"
-import axios from "axios"
-import { setEmailForData, setToken } from "../redux/slices/authSlice"
+import { login } from "../utils/login"
 
 const Login = () => {
     const dispatch = useDispatch<AppDispatch>()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const navigate = useNavigate()
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        if (!email || !password) return
+        await login(email, password, dispatch)
 
-        try {
-            const res = await axios.post(
-                import.meta.env.VITE_BASE_URL + "/auth/login",
-                {
-                    email: email,
-                    password: password
-                }
-            )
+        setEmail("")
+        setPassword("")
 
-            const data = res.data
-
-            if (data) {
-                dispatch(setEmailForData(email))
-                dispatch(setToken(data.token as string))
-            }
-        } catch (error) {
-            console.error(error)
-        }
+        navigate("/app/feed")
     }
 
     return (

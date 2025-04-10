@@ -5,12 +5,14 @@ interface AuthState {
     token: string | null
     user: User | null
     emailForData: string | null
+    status: "loading" | "idle"
 }
 
 const initialState: AuthState = {
     token: localStorage.getItem("token") || null,
     user: null,
-    emailForData: localStorage.getItem("dataEmail") || null
+    emailForData: localStorage.getItem("dataEmail") || null,
+    status: "idle"
 }
 
 const authSlice = createSlice({
@@ -29,10 +31,14 @@ const authSlice = createSlice({
             state.emailForData = action.payload
             console.log(state.emailForData, action.payload)
             localStorage.setItem("dataEmail", action.payload)
+        },
+        setStatus: (state, action: PayloadAction<"idle" | "loading">) => {
+            state.status = action.payload
         }
     }
 })
 
-export const { setUser, setToken, setEmailForData } = authSlice.actions
+export const { setUser, setToken, setEmailForData, setStatus } =
+    authSlice.actions
 
 export default authSlice.reducer

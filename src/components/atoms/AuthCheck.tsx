@@ -4,11 +4,11 @@ import { AppDispatch, RootState } from "../../redux/store"
 import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
 import { User } from "../../types/User"
-import { setUser } from "../../redux/slices/authSlice"
+import { setStatus, setUser } from "../../redux/slices/authSlice"
 
 const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     const dispatch = useDispatch<AppDispatch>()
-    const { token, user, emailForData } = useSelector(
+    const { token, emailForData, status } = useSelector(
         (state: RootState) => state.auth
     )
 
@@ -17,6 +17,7 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
         queryFn: async () => {
             try {
                 if (emailForData) {
+                    dispatch(setStatus("loading"))
                     const res = await axios.post(
                         import.meta.env.VITE_BASE_URL + `/users/me`,
                         { email: emailForData },
@@ -31,6 +32,8 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
                     const data = res.data
                     console.log(data)
 
+                    dispatch(setStatus("idle"))
+
                     return data
                 }
             } catch (error) {
@@ -42,9 +45,12 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         if (userData) {
             dispatch(setUser(userData as User))
-            console.log(user)
         }
-    }, [])
+    }, [userData])
+
+    if (status === "loading") {
+        return <div>Loading...</div>
+    }
 
     return <>{children}</>
 }

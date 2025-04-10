@@ -11,5 +11,5 @@ export interface User {
     bio: string
     followedBy: string[]
     followedUsers: string[]
-    createdAt: string
+    createdAt?: string
 }

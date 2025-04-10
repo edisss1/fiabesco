@@ -3,6 +3,7 @@ import Home from "./Pages/Home"
 import Auth from "./Pages/Auth"
 import Login from "./Pages/Login"
 import SignUp from "./Pages/SignUp"
+import Feed from "./Pages/Feed"
 
 const Router = () => {
     return (
@@ -12,6 +13,9 @@ const Router = () => {
                 <Route path="/auth" element={<Auth />}>
                     <Route path="login" element={<Login />} />
                     <Route path="signup" element={<SignUp />} />
+                </Route>
+                <Route path="/app">
+                    <Route path="feed" element={<Feed />} />
                 </Route>
             </Routes>
         </HashRouter>

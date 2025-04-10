@@ -1,13 +1,16 @@
-import { HashRouter, Route, Routes } from "react-router-dom"
-import Home from "./Pages/Home"
-import Auth from "./Pages/Auth"
-import Login from "./Pages/Login"
-import SignUp from "./Pages/SignUp"
-import Feed from "./Pages/Feed"
+import { Route, Routes } from "react-router-dom"
+import { lazy, Suspense } from "react"
+import Loading from "./components/atoms/Loading"
+
+const Home = lazy(() => import("./Pages/Home"))
+const Auth = lazy(() => import("./Pages/Auth"))
+const Login = lazy(() => import("./Pages/Login"))
+const SignUp = lazy(() => import("./Pages/SignUp"))
+const Feed = lazy(() => import("./Pages/Feed"))
 
 const Router = () => {
     return (
-        <HashRouter>
+        <Suspense fallback={<Loading />}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/auth" element={<Auth />}>
@@ -18,7 +21,8 @@ const Router = () => {
                     <Route path="feed" element={<Feed />} />
                 </Route>
             </Routes>
-        </HashRouter>
+        </Suspense>
     )
 }
+
 export default Router

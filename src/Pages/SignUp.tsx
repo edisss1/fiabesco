@@ -7,11 +7,12 @@ import FormInput from "../components/atoms/FormInput"
 import Arrow from "../assets/Arrow"
 import { signUp } from "../utils/signUp"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { AppDispatch } from "../redux/store"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "../redux/store"
 
 const SignUp = () => {
     const dispatch = useDispatch<AppDispatch>()
+    const { status } = useSelector((state: RootState) => state.auth)
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -32,13 +33,15 @@ const SignUp = () => {
             dispatch
         )
 
+        if (status !== "loading") {
+            navigate("/app/feed")
+        }
+
         setFirstName("")
         setLastName("")
         setEmail("")
         setPassword("")
         setConfirmedPassword("")
-
-        navigate("/app/feed")
     }
 
     return (

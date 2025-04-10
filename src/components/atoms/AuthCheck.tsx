@@ -6,15 +6,18 @@ import { useQuery } from "@tanstack/react-query"
 import { User } from "../../types/User"
 import { setStatus, setUser } from "../../redux/slices/authSlice"
 import Loading from "./Loading"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     const dispatch = useDispatch<AppDispatch>()
-    const { token, emailForData, status } = useSelector(
+    const { token, user, emailForData, status } = useSelector(
         (state: RootState) => state.auth
     )
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const { data: userData } = useQuery<User>({
-        queryKey: ["userData"],
+        queryKey: ["userData", emailForData],
         queryFn: async () => {
             try {
                 if (emailForData) {
@@ -40,8 +43,16 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
             } catch (error) {
                 console.error(error)
             }
-        }
+        },
+        enabled: !!emailForData,
+        refetchOnWindowFocus: false
     })
+
+    useEffect(() => {
+        if (user && !location.pathname.startsWith("/app")) {
+            navigate("/app/feed")
+        }
+    }, [user, dispatch])
 
     useEffect(() => {
         if (userData) {

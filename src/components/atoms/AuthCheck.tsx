@@ -5,6 +5,7 @@ import axios from "axios"
 import { useQuery } from "@tanstack/react-query"
 import { User } from "../../types/User"
 import { setStatus, setUser } from "../../redux/slices/authSlice"
+import Loading from "./Loading"
 
 const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     const dispatch = useDispatch<AppDispatch>()
@@ -49,7 +50,7 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     }, [userData])
 
     if (status === "loading") {
-        return <div>Loading...</div>
+        return <Loading />
     }
 
     return <>{children}</>

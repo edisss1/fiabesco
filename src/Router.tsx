@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
+import Inbox from "./Pages/Inbox"
 
 const Home = lazy(() => import("./Pages/Home"))
 const Auth = lazy(() => import("./Pages/Auth"))
@@ -19,6 +20,7 @@ const Router = () => {
                 </Route>
                 <Route path="/app">
                     <Route path="feed" element={<Feed />} />
+                    <Route path="inbox" element={<Inbox />} />
                 </Route>
             </Routes>
         </Suspense>

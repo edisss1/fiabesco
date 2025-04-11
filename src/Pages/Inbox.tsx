@@ -1,10 +1,10 @@
 import Sidebar from "../components/organisms/Sidebar"
 
-const Feed = () => {
+const Inbox = () => {
     return (
-        <div>
+        <>
             <Sidebar />
-        </div>
+        </>
     )
 }
-export default Feed
+export default Inbox

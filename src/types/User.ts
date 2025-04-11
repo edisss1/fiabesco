@@ -4,6 +4,7 @@ export interface User {
     lastName: string
     email: string
     password: string
+    handle: string
     photoURL: string
     bannerURL: string
     followersCount: number

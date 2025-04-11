@@ -18,7 +18,7 @@
 body {
     min-height: 100vh;
     font-family: "Nunito", sans-serif;
-    @apply bg-background;
+    @apply bg-background text-text-primary;
 }
 
 .carousel-wrapper {

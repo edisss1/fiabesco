@@ -45,14 +45,15 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
             }
         },
         enabled: !!emailForData,
-        refetchOnWindowFocus: false
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true
     })
 
     useEffect(() => {
         if (user && !location.pathname.startsWith("/app")) {
             navigate("/app/feed")
         }
-    }, [user, dispatch])
+    }, [user, dispatch, location.pathname])
 
     useEffect(() => {
         if (userData) {

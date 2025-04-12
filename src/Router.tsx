@@ -22,6 +22,7 @@ const Router = () => {
                     <Route path="feed" element={<Feed />} />
                     <Route path="inbox" element={<Inbox />} />
                 </Route>
+                <Route path="*" element={<Home />} />
             </Routes>
         </Suspense>
     )

@@ -1,10 +1,11 @@
-import Sidebar from "../components/organisms/Sidebar"
+import PageWrapper from "../components/atoms/PageWrapper"
+import CreatePostForm from "../components/molecules/CreatePostForm"
 
 const Feed = () => {
     return (
-        <div>
-            <Sidebar />
-        </div>
+        <PageWrapper>
+            <CreatePostForm />
+        </PageWrapper>
     )
 }
 export default Feed

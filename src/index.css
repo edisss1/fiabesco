@@ -21,6 +21,17 @@ body {
     @apply bg-background text-text-primary;
 }
 
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+}
+
+body::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-secondary;
+}
+
 .carousel-wrapper {
     @apply mt-6;
 }

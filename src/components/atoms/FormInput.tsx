@@ -5,6 +5,7 @@ interface FormInputProps {
     type?: string
     value: string
     placeholder?: string
+    className?: string
 }
 
 const FormInput = ({
@@ -13,13 +14,14 @@ const FormInput = ({
     onChange,
     type,
     value,
-    placeholder
+    placeholder,
+    className = "border-2 user-invalid:border-danger border-text-primary focus:outline-primary p-2 rounded-lg"
 }: FormInputProps) => {
     return (
-        <div className="flex flex-col gap-2 text-text-primary ">
+        <div className="flex w-full  flex-col gap-2 text-text-primary ">
             <label htmlFor={id}>{label}</label>
             <input
-                className=" border-2 user-invalid:border-danger border-text-primary focus:outline-primary p-2 rounded-lg"
+                className={className}
                 type={type ?? "text"}
                 value={value}
                 onChange={onChange}

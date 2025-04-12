@@ -7,10 +7,6 @@ interface UserInfoProps {
     handle?: string | undefined
     photoURL: string | undefined
     userID: string | undefined
-    bio?: string | undefined
-    isBio?: boolean
-    hover?: string
-    hoverEnabled?: boolean
 }
 
 const UserInfo = ({
@@ -18,29 +14,19 @@ const UserInfo = ({
     lastName,
     handle,
     photoURL,
-    userID,
-    bio,
-    isBio = false,
-    hover = "hover:bg-black/5 transition-colors duration-150 p-1 rounded-lg",
-    hoverEnabled = true
+    userID
 }: UserInfoProps) => {
     return (
         <Link
             to={`/app/profile/${userID}`}
-            className={`flex items-center gap-4 ${hoverEnabled && hover}`}
+            className={`flex items-center gap-4 hover:bg-black/5 transition-colors duration-150 p-1 rounded-lg`}
         >
             <ProfilePicture url={photoURL} />
             <div className="flex flex-col gap-2">
                 <p>
                     {firstName} {lastName}
                 </p>
-                {isBio ? (
-                    <span>{bio}</span>
-                ) : (
-                    <span className="text-text-primary/70 truncate max-w-[100px]">
-                        @{handle}
-                    </span>
-                )}
+                <span className="max-w-[120px] truncate">@{handle}</span>
             </div>
         </Link>
     )

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
 import Inbox from "./Pages/Inbox"
+import Profile from "./Pages/Profile"
 
 const Home = lazy(() => import("./Pages/Home"))
 const Auth = lazy(() => import("./Pages/Auth"))
@@ -21,6 +22,7 @@ const Router = () => {
                 <Route path="/app">
                     <Route path="feed" element={<Feed />} />
                     <Route path="inbox" element={<Inbox />} />
+                    <Route path="profile/:userID" element={<Profile />} />
                 </Route>
                 <Route path="*" element={<Home />} />
             </Routes>

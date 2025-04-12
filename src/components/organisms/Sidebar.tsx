@@ -1,7 +1,11 @@
+import { useSelector } from "react-redux"
 import SidebarLink from "../atoms/SidebarLink"
 import UserInfo from "../atoms/UserInfo"
+import { RootState } from "../../redux/store"
 
 const Sidebar = () => {
+    const { user } = useSelector((state: RootState) => state.auth)
+
     const links = [
         {
             text: "Feed",
@@ -26,7 +30,13 @@ const Sidebar = () => {
     ]
     return (
         <aside className="flex flex-col gap-8 w-full max-w-[250px] p-4 h-screen border-r-2 border-black/70 ">
-            <UserInfo />
+            <UserInfo
+                firstName={user?.firstName}
+                lastName={user?.lastName}
+                handle={user?.handle}
+                photoURL={user?.photoURL}
+                userID={user?._id}
+            />
             <div className="flex flex-col gap-2">
                 {links.map((link) => (
                     <SidebarLink {...link} />

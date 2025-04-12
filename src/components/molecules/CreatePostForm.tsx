@@ -3,7 +3,7 @@ import Form from "../atoms/Form"
 
 const CreatePostForm = () => {
     return (
-        <Form className="w-full max-w-[400px] text-white">
+        <Form className="w-full max-w-[400px] text-white mt-6">
             <div className="flex items-center gap-4 w-full">
                 <input
                     className="border-b-2 text-text-secondary p-2 focus:border-primary focus:outline-none transition-all duration-300  border-text-secondary w-full max-w-[300px]"

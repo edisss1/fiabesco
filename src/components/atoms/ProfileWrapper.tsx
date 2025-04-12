@@ -5,10 +5,6 @@ interface ProfileWrapperProps {
 }
 
 const ProfileWrapper = ({ children }: ProfileWrapperProps) => {
-    return (
-        <div className="w-full max-w-[800px] h-full border-x-2 flex flex-col gap-4 border-text-secondary ">
-            {children}
-        </div>
-    )
+    return <div className="w-full  flex flex-col gap-4 ">{children}</div>
 }
 export default ProfileWrapper

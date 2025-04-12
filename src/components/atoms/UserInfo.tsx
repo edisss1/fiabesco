@@ -22,11 +22,13 @@ const UserInfo = ({
             className={`flex items-center gap-4 hover:bg-black/5 transition-colors duration-150 p-1 rounded-lg`}
         >
             <ProfilePicture url={photoURL} />
-            <div className="flex flex-col gap-2">
-                <p>
+            <div className="flex flex-col justify-start gap-2">
+                <p className="text-lg">
                     {firstName} {lastName}
                 </p>
-                <span className="max-w-[120px] truncate">@{handle}</span>
+                <span className="max-w-[120px] truncate text-sm">
+                    @{handle}
+                </span>
             </div>
         </Link>
     )

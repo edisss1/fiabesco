@@ -29,7 +29,7 @@ const Sidebar = () => {
         }
     ]
     return (
-        <aside className="flex flex-col gap-8 w-full max-w-[250px] p-4 h-screen border-r-2 border-black/70 ">
+        <aside className="flex flex-col sticky top-0 gap-8 w-full max-w-[250px] p-4 h-screen border-r-2 border-black/70 ">
             <UserInfo
                 firstName={user?.firstName}
                 lastName={user?.lastName}

@@ -10,11 +10,14 @@ import Button from "../components/atoms/Button"
 import MessageIcon from "../assets/MessageIcon"
 import FollowIcon from "../assets/FollowIcon"
 import { getProfileData } from "../utils/getProfileData"
+import { getPostsByUser } from "../utils/getPostsByUser"
+import PostsContainer from "../components/atoms/PostsContainer"
+import { Post } from "../types/Post"
 
 const Profile = () => {
     const { userID } = useParams()
     const dispatch = useDispatch<AppDispatch>()
-    const { token } = useSelector((state: RootState) => state.auth)
+    const { token, user } = useSelector((state: RootState) => state.auth)
 
     const { data: profileData } = useQuery<User>({
         queryKey: ["profileData", userID],
@@ -24,15 +27,23 @@ const Profile = () => {
         enabled: !!token
     })
 
+    const { data: posts } = useQuery<Post[]>({
+        queryKey: ["postsByUser"],
+        queryFn: () => getPostsByUser(userID, token)
+    })
+
+    const isOwner = userID === user?._id
+
     return (
         <PageWrapper>
             <ProfileWrapper>
                 <Banner
+                    isOwner={isOwner}
                     bannerURL={
                         "https://images.unsplash.com/photo-1741722604231-3d24c0c44864?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2fHx8ZW58MHx8fHx8"
                     }
                 />
-                <div className="px-4 flex flex-col gap-4 text-text-secondary">
+                <div className="px-4 flex flex-col gap-4 text-text-secondary ">
                     <div className="flex items-start gap-2">
                         {profileData?.photoURL ? (
                             <img src={profileData.photoURL} />
@@ -40,7 +51,7 @@ const Profile = () => {
                             <div className="w-12 h-12 rounded-full bg-white" />
                         )}
                         <div className="flex flex-col gap-1">
-                            <p>
+                            <p className="text-lg font-medium">
                                 {profileData?.firstName} {profileData?.lastName}
                             </p>
                             <span className="text-sm">
@@ -50,17 +61,20 @@ const Profile = () => {
                             </span>
                         </div>
                     </div>
-                    <div className="flex items-center gap-4 [&>*]:cursor-pointer">
-                        <Button className="flex items-center gap-2">
-                            <MessageIcon />
-                            Message
-                        </Button>
-                        <Button className="flex items-center gap-2">
-                            <FollowIcon />
-                            Message
-                        </Button>
-                    </div>
+                    {!isOwner && (
+                        <div className="flex items-center gap-4 [&>*]:cursor-pointer">
+                            <Button className="flex items-center gap-2">
+                                <MessageIcon />
+                                Message
+                            </Button>
+                            <Button className="flex items-center gap-2">
+                                <FollowIcon />
+                                Message
+                            </Button>
+                        </div>
+                    )}
                 </div>
+                <PostsContainer isOwner={isOwner} posts={posts} />
             </ProfileWrapper>
         </PageWrapper>
     )

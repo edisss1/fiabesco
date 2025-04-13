@@ -1,23 +1,24 @@
-import { Post as PostType } from "../../types/Post"
+import { InfiniteData } from "@tanstack/react-query"
 import Post from "./Post"
+import { GetFeedPostsRes } from "../../utils/getFeedPosts"
 
 interface PostsContainerProps {
-    posts: PostType[] | undefined
-    isOwner: boolean
+    data: InfiniteData<GetFeedPostsRes, unknown> | undefined
+    ref?: (node?: Element | null) => void
+    status: string
 }
 
-const PostsContainer = ({ posts, isOwner }: PostsContainerProps) => {
+const PostsContainer = ({ data, ref, status }: PostsContainerProps) => {
+    const posts = data?.pages.flatMap((page) => page.posts)
+
     return (
-        <div className="flex flex-col gap-4 items-center mt-16">
-            {posts && posts.length > 0 ? (
-                posts.map((post) => <Post {...post} />)
-            ) : (
-                <h1>
-                    {isOwner
-                        ? "You haven't posted anything"
-                        : "User has no posts"}
-                </h1>
-            )}
+        <div
+            ref={ref}
+            className="flex flex-col gap-4 items-center mt-16 w-full max-w-[600px]"
+        >
+            {posts?.map((post) => (
+                <Post {...post} />
+            ))}
         </div>
     )
 }

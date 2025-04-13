@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux"
 import CommentIcon from "../../assets/CommentIcon"
 import HeartIcon from "../../assets/HeartIcon"
 import RepostIcon from "../../assets/RepostIcon"
 import Button from "./Button"
 import UserInfo from "./UserInfo"
+import { RootState } from "../../redux/store"
 
 interface PostProps {
     caption: string
@@ -29,7 +31,10 @@ const Post = ({
     likesCount,
     commentsCount
 }: PostProps) => {
+    const { user } = useSelector((state: RootState) => state.auth)
     const created = new Date(createdAt)
+
+    const isOwner = userID === user?._id
 
     return (
         <div className="flex flex-col bg-black/5 transition-colors duration-150 rounded-lg items-start  w-full gap-4 max-w-[800px] p-5 ">

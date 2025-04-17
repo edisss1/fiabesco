@@ -3,6 +3,10 @@ interface InboxContainerProps {
 }
 
 const InboxContainer = ({ children }: InboxContainerProps) => {
-    return <main className="flex w-full justify-start p-4">{children}</main>
+    return (
+        <main className="flex w-full justify-start gap-4 overflow-hidden">
+            {children}
+        </main>
+    )
 }
 export default InboxContainer

@@ -21,7 +21,10 @@ const Router = () => {
                 </Route>
                 <Route path="/app">
                     <Route path="feed" element={<Feed />} />
-                    <Route path="inbox" element={<Inbox />} />
+                    <Route path="inbox">
+                        <Route index element={<Inbox />} />
+                        <Route path=":conversationID" element={<Inbox />} />
+                    </Route>
                     <Route path="profile/:userID" element={<Profile />} />
                 </Route>
                 <Route path="*" element={<Home />} />

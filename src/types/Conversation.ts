@@ -1,3 +1,4 @@
+import { MessageType } from "./Message"
 import { User } from "./User"
 
 export interface Conversation {
@@ -6,7 +7,7 @@ export interface Conversation {
     names: string[]
     isGroup: boolean
     name: string
-    lastMessage: string | null
+    lastMessage: MessageType
     createdAt: string
     updatedAt: string
     recipient: User // just for 1 on 1 conversations, todo: implement logic like this for group chats

@@ -2,120 +2,27 @@ import ConversationsContainer from "../components/atoms/ConversationsContainer"
 import ConversationPreview from "../components/atoms/ConversationPreview"
 import InboxContainer from "../components/atoms/InboxContainer"
 import PageWrapper from "../components/atoms/PageWrapper"
-import { MessageType } from "../types/Message"
 
-import Conversation from "../components/organisms/Conversation"
 import Arrow from "../assets/Arrow"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Button from "../components/atoms/Button"
 
+import { getConversations } from "../utils/getConversations"
+import { useQuery } from "@tanstack/react-query"
+import { Conversation } from "../types/Conversation"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
+
 const Inbox = () => {
-    // const [conversationOpened, setConversationOpened] = useState(false)
+    const { conversationID } = useParams()
+    const { user } = useSelector((state: RootState) => state.auth)
+
     const navigate = useNavigate()
 
-    const testMessage: MessageType = {
-        content: "very very last message",
-        conversationID: "",
-        createdAt: "now",
-        read: true,
-        senderID: " frfrf",
-        files: [],
-        updatedAt: "tomorrow",
-        _id: "121"
-    }
-
-    const testMessages: MessageType[] = [
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: "67f8152cb78b9b4fd6bb4e57",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        },
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: "67f8152cb78b9b4fd6bb4e57",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        },
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: "67f8152cb78b9b4fd6bb4e57",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        },
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: "67f8152cb78b9b4fd6bb4e57",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        },
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: "67f8152cb78b9b4fd6bb4e57",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        },
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: " frfrf",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        },
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: " frfrf",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        },
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: " frfrf",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        },
-        {
-            content: "very very last message",
-            conversationID: "",
-            createdAt: "now",
-            read: true,
-            senderID: " frfrf",
-            files: [],
-            updatedAt: "tomorrow",
-            _id: "121"
-        }
-    ]
+    const { data: conversations } = useQuery<Conversation[]>({
+        queryKey: ["conversations"],
+        queryFn: () => getConversations(user?._id)
+    })
 
     return (
         <PageWrapper sidebarEnabled={false}>
@@ -131,13 +38,14 @@ const Inbox = () => {
                         <h1 className="text-lg font-bold">Messages</h1>
                     </div>
                     <ConversationsContainer>
-                        <ConversationPreview
-                            recipientFullName="John Doe"
-                            lastMessage={testMessage}
-                        />
+                        {conversations?.map((conversation) => (
+                            <ConversationPreview
+                                recipientFullName={conversation.names[1]}
+                                lastMessage={conversation.lastMessage}
+                            />
+                        ))}
                     </ConversationsContainer>
                 </div>
-                <Conversation messages={testMessages} />
             </InboxContainer>
         </PageWrapper>
     )

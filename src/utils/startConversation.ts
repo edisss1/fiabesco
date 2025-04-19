@@ -8,16 +8,12 @@ export const startConversation = async (
 ) => {
     if (!userID || !recipientID) throw new Error("Missing ID")
 
-    const body = {
+    const res = await api.post("/conversations/start", {
         senderID: userID,
         recipientID: recipientID
-    }
-
-    const res = await api.post("/conversations/start", {
-        body
     })
 
     const conversationID = res.data
 
-    navigate(`/inbox/${conversationID}`)
+    navigate(`/app/inbox/${conversationID}`)
 }

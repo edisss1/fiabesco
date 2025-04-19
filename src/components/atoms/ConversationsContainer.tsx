@@ -3,6 +3,6 @@ interface ConversationsContainerProps {
 }
 
 const ConversationsContainer = ({ children }: ConversationsContainerProps) => {
-    return <div className="flex flex-col gap-2">{children}</div>
+    return <div className="flex flex-col ">{children}</div>
 }
 export default ConversationsContainer

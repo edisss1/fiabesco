@@ -1,22 +1,19 @@
 import { MessageType } from "../../types/Message"
-import { User } from "../../types/User"
 import RecipientInfo from "../atoms/RecipientInfo"
+import MessageComposer from "../molecules/MessageComposer"
 import MessageList from "../molecules/MessageList"
 
 interface ConversationProps {
-    messages: MessageType[]
+    messages: MessageType[] | undefined
+    fullName: string
 }
 
-const Conversation = ({ messages }: ConversationProps) => {
-    const testRecipient: Partial<User> = {
-        firstName: "Jane",
-        lastName: "Doe"
-    }
-
+const Conversation = ({ messages, fullName }: ConversationProps) => {
     return (
-        <div className="w-full  border-x-2 border-text-secondary p-2 h-screen">
-            <RecipientInfo recipient={testRecipient as User} />
+        <div className="w-full relative  py-2 h-screen">
+            <RecipientInfo fullName={fullName} />
             <MessageList messages={messages} />
+            <MessageComposer />
         </div>
     )
 }

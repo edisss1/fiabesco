@@ -1,22 +1,14 @@
 // this component will be used for 1 on 1 chats only i think
 
-import { User } from "../../types/User"
-import UserInfo from "./UserInfo"
-
 interface RecipientInfoProps {
-    recipient: User
+    fullName: string
 }
 
-const RecipientInfo = ({ recipient }: RecipientInfoProps) => {
+const RecipientInfo = ({ fullName }: RecipientInfoProps) => {
     return (
-        <div className="flex items-center w-full">
-            <UserInfo
-                firstName={recipient.firstName}
-                lastName={recipient.lastName}
-                photoURL={recipient.photoURL}
-                userID={recipient._id}
-                lastSeen="18:07"
-            />
+        <div className="flex flex-col  w-full px-4 py-2">
+            <h2 className="text-lg">{fullName}</h2>
+            <span className="text-sm">Last seen at 18:07</span>
         </div>
     )
 }

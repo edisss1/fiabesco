@@ -9,9 +9,11 @@ import Button from "../components/atoms/Button"
 
 import { getConversations } from "../utils/getConversations"
 import { useQuery } from "@tanstack/react-query"
-import { Conversation } from "../types/Conversation"
+import { Conversation as ConversationType } from "../types/Conversation"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
+import Conversation from "../components/organisms/Conversation"
+import { getConversationData } from "../utils/getConversationData"
 
 const Inbox = () => {
     const { conversationID } = useParams()
@@ -19,15 +21,21 @@ const Inbox = () => {
 
     const navigate = useNavigate()
 
-    const { data: conversations } = useQuery<Conversation[]>({
+    const { data: conversations } = useQuery<ConversationType[]>({
         queryKey: ["conversations"],
-        queryFn: () => getConversations(user?._id)
+        queryFn: () => getConversations(user?._id),
+        enabled: !!user?._id
+    })
+
+    const { data: conversationData } = useQuery({
+        queryKey: ["conversationData"],
+        queryFn: () => getConversationData(conversationID)
     })
 
     return (
         <PageWrapper sidebarEnabled={false}>
             <InboxContainer>
-                <div className="flex flex-col gap-8 p-4 ">
+                <div className="flex flex-col gap-8 p-4 border-r-2 w-full max-w-[300px] h-screen">
                     <div className="flex items-center gap-2">
                         <Button
                             onClick={() => navigate(-1)}
@@ -40,12 +48,17 @@ const Inbox = () => {
                     <ConversationsContainer>
                         {conversations?.map((conversation) => (
                             <ConversationPreview
+                                id={conversation._id}
                                 recipientFullName={conversation.names[1]}
                                 lastMessage={conversation.lastMessage}
                             />
                         ))}
                     </ConversationsContainer>
                 </div>
+                <Conversation
+                    messages={conversationData?.messages}
+                    fullName={conversationData?.conversation.names[1]!}
+                />
             </InboxContainer>
         </PageWrapper>
     )

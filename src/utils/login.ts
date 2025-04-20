@@ -10,7 +10,6 @@ export const login = async (
     if (!email || !password) return
 
     try {
-        console.log("Login called")
         const res = await axios.post(
             import.meta.env.VITE_BASE_URL + "/auth/login",
             {

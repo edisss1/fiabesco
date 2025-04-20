@@ -34,7 +34,6 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
                     )
 
                     const data = res.data
-                    console.log(data)
 
                     dispatch(setStatus("idle"))
 

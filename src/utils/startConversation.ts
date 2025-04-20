@@ -13,7 +13,7 @@ export const startConversation = async (
         recipientID: recipientID
     })
 
-    const conversationID = res.data
+    const conversationID = res.data.conversationID
 
     navigate(`/app/inbox/${conversationID}`)
 }

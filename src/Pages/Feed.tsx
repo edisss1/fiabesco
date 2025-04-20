@@ -23,7 +23,7 @@ const Feed = () => {
     return (
         <PageWrapper>
             <CreatePostForm />
-            <PostsContainer data={data} />
+            {data !== null && <PostsContainer data={data} />}
             <div ref={scrollContainerRef} className="h-10">
                 {!hasNextPage && (
                     <p className="text-center text-gray-500">

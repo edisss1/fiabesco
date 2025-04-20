@@ -13,7 +13,7 @@ const Conversation = ({ messages, fullName }: ConversationProps) => {
     const messageListRef = useRef<HTMLDivElement | null>(null)
 
     return (
-        <div className="w-full relative  py-2 h-screen conversation">
+        <div className="w-full relative   h-screen conversation">
             <RecipientInfo fullName={fullName} />
             <MessageList ref={messageListRef} messages={messages} />
             <MessageComposer ref={messageListRef} />

@@ -9,7 +9,6 @@ interface MessageProps {
 
 const Message = ({ message }: MessageProps) => {
     const { user: currentUser } = useSelector((state: RootState) => state.auth)
-    console.log(message)
     return (
         <div
             className={`flex flex-col gap-1 rounded-xl min-w-[100px] text-white relative ${

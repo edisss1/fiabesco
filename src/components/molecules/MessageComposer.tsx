@@ -6,6 +6,8 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 import { FormEvent, useState } from "react"
 import Button from "../atoms/Button"
+import PlaneIcon from "../../assets/PlaneIcon"
+import PaperClipIcon from "../../assets/PaperClipIcon"
 
 const MessageComposer = ({
     ref
@@ -23,29 +25,33 @@ const MessageComposer = ({
             sendMessage(content, senderID, conversationID, e),
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: ["conversationData"]
+                queryKey: ["conversationData", "conversations"]
             })
             setContent("")
             ref.current?.scrollIntoView({ behavior: "smooth" })
         }
     })
 
-    console.log(conversationID)
-
     return (
         <form
             onSubmit={send}
-            className=" flex items-center border-t-2 px-2  justify-betweenw-full "
+            className=" flex  gap-2 border-t-2 p-4 max-h-[100px] self-end  justify-betweenw-full "
         >
+            <Button>
+                <PaperClipIcon />
+            </Button>
             <FormInput
                 id="send-message"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Type your message"
-                className="w-full p-4 focus:outline-none focus:border-primary transition-colors"
+                placeholder="Type your message here..."
+                className="w-full  focus:outline-none focus:border-primary transition-colors"
             />
-            <Button className="cursor-pointer" type="submit">
-                Send
+            <Button
+                className="cursor-pointer flex items-center justify-center"
+                type="submit"
+            >
+                <PlaneIcon />
             </Button>
         </form>
     )

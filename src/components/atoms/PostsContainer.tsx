@@ -17,12 +17,8 @@ const PostsContainer = ({ data, posts, ref }: PostsContainerProps) => {
             ref={ref}
             className="flex flex-col gap-4 items-center mt-16 w-full mx-auto max-w-[800px]"
         >
-            {dataPosts?.map((post) => (
-                <Post {...post} />
-            ))}
-            {posts?.map((post) => (
-                <Post {...post} />
-            ))}
+            {dataPosts && dataPosts?.map((post) => <Post {...post} />)}
+            {posts && posts.map((post) => <Post {...post} />)}
         </div>
     )
 }

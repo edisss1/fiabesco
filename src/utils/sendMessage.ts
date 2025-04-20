@@ -19,7 +19,6 @@ export const sendMessage = async (
     )
 
     const newMessage = res.data.newMessage as MessageType
-    console.log("newMessage: ", newMessage)
 
     return newMessage
 }

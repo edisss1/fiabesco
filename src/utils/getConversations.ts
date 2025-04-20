@@ -2,14 +2,9 @@ import { api } from "../services/api"
 import { Conversation } from "../types/Conversation"
 
 export const getConversations = async (userID: string | undefined) => {
-    if (userID) {
-        const res = await api.get(`/conversations/${userID}`)
+    const res = await api.get(`/conversations/${userID}`)
 
-        const conversations = res.data as Conversation[]
-        console.log(conversations)
+    const conversations = res.data as Conversation[]
 
-        return conversations
-    } else {
-        return []
-    }
+    return conversations
 }

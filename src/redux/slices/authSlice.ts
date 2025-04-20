@@ -21,7 +21,6 @@ const authSlice = createSlice({
     reducers: {
         setUser: (state, action: PayloadAction<User>) => {
             state.user = action.payload
-            console.log(state.user)
         },
         setToken: (state, action: PayloadAction<string>) => {
             state.token = action.payload
@@ -29,7 +28,6 @@ const authSlice = createSlice({
         },
         setEmailForData: (state, action: PayloadAction<string>) => {
             state.emailForData = action.payload
-            console.log(state.emailForData, action.payload)
             localStorage.setItem("dataEmail", action.payload)
         },
         setStatus: (state, action: PayloadAction<"idle" | "loading">) => {

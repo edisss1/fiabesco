@@ -43,7 +43,6 @@ export const signUp = async (
         if (data) {
             dispatch(setEmailForData(email))
             await login(email, password, dispatch)
-            console.log("Logged in after signup ✅ as: ", email, password)
         }
 
         if (res.status !== 200) {

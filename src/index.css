@@ -74,3 +74,26 @@ body::-webkit-scrollbar-thumb {
         transform: translatex(0);
     }
 }
+
+.conversation {
+    display: grid;
+    grid-template-areas:
+        "info"
+        "conversation"
+        "composer";
+}
+
+.message-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.message-list::-webkit-scrollbar-track {
+    border-radius: 9999px;
+
+    @apply bg-text-secondary;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+    @apply bg-text-primary;
+    border-radius: 9999px;
+}

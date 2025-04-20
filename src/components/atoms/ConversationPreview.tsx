@@ -22,7 +22,9 @@ const ConversationPreview = ({
                 {/* <ProfilePicture url={recipientPhotoURL} /> */}
                 <div className="flex flex-col items-start gap-1">
                     <p className="font-semibold text-lg">{recipientFullName}</p>
-                    <span className="text-sm">{lastMessage.content}</span>
+                    <span className="text-sm max-w-[100px] truncate">
+                        {lastMessage.content}
+                    </span>
                 </div>
             </div>
             <span>18:07</span>

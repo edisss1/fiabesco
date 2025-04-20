@@ -29,8 +29,15 @@ const Inbox = () => {
 
     const { data: conversationData } = useQuery({
         queryKey: ["conversationData"],
-        queryFn: () => getConversationData(conversationID)
+        queryFn: () => getConversationData(conversationID),
+        enabled: !!conversationID
     })
+
+    const recipientName = conversationData?.conversation.names.find(
+        (name) => name !== `${user?.firstName} ${user?.lastName}`
+    )
+
+    console.log(recipientName)
 
     return (
         <PageWrapper sidebarEnabled={false}>
@@ -49,16 +56,18 @@ const Inbox = () => {
                         {conversations?.map((conversation) => (
                             <ConversationPreview
                                 id={conversation._id}
-                                recipientFullName={conversation.names[1]}
+                                recipientFullName={recipientName!}
                                 lastMessage={conversation.lastMessage}
                             />
                         ))}
                     </ConversationsContainer>
                 </div>
-                <Conversation
-                    messages={conversationData?.messages}
-                    fullName={conversationData?.conversation.names[1]!}
-                />
+                {conversationID && (
+                    <Conversation
+                        messages={conversationData?.messages}
+                        fullName={conversationData?.conversation.names[1]!}
+                    />
+                )}
             </InboxContainer>
         </PageWrapper>
     )

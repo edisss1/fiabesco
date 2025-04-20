@@ -12,16 +12,17 @@ const Message = ({ message }: MessageProps) => {
     console.log(message)
     return (
         <div
-            className={`flex  gap-2 rounded-lg text-white ${
+            className={`flex flex-col gap-1 rounded-xl min-w-[100px] text-white relative ${
                 currentUser?._id === message.senderID
                     ? "self-end rounded-br-none"
                     : "self-start rounded-bl-none"
-            } bg-message-bg w-max p-4 max-w-[50%] `}
+            } bg-message-bg w-max px-4 pt-3 pb-6 max-w-[50%]`}
         >
-            <p>{message.content}</p>
-            <div className="flex items-center justify-end translate-y-2">
-                <span>{formatRelativeDate(message.createdAt)}</span>
-            </div>
+            <p className="break-words">{message.content}</p>
+
+            <span className="absolute bottom-1 right-2 text-sm text-gray-300">
+                {formatRelativeDate(message.createdAt)}
+            </span>
         </div>
     )
 }

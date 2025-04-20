@@ -1,5 +1,6 @@
 import { FormEvent } from "react"
 import { api } from "../services/api"
+import { MessageType } from "../types/Message"
 
 export const sendMessage = async (
     content: string,
@@ -10,7 +11,15 @@ export const sendMessage = async (
     e.preventDefault()
     if (content.trim() === "" || !senderID || !conversationID) return
 
-    await api.post(`/conversations/${conversationID}/messages/${senderID}`, {
-        content
-    })
+    const res = await api.post(
+        `/conversations/${conversationID}/messages/${senderID}`,
+        {
+            content
+        }
+    )
+
+    const newMessage = res.data.newMessage as MessageType
+    console.log("newMessage: ", newMessage)
+
+    return newMessage
 }

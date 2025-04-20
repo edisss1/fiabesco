@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { MessageType } from "../../types/Message"
 import RecipientInfo from "../atoms/RecipientInfo"
 import MessageComposer from "../molecules/MessageComposer"
@@ -9,11 +10,13 @@ interface ConversationProps {
 }
 
 const Conversation = ({ messages, fullName }: ConversationProps) => {
+    const messageListRef = useRef<HTMLDivElement | null>(null)
+
     return (
-        <div className="w-full relative  py-2 h-screen">
+        <div className="w-full relative  py-2 h-screen conversation">
             <RecipientInfo fullName={fullName} />
-            <MessageList messages={messages} />
-            <MessageComposer />
+            <MessageList ref={messageListRef} messages={messages} />
+            <MessageComposer ref={messageListRef} />
         </div>
     )
 }

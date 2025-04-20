@@ -7,7 +7,11 @@ import { RootState } from "../../redux/store"
 import { FormEvent, useState } from "react"
 import Button from "../atoms/Button"
 
-const MessageComposer = () => {
+const MessageComposer = ({
+    ref
+}: {
+    ref: React.RefObject<HTMLDivElement | null>
+}) => {
     const { conversationID } = useParams()
     const senderID = useSelector((state: RootState) => state.auth.user?._id)
     const [content, setContent] = useState("")
@@ -22,6 +26,7 @@ const MessageComposer = () => {
                 queryKey: ["conversationData"]
             })
             setContent("")
+            ref.current?.scrollIntoView({ behavior: "smooth" })
         }
     })
 
@@ -30,7 +35,7 @@ const MessageComposer = () => {
     return (
         <form
             onSubmit={send}
-            className="absolute flex items-center border-t-2 px-2  justify-between bottom-0 w-full "
+            className=" flex items-center border-t-2 px-2  justify-betweenw-full "
         >
             <FormInput
                 id="send-message"

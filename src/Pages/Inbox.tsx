@@ -14,10 +14,14 @@ import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 import Conversation from "../components/organisms/Conversation"
 import { getConversationData } from "../utils/getConversationData"
+import { useEffect, useState } from "react"
+import { MessageType } from "../types/Message"
 
 const Inbox = () => {
+    const { socket } = useSelector((state: RootState) => state.socket)
     const { conversationID } = useParams()
     const { user } = useSelector((state: RootState) => state.auth)
+    const [messages, setMessages] = useState<MessageType[]>([])
 
     const navigate = useNavigate()
 
@@ -37,7 +41,21 @@ const Inbox = () => {
         (name) => name !== `${user?.firstName} ${user?.lastName}`
     )
 
-    console.log(recipientName)
+    useEffect(() => {
+        if (conversationData?.messages) {
+            setMessages(conversationData.messages)
+        }
+    }, [conversationData])
+
+    useEffect(() => {
+        if (socket) {
+            socket.onmessage = (event) => {
+                console.log("Message received: ", event.data)
+                const incoming = JSON.parse(event.data) as MessageType
+                setMessages((prev) => [...prev, incoming])
+            }
+        }
+    }, [socket])
 
     return (
         <PageWrapper sidebarEnabled={false}>
@@ -64,7 +82,10 @@ const Inbox = () => {
                 </div>
                 {conversationID && (
                     <Conversation
-                        messages={conversationData?.messages}
+                        participants={
+                            conversationData?.conversation.participants
+                        }
+                        messages={messages}
                         fullName={conversationData?.conversation.names[1]!}
                     />
                 )}

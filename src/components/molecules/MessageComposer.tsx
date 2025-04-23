@@ -1,6 +1,5 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import FormInput from "../atoms/FormInput"
-import { sendMessage } from "../../utils/sendMessage"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
@@ -10,23 +9,38 @@ import PlaneIcon from "../../assets/PlaneIcon"
 import PaperClipIcon from "../../assets/PaperClipIcon"
 
 const MessageComposer = ({
-    ref
+    ref,
+    recipientID
 }: {
     ref: React.RefObject<HTMLDivElement | null>
+    recipientID: string | undefined
 }) => {
+    const { socket } = useSelector((state: RootState) => state.socket)
     const { conversationID } = useParams()
     const senderID = useSelector((state: RootState) => state.auth.user?._id)
     const [content, setContent] = useState("")
-    const queryClient = useQueryClient()
 
     const { mutate: send } = useMutation({
         mutationKey: ["send"],
-        mutationFn: (e: FormEvent) =>
-            sendMessage(content, senderID, conversationID, e),
+        mutationFn: async (e: FormEvent) => {
+            e.preventDefault()
+            if (!content || !senderID || !content || !recipientID) return
+
+            const payload = {
+                type: "send_message",
+                data: {
+                    senderID,
+                    recipientID,
+                    conversationID,
+                    content
+                }
+            }
+            socket?.send(JSON.stringify(payload))
+
+            console.log("Message sent: ", payload)
+        },
+
         onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: ["conversationData", "conversations"]
-            })
             setContent("")
             ref.current?.scrollIntoView({ behavior: "smooth" })
         }

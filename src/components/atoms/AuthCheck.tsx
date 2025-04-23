@@ -7,6 +7,7 @@ import { User } from "../../types/User"
 import { setStatus, setUser } from "../../redux/slices/authSlice"
 import Loading from "./Loading"
 import { useLocation, useNavigate } from "react-router-dom"
+import { setSocket } from "../../redux/slices/websocketSlice"
 
 const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     const dispatch = useDispatch<AppDispatch>()
@@ -47,6 +48,19 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
         refetchOnWindowFocus: false,
         refetchOnReconnect: true
     })
+
+    useEffect(() => {
+        if (user?._id) {
+            const socket = new WebSocket(
+                `ws://localhost:3000/ws?userID=${user?._id}`
+            )
+            socket.onopen = () => {
+                console.log(`Connected to socket - ${socket.url}`)
+            }
+
+            dispatch(setSocket(socket))
+        }
+    }, [user?._id])
 
     useEffect(() => {
         if (user && !location.pathname.startsWith("/app")) {

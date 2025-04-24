@@ -7,13 +7,19 @@ interface MessageListProps {
 }
 
 const MessageList = ({ messages, ref }: MessageListProps) => {
-    const sortedMessages = messages?.sort((a, b) =>
-        a.createdAt.localeCompare(b.createdAt)
-    )
+    const sortedMessages = messages
+        ? [...messages].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+        : []
 
     return (
-        <div className=" flex  flex-col gap-2 px-1 py-4 w-full overflow-y-scroll message-list">
-            {messages?.length === 0 && <div>No messages yet</div>}
+        <div
+            ref={ref}
+            aria-label="Message List"
+            className="flex flex-col-reverse gap-2 px-1 py-4 w-full grow  overflow-y-scroll message-list "
+        >
+            {messages?.length === 0 && (
+                <span className="text-center">No messages yet</span>
+            )}
             {sortedMessages?.map((message) => (
                 <Message message={message} />
             ))}

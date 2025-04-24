@@ -8,27 +8,35 @@ import { RootState } from "../../redux/store"
 
 interface ConversationProps {
     messages: MessageType[] | undefined
-    fullName: string
     participants: string[] | undefined
+    names: string[] | undefined
+    conversationID: string | undefined
 }
 
 const Conversation = ({
     messages,
-    fullName,
-    participants
+    names,
+    participants,
+    conversationID
 }: ConversationProps) => {
     const messageListRef = useRef<HTMLDivElement | null>(null)
     const { user } = useSelector((state: RootState) => state.auth)
 
     const recepientID = participants?.find((p) => p !== user?._id)
+    const recipientName = names?.find(
+        (p) => p !== `${user?.firstName} ${user?.lastName}`
+    )
 
     useEffect(() => {
-        messageListRef.current?.scrollIntoView({ behavior: "smooth" })
-    }, [])
+        if (messageListRef.current) {
+            messageListRef.current.scrollTop =
+                messageListRef.current.scrollHeight
+        }
+    }, [conversationID, user, names, messages])
 
     return (
-        <div className="w-full relative   h-screen conversation">
-            <RecipientInfo fullName={fullName} />
+        <div className="w-full relative flex flex-col h-[calc(100vh)] items-start">
+            <RecipientInfo fullName={recipientName} />
             <MessageList ref={messageListRef} messages={messages} />
             <MessageComposer ref={messageListRef} recipientID={recepientID} />
         </div>

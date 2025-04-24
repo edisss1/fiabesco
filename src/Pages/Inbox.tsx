@@ -32,20 +32,14 @@ const Inbox = () => {
     })
 
     const { data: conversationData } = useQuery({
-        queryKey: ["conversationData"],
+        queryKey: ["conversationData", conversationID],
         queryFn: () => getConversationData(conversationID),
         enabled: !!conversationID
     })
 
-    const recipientName = conversationData?.conversation.names.find(
-        (name) => name !== `${user?.firstName} ${user?.lastName}`
-    )
-
     useEffect(() => {
-        if (conversationData?.messages) {
-            setMessages(conversationData.messages)
-        }
-    }, [conversationData])
+        setMessages(conversationData?.messages ? conversationData.messages : [])
+    }, [conversationData, conversationID])
 
     useEffect(() => {
         if (socket) {
@@ -63,7 +57,7 @@ const Inbox = () => {
                 <div className="flex flex-col gap-8 p-4 border-r-2 w-full max-w-[300px] h-screen">
                     <div className="flex items-center gap-2">
                         <Button
-                            onClick={() => navigate(-1)}
+                            onClick={() => navigate("/app/feed")}
                             className="p-2 hover:bg-text-primary/30 rounded-full transition-colors duration-150 ease-in"
                         >
                             <Arrow />
@@ -73,8 +67,10 @@ const Inbox = () => {
                     <ConversationsContainer>
                         {conversations?.map((conversation) => (
                             <ConversationPreview
+                                conversationID={conversationID}
+                                key={conversation._id}
+                                names={conversation.names}
                                 id={conversation._id}
-                                recipientFullName={recipientName!}
                                 lastMessage={conversation.lastMessage}
                             />
                         ))}
@@ -82,11 +78,13 @@ const Inbox = () => {
                 </div>
                 {conversationID && (
                     <Conversation
+                        conversationID={conversationID}
+                        key={conversationID}
                         participants={
                             conversationData?.conversation.participants
                         }
+                        names={conversationData?.conversation.names}
                         messages={messages}
-                        fullName={conversationData?.conversation.names[1]!}
                     />
                 )}
             </InboxContainer>

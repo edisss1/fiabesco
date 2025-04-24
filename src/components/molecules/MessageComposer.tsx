@@ -9,7 +9,6 @@ import PlaneIcon from "../../assets/PlaneIcon"
 import PaperClipIcon from "../../assets/PaperClipIcon"
 
 const MessageComposer = ({
-    ref,
     recipientID
 }: {
     ref: React.RefObject<HTMLDivElement | null>
@@ -42,14 +41,14 @@ const MessageComposer = ({
 
         onSuccess: () => {
             setContent("")
-            ref.current?.scrollIntoView({ behavior: "smooth" })
         }
     })
 
     return (
         <form
+            aria-label="Message Input"
             onSubmit={send}
-            className=" flex  gap-2 border-t-2 p-4 max-h-[100px] self-end  justify-betweenw-full "
+            className="w-full flex shrink grow-0  gap-2 border-t-2 p-4 max-h-[100px] self-end  justify-betweenw-full "
         >
             <Button>
                 <PaperClipIcon />

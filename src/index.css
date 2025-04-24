@@ -75,14 +75,6 @@ body::-webkit-scrollbar-thumb {
     }
 }
 
-.conversation {
-    display: grid;
-    grid-template-areas:
-        "info"
-        "conversation"
-        "composer";
-}
-
 .message-list::-webkit-scrollbar {
     width: 6px;
 }

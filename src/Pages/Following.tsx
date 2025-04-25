@@ -1,0 +1,28 @@
+import { useQuery } from "@tanstack/react-query"
+import PageWrapper from "../components/atoms/PageWrapper"
+import { User } from "../types/User"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
+import { getFollowing } from "../utils/getFollowing"
+import FollowedWrapper from "../components/molecules/FollowedWrapper"
+import SearchBar from "../components/atoms/SearchBar"
+
+const Following = () => {
+    const { user } = useSelector((state: RootState) => state.auth)
+
+    const { data: following } = useQuery<User[] | undefined>({
+        queryKey: ["following"],
+        queryFn: () => getFollowing(user?._id),
+        enabled: !!user?._id
+    })
+
+    return (
+        <PageWrapper header="Following" headerEnabled>
+            <div className="w-full max-w-[600px] flex flex-col gap-8">
+                <SearchBar />
+                <FollowedWrapper following={following} />
+            </div>
+        </PageWrapper>
+    )
+}
+export default Following

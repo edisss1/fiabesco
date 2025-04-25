@@ -21,7 +21,7 @@ const MessageList = ({ messages, ref }: MessageListProps) => {
                 <span className="text-center">No messages yet</span>
             )}
             {sortedMessages?.map((message) => (
-                <Message message={message} />
+                <Message key={message._id} message={message} />
             ))}
             <div ref={ref} />
         </div>

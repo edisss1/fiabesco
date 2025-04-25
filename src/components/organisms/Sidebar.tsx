@@ -39,7 +39,7 @@ const Sidebar = () => {
             />
             <div className="flex flex-col gap-2">
                 {links.map((link) => (
-                    <SidebarLink {...link} />
+                    <SidebarLink key={link.path} {...link} />
                 ))}
             </div>
         </aside>

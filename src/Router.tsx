@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
-import Inbox from "./Pages/Inbox"
-import Profile from "./Pages/Profile"
 
+const Inbox = lazy(() => import("./Pages/Inbox"))
+const Profile = lazy(() => import("./Pages/Profile"))
+const Following = lazy(() => import("./Pages/Following"))
 const Home = lazy(() => import("./Pages/Home"))
 const Auth = lazy(() => import("./Pages/Auth"))
 const Login = lazy(() => import("./Pages/Login"))
@@ -26,6 +27,7 @@ const Router = () => {
                         <Route path=":conversationID" element={<Inbox />} />
                     </Route>
                     <Route path="profile/:userID" element={<Profile />} />
+                    <Route path="following" element={<Following />} />
                 </Route>
                 <Route path="*" element={<Home />} />
             </Routes>

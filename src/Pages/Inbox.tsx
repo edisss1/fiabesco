@@ -2,40 +2,27 @@ import ConversationsContainer from "../components/atoms/ConversationsContainer"
 import ConversationPreview from "../components/atoms/ConversationPreview"
 import InboxContainer from "../components/atoms/InboxContainer"
 import PageWrapper from "../components/atoms/PageWrapper"
-
 import Arrow from "../assets/Arrow"
 import { useNavigate, useParams } from "react-router-dom"
 import Button from "../components/atoms/Button"
-
-import { getConversations } from "../utils/getConversations"
-import { useQuery } from "@tanstack/react-query"
-import { Conversation as ConversationType } from "../types/Conversation"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 import Conversation from "../components/organisms/Conversation"
-import { getConversationData } from "../utils/getConversationData"
 import { useEffect, useState } from "react"
 import { MessageType } from "../types/Message"
+import { useConversations } from "../hooks/useConversations"
 
 const Inbox = () => {
     const { socket } = useSelector((state: RootState) => state.socket)
     const { conversationID } = useParams()
     const { user } = useSelector((state: RootState) => state.auth)
     const [messages, setMessages] = useState<MessageType[]>([])
+    const { conversationData, conversations } = useConversations(
+        user?._id,
+        conversationID
+    )
 
     const navigate = useNavigate()
-
-    const { data: conversations } = useQuery<ConversationType[]>({
-        queryKey: ["conversations"],
-        queryFn: () => getConversations(user?._id),
-        enabled: !!user?._id
-    })
-
-    const { data: conversationData } = useQuery({
-        queryKey: ["conversationData", conversationID],
-        queryFn: () => getConversationData(conversationID),
-        enabled: !!conversationID
-    })
 
     useEffect(() => {
         setMessages(conversationData?.messages ? conversationData.messages : [])
@@ -44,7 +31,6 @@ const Inbox = () => {
     useEffect(() => {
         if (socket) {
             socket.onmessage = (event) => {
-                console.log("Message received: ", event.data)
                 const incoming = JSON.parse(event.data) as MessageType
                 setMessages((prev) => [...prev, incoming])
             }

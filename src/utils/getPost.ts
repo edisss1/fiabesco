@@ -1,14 +1,14 @@
 import { api } from "../services/api"
 
-export const getPostsByUser = async (userID: string | undefined) => {
+export const getPost = async (postID: string | undefined) => {
+    if (!postID) return
+
     try {
         const res = await api.get(
-            import.meta.env.VITE_BASE_URL + `/users/${userID}/post`
+            import.meta.env.VITE_BASE_URL + `/posts/${postID}`
         )
 
         const data = res.data
-
-        console.log(data)
 
         return data
     } catch (error) {

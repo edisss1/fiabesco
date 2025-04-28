@@ -18,10 +18,14 @@ export function useProfileData(
         enabled: !!token
     })
 
-    const { data: posts } = useQuery<Post[]>({
-        queryKey: ["postsByUser", userID, token],
-        queryFn: () => getPostsByUser(userID, token)
+    const { data } = useQuery({
+        queryKey: ["postsByUser", userID],
+        queryFn: () => getPostsByUser(userID),
+        enabled: !!userID
     })
 
-    return { profileData, posts }
+    const posts = data?.posts as Post[]
+    const user = data?.user as User
+
+    return { profileData, posts, user }
 }

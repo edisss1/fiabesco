@@ -36,7 +36,7 @@ const Conversation = ({
 
     return (
         <div className="w-full relative flex flex-col h-[calc(100vh)] items-start">
-            <RecipientInfo fullName={recipientName} />
+            <RecipientInfo recipientID={recepientID} fullName={recipientName} />
             <MessageList ref={messageListRef} messages={messages} />
             <MessageComposer ref={messageListRef} recipientID={recepientID} />
         </div>

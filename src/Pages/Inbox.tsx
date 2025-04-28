@@ -5,15 +5,17 @@ import PageWrapper from "../components/atoms/PageWrapper"
 import Arrow from "../assets/Arrow"
 import { useNavigate, useParams } from "react-router-dom"
 import Button from "../components/atoms/Button"
-import { useSelector } from "react-redux"
-import { RootState } from "../redux/store"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "../redux/store"
 import Conversation from "../components/organisms/Conversation"
 import { useEffect, useState } from "react"
 import { MessageType } from "../types/Message"
 import { useConversations } from "../hooks/useConversations"
+import { setSocket } from "../redux/slices/websocketSlice"
 
 const Inbox = () => {
     const { socket } = useSelector((state: RootState) => state.socket)
+    const dispatch = useDispatch<AppDispatch>()
     const { conversationID } = useParams()
     const { user } = useSelector((state: RootState) => state.auth)
     const [messages, setMessages] = useState<MessageType[]>([])
@@ -23,6 +25,19 @@ const Inbox = () => {
     )
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user?._id) {
+            const socket = new WebSocket(
+                `ws://localhost:3000/ws?userID=${user?._id}`
+            )
+            socket.onopen = () => {
+                console.log(`Connected to socket - ${socket.url}`)
+            }
+
+            dispatch(setSocket(socket))
+        }
+    }, [])
 
     useEffect(() => {
         setMessages(conversationData?.messages ? conversationData.messages : [])

@@ -3,6 +3,7 @@ import CreatePostForm from "../components/molecules/CreatePostForm"
 import { useEffect } from "react"
 import PostsContainer from "../components/atoms/PostsContainer"
 import { useFeedData } from "../hooks/useFeedData"
+import LoadingSpinner from "../components/atoms/LoadingSpinner"
 
 const Feed = () => {
     const {
@@ -23,6 +24,7 @@ const Feed = () => {
     return (
         <PageWrapper>
             <CreatePostForm />
+            {data === null && <LoadingSpinner />}
             {data !== null && <PostsContainer data={data} />}
             <div ref={scrollContainerRef} className="h-10">
                 {!hasNextPage && (

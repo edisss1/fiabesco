@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
+import PostView from "./Pages/PostView"
 
 const Inbox = lazy(() => import("./Pages/Inbox"))
 const Profile = lazy(() => import("./Pages/Profile"))
@@ -28,6 +29,7 @@ const Router = () => {
                     </Route>
                     <Route path="profile/:userID" element={<Profile />} />
                     <Route path="following" element={<Following />} />
+                    <Route path="post/:postID" element={<PostView />} />
                 </Route>
                 <Route path="*" element={<Home />} />
             </Routes>

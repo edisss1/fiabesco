@@ -1,8 +1,8 @@
 import { api } from "../services/api"
-import { Post } from "../types/Post"
+import { FeedItem } from "../types/FeedItem"
 
 export interface GetFeedPostsRes {
-    posts: Post[]
+    feedItems: FeedItem[]
     nextSkip?: number
     hasMore: boolean
 }
@@ -26,8 +26,10 @@ export const getFeedPosts = async (
         }
     })
 
+    const feedItems = res.data.feedItems as FeedItem[]
+
     return {
-        posts: res.data.posts,
+        feedItems: feedItems,
         hasMore: res.data.hasMore,
         nextSkip: res.data.nextSkip
     }

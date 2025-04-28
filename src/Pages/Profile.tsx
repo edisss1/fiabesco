@@ -12,18 +12,20 @@ import PostsContainer from "../components/atoms/PostsContainer"
 const Profile = () => {
     const { userID } = useParams()
     const dispatch = useDispatch<AppDispatch>()
-    const { token, user } = useSelector((state: RootState) => state.auth)
+    const { token, user: currentUser } = useSelector(
+        (state: RootState) => state.auth
+    )
 
-    const { profileData, posts } = useProfileData(userID, token, dispatch)
+    const { profileData, posts, user } = useProfileData(userID, token, dispatch)
 
-    const isOwner = userID === user?._id
+    const isOwner = userID === currentUser?._id
 
     return (
         <PageWrapper>
             <ProfileWrapper>
                 <Banner isOwner={isOwner} bannerURL={profileData?.bannerURL} />
                 <ProfileHeader profileData={profileData} isOwner={isOwner} />
-                <PostsContainer posts={posts} />
+                <PostsContainer postedBy={user} posts={posts} />
             </ProfileWrapper>
         </PageWrapper>
     )

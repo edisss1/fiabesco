@@ -25,7 +25,7 @@ const Feed = () => {
         <PageWrapper>
             <CreatePostForm />
             {data === null && <LoadingSpinner />}
-            {data !== null && <PostsContainer data={data} />}
+            {data !== null && <PostsContainer posts={data} />}
             <div ref={scrollContainerRef} className="h-10">
                 {!hasNextPage && (
                     <p className="text-center text-gray-500">

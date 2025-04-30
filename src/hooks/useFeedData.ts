@@ -25,10 +25,17 @@ export function useFeedData() {
             }
         })
 
+    const posts = data?.pages.flatMap((page) =>
+        page.feedItems.map((item) => ({
+            post: item.post,
+            user: item.user
+        }))
+    )
+
     return {
         scrollContainerRef,
         inView,
-        data,
+        data: posts,
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,

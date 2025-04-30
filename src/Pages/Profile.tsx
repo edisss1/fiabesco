@@ -16,7 +16,7 @@ const Profile = () => {
         (state: RootState) => state.auth
     )
 
-    const { profileData, posts, user } = useProfileData(userID, token, dispatch)
+    const { profileData, posts } = useProfileData(userID, token, dispatch)
 
     const isOwner = userID === currentUser?._id
 
@@ -25,7 +25,7 @@ const Profile = () => {
             <ProfileWrapper>
                 <Banner isOwner={isOwner} bannerURL={profileData?.bannerURL} />
                 <ProfileHeader profileData={profileData} isOwner={isOwner} />
-                <PostsContainer postedBy={user} posts={posts} />
+                <PostsContainer posts={posts} />
             </ProfileWrapper>
         </PageWrapper>
     )

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { MessageType } from "../../types/Message"
 import { RootState } from "../../redux/store"
-import { formatRelativeDate } from "../../utils/formatRelativeDate"
+import { formatDate } from "../../utils/formatDate"
 
 interface MessageProps {
     message: MessageType
@@ -20,7 +20,7 @@ const Message = ({ message }: MessageProps) => {
             <p className="break-words">{message.content}</p>
 
             <span className="absolute bottom-1 right-2 text-sm text-gray-300">
-                {formatRelativeDate(message.createdAt)}
+                {formatDate(message.createdAt)}
             </span>
         </div>
     )

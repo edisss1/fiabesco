@@ -48,14 +48,14 @@ const Post = ({
     })
 
     return (
-        <div className="flex flex-col bg-black/5 transition-colors duration-150 rounded-lg items-start  w-full gap-4 max-w-[800px] p-5 ">
+        <div className="flex flex-col bg-black/5 transition-colors duration-150 rounded-lg items-start  w-full gap-4 max-w-[800px] p-4 ">
             <div className="flex items-start gap-4">
                 <UserInfo
                     userID={userID}
                     firstName={postedBy?.firstName}
                     lastName={postedBy?.lastName}
                     handle={postedBy?.handle}
-                    photoURL={postedBy?.bannerURL}
+                    photoURL={postedBy?.photoURL}
                 />
                 <span className="p-1">{created.toLocaleDateString()}</span>
             </div>

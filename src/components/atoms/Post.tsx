@@ -9,6 +9,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { likePost } from "../../utils/likePost"
 import { User } from "../../types/User"
 import PostActions from "./PostActions"
+import { useRef } from "react"
+import { useTruncate } from "../../hooks/useTruncate"
 
 interface PostProps {
     caption: string
@@ -31,9 +33,12 @@ const Post = ({
     _id,
     postedBy
 }: PostProps) => {
+    const contentRef = useRef<HTMLParagraphElement | null>(null)
     const { user } = useSelector((state: RootState) => state.auth)
     const created = new Date(createdAt)
     const client = useQueryClient()
+    const { truncatedContent, showButton, isReadingMore, setIsReadingMore } =
+        useTruncate(caption)
 
     const isOwner = userID === user?._id
 
@@ -47,6 +52,8 @@ const Post = ({
         }
     })
 
+    console.log("showButton", showButton)
+
     return (
         <div className="flex flex-col bg-black/5 transition-colors duration-150 rounded-lg items-start  w-full gap-4 max-w-[800px] p-4 ">
             <div className="flex items-start gap-4">
@@ -59,8 +66,23 @@ const Post = ({
                 />
                 <span className="p-1">{created.toLocaleDateString()}</span>
             </div>
-            <div className="flex flex-col gap-4 mt-2">
-                <p className="text-text-secondary">{caption}</p>
+            <div className="flex flex-col gap-4 mt-2 relative">
+                <p
+                    ref={contentRef}
+                    className={`break-words ${
+                        !isReadingMore ? "line-clamp-2" : ""
+                    } `}
+                >
+                    {truncatedContent}
+                </p>
+                {showButton && (
+                    <Button
+                        className="absolute bottom-0 right-0 bg-background rounded-md  px-2 "
+                        onClick={() => setIsReadingMore((prev) => !prev)}
+                    >
+                        {isReadingMore ? "Read less" : "Read more"}
+                    </Button>
+                )}
                 {images &&
                     images.map((img) => <img src={img} loading="lazy" />)}
             </div>

@@ -6,17 +6,31 @@ import Button from "./Button"
 import ProfilePicture from "./ProfilePicture"
 import { useTruncate } from "../../hooks/useTruncate"
 
-const Comment = ({ _id, postID, userID, content, createdAt }: CommentType) => {
+interface CommentProps extends CommentType {
+    userName: string | undefined
+    currentUserID: string | undefined
+}
+
+const Comment = ({
+    content,
+    createdAt,
+    userName,
+    userID,
+    currentUserID
+}: CommentProps) => {
     const contentRef = useRef<HTMLParagraphElement | null>(null)
     const { truncatedContent, showButton, isReadingMore, setIsReadingMore } =
         useTruncate(content)
+
+    const isOwner = userID === currentUserID
 
     return (
         <div className="w-full relative p-2 hover:bg-text-secondary/10 transition-colors duration-200 rounded-lg">
             <div className="flex items-start gap-2">
                 <ProfilePicture url="" />
                 <div className="flex flex-col gap-2 relative ">
-                    <p>{"User Name"}</p>
+                    <p>{userName}</p>
+
                     <p
                         ref={contentRef}
                         className={`break-words ${
@@ -36,7 +50,7 @@ const Comment = ({ _id, postID, userID, content, createdAt }: CommentType) => {
                 </div>
             </div>
             <div className="absolute top-2 right-2 flex flex-row-reverse items-center gap-2">
-                <Button className="rotate-90">
+                <Button className="rotate-90 hover:bg-white/60 rounded-lg transition-colors duration-200">
                     <MoreIcon />
                 </Button>
                 <span className="">{formatDate(createdAt)}</span>

@@ -5,11 +5,29 @@ import Button from "../atoms/Button"
 import { startConversation } from "../../utils/startConversation"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { followUser } from "../../utils/followUser"
 
 const ProfileActionButtons = () => {
     const { userID } = useParams()
     const { user } = useSelector((state: RootState) => state.auth)
     const navigate = useNavigate()
+    const client = useQueryClient()
+
+    const { mutate: follow } = useMutation({
+        mutationKey: ["follow"],
+        mutationFn: () => followUser(user?._id, userID),
+        onSuccess: () => {
+            client.invalidateQueries({
+                queryKey: ["profileData", userID]
+            })
+            client.invalidateQueries({
+                queryKey: ["userData", userID]
+            })
+        }
+    })
+
+    const isFollowing = user?.followedUsers?.includes(userID!)
 
     return (
         <div className="flex items-center gap-4 [&>*]:cursor-pointer">
@@ -20,9 +38,12 @@ const ProfileActionButtons = () => {
                 <MessageIcon />
                 Message
             </Button>
-            <Button className="flex items-center gap-2 p-2 hover:bg-black/5 transition-colors duration-200 ease-in rounded-lg">
+            <Button
+                onClick={follow}
+                className="flex items-center gap-2 p-2 hover:bg-black/5 transition-colors duration-200 ease-in rounded-lg"
+            >
                 <FollowIcon />
-                Follow
+                {isFollowing ? "Unfollow" : "Follow"}
             </Button>
         </div>
     )

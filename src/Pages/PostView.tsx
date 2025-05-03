@@ -1,35 +1,14 @@
-import { useQuery } from "@tanstack/react-query"
 import PageWrapper from "../components/atoms/PageWrapper"
 import { useParams } from "react-router-dom"
-import { getPost } from "../utils/getPost"
 import Post from "../components/atoms/Post"
 import CreateCommentForm from "../components/molecules/CreateCommentForm"
-import { Comment as CommentType } from "../types/Comment"
-import { getComments } from "../utils/getComments"
 import Comment from "../components/atoms/Comment"
+import { usePostView } from "../hooks/usePostView"
 
 const PostView = () => {
     const { postID } = useParams()
 
-    const { data: postData } = useQuery({
-        queryKey: ["post"],
-        queryFn: () => getPost(postID),
-        enabled: !!postID
-    })
-
-    const { data: comments } = useQuery({
-        queryKey: ["comments"],
-        queryFn: () => getComments(postID)
-    })
-
-    const mockComment: CommentType = {
-        _id: "1",
-        postID: "1",
-        userID: "1",
-        content:
-            "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        createdAt: "2023-01-01T00:12:00.000Z"
-    }
+    const { postData, comments, currentUserID } = usePostView(postID)
 
     return (
         <PageWrapper>
@@ -38,7 +17,18 @@ const PostView = () => {
                     <Post postedBy={postData.user} {...postData?.post} />
                 )}
                 <CreateCommentForm />
-                <Comment {...mockComment} />
+                {comments && (
+                    <div className="flex flex-col gap-4 w-full">
+                        {comments.map((comment) => (
+                            <Comment
+                                currentUserID={currentUserID}
+                                userName={`${comment.user.firstName} ${comment.user.lastName}`}
+                                key={comment.comment?._id}
+                                {...comment.comment}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </PageWrapper>
     )

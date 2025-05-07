@@ -9,8 +9,8 @@ const Explore = () => {
         <Section position="relative">
             <SectionHeader>Explore the Community</SectionHeader>
             <div className="mt-6 flex justify-center items-center gap-8 flex-wrap">
-                {exploreCards.map((card) => (
-                    <ExploreCard {...card} />
+                {exploreCards.map((card, index) => (
+                    <ExploreCard index={index} {...card} />
                 ))}
             </div>
             <Curve />

@@ -21,7 +21,7 @@ const Button = ({
 }: ButtonProps) => {
     const variants = {
         primary: "bg-primary px-4 py-2 rounded-lg",
-        secondary: "bg-secondary px-4 py-2 rounded-lg"
+        secondary: "bg-secondary px-4 py-2 rounded-lg text-white"
     }
 
     const appliedVariant = variantEnabled ? variants[variant!] : ""

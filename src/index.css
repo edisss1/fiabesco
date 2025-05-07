@@ -7,9 +7,8 @@
 
     --color-primary: #ffa500;
     --color-secondary: #008080;
-    --color-background: #f5f5dc;
-    --color-text-primary: #708090;
-    --color-text-secondary: #333333;
+    --color-background: #f0f0f0;
+    --color-text-primary: #333333;
     --color-danger: #bb2124;
     --color-success: #22bb33;
     --color-warning: #f0ad4e;
@@ -82,7 +81,7 @@ body::-webkit-scrollbar-thumb {
 .message-list::-webkit-scrollbar-track {
     border-radius: 9999px;
 
-    @apply bg-text-secondary;
+    @apply bg-amber-300;
 }
 
 .message-list::-webkit-scrollbar-thumb {

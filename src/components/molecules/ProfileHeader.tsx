@@ -44,7 +44,7 @@ const ProfileHeader = ({ profileData, isOwner }: ProfileHeaderProps) => {
     })
 
     return (
-        <div className="px-4 flex items-center justify-between gap-4 text-text-secondary ">
+        <div className="px-4 flex items-center justify-between gap-4 text-text-primary ">
             <div className="flex items-start gap-2">
                 {profileData?.photoURL ? (
                     <img src={profileData.photoURL} />

@@ -11,7 +11,7 @@ const SidebarLink = ({ path, text }: SidebarLinkProps) => {
             className={({ isActive }) =>
                 `flex items-center  gap-2 ${
                     isActive
-                        ? "[&>svg]:fill-text-secondary text-text-secondary"
+                        ? "[&>svg]:fill-text-primary text-text-primary"
                         : ""
                 } `
             }

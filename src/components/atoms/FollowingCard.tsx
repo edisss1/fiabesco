@@ -12,7 +12,7 @@ interface FollowingCardProps {
 
 const FollowingCard = ({ userName, id, bio, photoURL }: FollowingCardProps) => {
     return (
-        <div className="flex  items-center justify-between hover:bg-text-secondary/10 transition-colors duration-200 px-3 py-2 rounded-lg">
+        <div className="flex  items-center justify-between hover:bg-text-primary/10 transition-colors duration-200 px-3 py-2 rounded-lg">
             <div className="flex items-center gap-2">
                 <ProfilePicture url={photoURL} />
                 <div className="flex flex-col">

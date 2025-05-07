@@ -26,7 +26,7 @@ const CreatePostForm = () => {
                 <input
                     value={caption}
                     onChange={(e) => setCaption(e.target.value)}
-                    className="border-b-2 text-text-secondary p-2 focus:border-primary focus:outline-none transition-all duration-300  border-text-secondary w-full max-w-[300px]"
+                    className="border-b-2 text-text-primary p-2 focus:border-primary focus:outline-none transition-all duration-300  border-text-primary w-full max-w-[300px]"
                     type="text"
                     placeholder="Share your art..."
                 />
@@ -34,7 +34,7 @@ const CreatePostForm = () => {
                     Post
                 </Button>
             </div>
-            <div className="flex items-center gap-4 text-text-secondary mt-2">
+            <div className="flex items-center gap-4 text-text-primary mt-2">
                 <Button type="button">Photo</Button>
                 <Button type="button">File</Button>
             </div>

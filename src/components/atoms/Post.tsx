@@ -52,8 +52,6 @@ const Post = ({
         }
     })
 
-    console.log("showButton", showButton)
-
     return (
         <div className="flex flex-col bg-black/5 transition-colors duration-150 rounded-lg items-start  w-full gap-4 max-w-[800px] p-4 ">
             <div className="flex items-start gap-4">
@@ -93,9 +91,6 @@ const Post = ({
                     icon={<HeartIcon />}
                     onClick={() => {
                         like()
-                        console.log(
-                            `Post liked, likesCount: ${likesCount} likes: ${likes} `
-                        )
                     }}
                 />
 

@@ -28,7 +28,7 @@ const ConversationPreview = ({
             to={`/app/inbox/${id}`}
             className={`${
                 conversationID === id && "bg-secondary"
-            } p-2  rounded-lg w-full max-w-[300px] flex gap-2 items-start justify-between text-text-secondary transition-colors duration-150`}
+            } p-2  rounded-lg w-full max-w-[300px] flex gap-2 items-start justify-between text-text-primary transition-colors duration-150`}
         >
             <div className="flex gap-2 items-center">
                 <ProfilePicture

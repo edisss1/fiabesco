@@ -30,6 +30,7 @@ const Login = () => {
     return (
         <AuthWrapper>
             <Form
+                x={100}
                 onSubmit={handleSubmit}
                 className="flex flex-col gap-6 items-center w-full max-w-[400px]"
             >
@@ -66,7 +67,7 @@ const Login = () => {
                 <div className="flex items-center gap-2">
                     <p>Don't have an account?</p>
                     <Link
-                        className="text-text-secondary opacity-70 hover:opacity-100 transition-opacity duration-300"
+                        className="text-text-primary opacity-70 hover:opacity-100 transition-opacity duration-300"
                         to={"/auth/signup"}
                     >
                         Sign up

@@ -35,8 +35,6 @@ const MessageComposer = ({
                 }
             }
             socket?.send(JSON.stringify(payload))
-
-            console.log("Message sent: ", payload)
         },
 
         onSuccess: () => {

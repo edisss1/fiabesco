@@ -50,7 +50,7 @@ const Comment = ({
     })
 
     return (
-        <div className="w-full relative p-2 hover:bg-text-secondary/10 transition-colors duration-200 rounded-lg">
+        <div className="w-full relative p-2 hover:bg-text-primary/10 transition-colors duration-200 rounded-lg">
             <div className="flex items-start gap-2">
                 <ProfilePicture url="" />
                 <div className="flex flex-col gap-2 relative w-full">

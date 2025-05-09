@@ -11,13 +11,10 @@ export const commentPost = async (
     if (comment.trim() === "" || !postID) throw new Error("Missing fields")
 
     try {
-        const res = await api.post(
-            import.meta.env.VITE_BASE_URL + `/posts/${postID}/comment`,
-            {
-                userID: userID,
-                content: comment
-            }
-        )
+        const res = await api.post(`/posts/${postID}/comment`, {
+            userID: userID,
+            content: comment
+        })
 
         const data = res.data
 

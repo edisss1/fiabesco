@@ -1,11 +1,16 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { MessageType } from "../../types/Message"
-import { RootState } from "../../redux/store"
+import { AppDispatch, RootState } from "../../redux/store"
 import { formatDate } from "../../utils/formatDate"
 import { useEffect, useRef, useState } from "react"
 
 import { AnimatePresence } from "framer-motion"
 import ContextMenu from "./ContextMenu"
+import {
+    setEditing,
+    setMessageID,
+    setMessageToEdit
+} from "../../redux/slices/messagesSlice"
 interface MessageProps {
     message: MessageType
     onShowContextMenu?: () => void
@@ -19,6 +24,7 @@ const Message = ({
     openedContextMenu,
     setOpenedContextMenu
 }: MessageProps) => {
+    const dispatch = useDispatch<AppDispatch>()
     const { user: currentUser } = useSelector((state: RootState) => state.auth)
     const messageRef = useRef<HTMLDivElement | null>(null)
     const contextMenuRef = useRef<HTMLDivElement | null>(null)
@@ -72,6 +78,13 @@ const Message = ({
         }
     }, [openedContextMenu])
 
+    const handleStartEditing = () => {
+        dispatch(setEditing(true))
+        dispatch(setMessageToEdit(message.content))
+        dispatch(setMessageID(message._id))
+        setOpenedContextMenu("")
+    }
+
     return (
         <div
             ref={messageRef}
@@ -95,6 +108,7 @@ const Message = ({
                         contextMenuPosition={contextMenuPosition}
                         contextMenuRef={contextMenuRef}
                         isOwnMessage={isOwnMessage}
+                        onEdit={handleStartEditing}
                     />
                 )}
             </AnimatePresence>

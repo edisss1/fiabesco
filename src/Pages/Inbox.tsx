@@ -47,7 +47,19 @@ const Inbox = () => {
         if (socket) {
             socket.onmessage = (event) => {
                 const incoming = JSON.parse(event.data) as MessageType
-                setMessages((prev) => [...prev, incoming])
+                console.log("INCOMING", incoming)
+
+                setMessages((prev) => {
+                    console.log("CURRENT", prev)
+                    const index = prev.findIndex((m) => m._id === incoming._id)
+                    if (index !== -1) {
+                        const updated = [...prev]
+
+                        updated[index] = incoming
+                        return updated
+                    }
+                    return [...prev, incoming]
+                })
             }
         }
     }, [socket])

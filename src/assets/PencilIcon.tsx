@@ -1,6 +1,11 @@
-const PencilIcon = () => {
+interface PencilIconProps {
+    className?: string
+}
+
+const PencilIcon = ({ className }: PencilIconProps) => {
     return (
         <svg
+            className={className}
             width="24"
             height="24"
             viewBox="0 0 20 20"

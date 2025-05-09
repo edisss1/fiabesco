@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { MessageType } from "../../types/Message"
 import Message from "../atoms/Message"
 
@@ -11,6 +12,10 @@ const MessageList = ({ messages, ref }: MessageListProps) => {
         ? [...messages].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
         : []
 
+    const [openedContextMenu, setOpenedContextMenu] = useState("")
+
+    const handleShow = (id: string) => setOpenedContextMenu(id)
+
     return (
         <div
             ref={ref}
@@ -21,7 +26,13 @@ const MessageList = ({ messages, ref }: MessageListProps) => {
                 <span className="text-center">No messages yet</span>
             )}
             {sortedMessages?.map((message) => (
-                <Message key={message._id} message={message} />
+                <Message
+                    setOpenedContextMenu={setOpenedContextMenu}
+                    openedContextMenu={openedContextMenu === message._id}
+                    key={message._id}
+                    message={message}
+                    onShowContextMenu={() => handleShow(message._id || "")}
+                />
             ))}
             <div ref={ref} />
         </div>

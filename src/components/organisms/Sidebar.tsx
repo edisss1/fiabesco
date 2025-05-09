@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import SidebarLink from "../atoms/SidebarLink"
 import UserInfo from "../atoms/UserInfo"
-import { RootState } from "../../redux/store"
+import { AppDispatch, RootState } from "../../redux/store"
 import Button from "../atoms/Button"
 import { useNavigate } from "react-router-dom"
 import { logout } from "../../utils/logout"
@@ -9,6 +9,7 @@ import { logout } from "../../utils/logout"
 const Sidebar = () => {
     const { user } = useSelector((state: RootState) => state.auth)
     const navigate = useNavigate()
+    const dispatch = useDispatch<AppDispatch>()
 
     const links = [
         {
@@ -41,7 +42,10 @@ const Sidebar = () => {
                 photoURL={user?.photoURL}
                 userID={user?._id}
             />
-            <Button onClick={() => logout(navigate)} variant="secondary">
+            <Button
+                onClick={() => logout(navigate, dispatch)}
+                variant="secondary"
+            >
                 temporary logout
             </Button>
             <div className="flex flex-col gap-2">

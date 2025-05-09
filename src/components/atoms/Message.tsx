@@ -4,6 +4,7 @@ import { RootState } from "../../redux/store"
 import { formatDate } from "../../utils/formatDate"
 import { useEffect, useRef, useState } from "react"
 
+import { AnimatePresence } from "framer-motion"
 import ContextMenu from "./ContextMenu"
 interface MessageProps {
     message: MessageType
@@ -87,11 +88,16 @@ const Message = ({
                 {formatDate(message.createdAt)}
             </span>
 
-            <ContextMenu
-                contextMenuRef={contextMenuRef}
-                contextMenuPosition={contextMenuPosition}
-                isOwnMessage={isOwnMessage}
-            />
+            <AnimatePresence>
+                {openedContextMenu && (
+                    <ContextMenu
+                        key={`context-menu-${message._id}`}
+                        contextMenuPosition={contextMenuPosition}
+                        contextMenuRef={contextMenuRef}
+                        isOwnMessage={isOwnMessage}
+                    />
+                )}
+            </AnimatePresence>
         </div>
     )
 }

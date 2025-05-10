@@ -89,7 +89,7 @@ const Message = ({
         <div
             ref={messageRef}
             onContextMenu={handleContextMenu}
-            className={`flex flex-col gap-1 rounded-xl min-w-[100px] text-white relative ${
+            className={`flex flex-col gap-1 rounded-xl min-w-[100px] max-w-[400px] text-white relative ${
                 currentUser?._id === message.senderID
                     ? "self-end rounded-br-none"
                     : "self-start rounded-bl-none"

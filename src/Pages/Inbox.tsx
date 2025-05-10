@@ -26,18 +26,38 @@ const Inbox = () => {
 
     const navigate = useNavigate()
 
+    // useEffect(() => {
+    //     if (user?._id) {
+    //         const socket = new WebSocket(
+    //             `ws://localhost:3000/ws?userID=${user?._id}`
+    //         )
+    //         socket.onopen = () => {
+    //             console.log(`Connected to socket - ${socket.url}`)
+    //         }
+
+    //         dispatch(setSocket(socket))
+    //     }
+    // }, [conversationID, user?._id])
+
+    // Send a message or set up listeners when conversation changes
+
     useEffect(() => {
         if (user?._id) {
             const socket = new WebSocket(
                 `ws://localhost:3000/ws?userID=${user?._id}`
             )
+
             socket.onopen = () => {
                 console.log(`Connected to socket - ${socket.url}`)
             }
 
             dispatch(setSocket(socket))
+
+            return () => {
+                socket.close()
+            }
         }
-    }, [])
+    }, [conversationID, user?._id])
 
     useEffect(() => {
         setMessages(conversationData?.messages ? conversationData.messages : [])
@@ -46,20 +66,29 @@ const Inbox = () => {
     useEffect(() => {
         if (socket) {
             socket.onmessage = (event) => {
-                const incoming = JSON.parse(event.data) as MessageType
-                console.log("INCOMING", incoming)
+                const data = JSON.parse(event.data)
+                if (data.type === "conversations_update") {
+                    const data = JSON.parse(event.data)
 
-                setMessages((prev) => {
-                    console.log("CURRENT", prev)
-                    const index = prev.findIndex((m) => m._id === incoming._id)
-                    if (index !== -1) {
-                        const updated = [...prev]
+                    const incoming = data.message
+                    console.log(incoming)
 
-                        updated[index] = incoming
-                        return updated
-                    }
-                    return [...prev, incoming]
-                })
+                    if (incoming && incoming.conversationID !== conversationID)
+                        return
+
+                    setMessages((prev) => {
+                        const index = prev.findIndex(
+                            (m) => m._id === incoming._id
+                        )
+                        if (index !== -1) {
+                            const updated = [...prev]
+
+                            updated[index] = incoming
+                            return updated
+                        }
+                        return [...prev, incoming]
+                    })
+                }
             }
         }
     }, [socket])

@@ -1,17 +1,77 @@
 import { useQuery } from "@tanstack/react-query"
 import { Conversation } from "../types/Conversation"
 import { getConversationData } from "../utils/getConversationData"
-import { getConversations } from "../utils/getConversations"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
 
 export function useConversations(
     userID: string | undefined,
     conversationID: string | undefined
 ) {
-    const { data: conversations } = useQuery<Conversation[]>({
-        queryKey: ["conversations"],
-        queryFn: () => getConversations(userID),
-        enabled: !!userID
-    })
+    const [conversations, setConversations] = useState<Conversation[]>([])
+    const { socket } = useSelector((state: RootState) => state.socket)
+
+    // const { data: conversations } = useQuery<Conversation[]>({
+    //     queryKey: ["conversations"],
+    //     queryFn: () => getConversations(userID),
+    //     enabled: !!userID
+    // })
+
+    useEffect(() => {
+        if (!userID || !socket) return
+
+        const sendMessage = () => {
+            const payload = {
+                type: "get_conversations",
+                data: {
+                    userID
+                }
+            }
+            socket.send(JSON.stringify(payload))
+            console.log("Sent message")
+        }
+
+        if (socket.readyState === WebSocket.OPEN) {
+            sendMessage()
+        } else {
+            socket.addEventListener("open", sendMessage)
+        }
+
+        return () => {
+            socket.removeEventListener("open", sendMessage)
+        }
+    }, [userID, socket])
+
+    useEffect(() => {
+        if (!socket) return
+        const handleUpdate = (e: MessageEvent) => {
+            const data = JSON.parse(e.data)
+            if (data.type === "conversations_update") {
+                const payload = {
+                    type: "get_conversations",
+                    data: {
+                        userID
+                    }
+                }
+                socket.send(JSON.stringify(payload))
+            }
+
+            if (data.type === "conversations") {
+                setConversations(data.conversations)
+            }
+        }
+
+        socket.addEventListener("message", handleUpdate)
+
+        return () => {
+            socket.removeEventListener("message", handleUpdate)
+        }
+    }, [socket, userID])
+
+    useEffect(() => {
+        console.log(conversations)
+    }, [conversations])
 
     const { data: conversationData } = useQuery({
         queryKey: ["conversationData", conversationID],

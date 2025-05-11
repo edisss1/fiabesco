@@ -26,21 +26,6 @@ const Inbox = () => {
 
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     if (user?._id) {
-    //         const socket = new WebSocket(
-    //             `ws://localhost:3000/ws?userID=${user?._id}`
-    //         )
-    //         socket.onopen = () => {
-    //             console.log(`Connected to socket - ${socket.url}`)
-    //         }
-
-    //         dispatch(setSocket(socket))
-    //     }
-    // }, [conversationID, user?._id])
-
-    // Send a message or set up listeners when conversation changes
-
     useEffect(() => {
         if (user?._id) {
             const socket = new WebSocket(
@@ -118,7 +103,7 @@ const Inbox = () => {
                         ))}
                     </ConversationsContainer>
                 </div>
-                {conversationID && (
+                {conversationID ? (
                     <Conversation
                         conversationID={conversationID}
                         key={conversationID}
@@ -128,6 +113,10 @@ const Inbox = () => {
                         names={conversationData?.conversation.names}
                         messages={messages}
                     />
+                ) : (
+                    <div className="flex items-center px-2 py-1 bg-primary self-center rounded-full justify-center mx-auto">
+                        <span className="font-bold">Select a conversation</span>
+                    </div>
                 )}
             </InboxContainer>
         </PageWrapper>

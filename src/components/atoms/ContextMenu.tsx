@@ -7,13 +7,15 @@ interface ContextMenuProps {
     contextMenuPosition: { x: number; y: number }
     isOwnMessage: boolean
     onEdit?: () => void
+    onDelete?: () => void
 }
 
 const ContextMenu = ({
     contextMenuRef,
     contextMenuPosition,
     isOwnMessage,
-    onEdit
+    onEdit,
+    onDelete
 }: ContextMenuProps) => {
     return (
         <motion.div
@@ -34,7 +36,9 @@ const ContextMenu = ({
                     Edit
                 </Button>
             )}
-            <Button className="flex items-center">Delete</Button>
+            <Button onClick={onDelete} className="flex items-center">
+                Delete
+            </Button>
         </motion.div>
     )
 }

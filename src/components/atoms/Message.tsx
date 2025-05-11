@@ -11,6 +11,8 @@ import {
     setMessageID,
     setMessageToEdit
 } from "../../redux/slices/messagesSlice"
+import { deleteMessage } from "../../utils/deleteMessage"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 interface MessageProps {
     message: MessageType
     onShowContextMenu?: () => void
@@ -32,6 +34,7 @@ const Message = ({
         x: 0,
         y: 0
     })
+    const client = useQueryClient()
 
     const isOwnMessage = message.senderID === currentUser?._id
 
@@ -85,6 +88,14 @@ const Message = ({
         setOpenedContextMenu("")
     }
 
+    const { mutate: deleteMsg } = useMutation({
+        mutationKey: ["delete"],
+        mutationFn: () => deleteMessage(message._id),
+        onSuccess: () => {
+            client.invalidateQueries({ queryKey: ["conversationData"] })
+        }
+    })
+
     return (
         <div
             ref={messageRef}
@@ -109,6 +120,7 @@ const Message = ({
                         contextMenuRef={contextMenuRef}
                         isOwnMessage={isOwnMessage}
                         onEdit={handleStartEditing}
+                        onDelete={deleteMsg}
                     />
                 )}
             </AnimatePresence>

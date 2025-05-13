@@ -7,6 +7,9 @@ interface ButtonProps {
     className?: string
     popoverTarget?: string
     popoverTargetAction?: "show" | "hide" | "toggle"
+    ariaLabel?: string
+    ariaExpanded?: boolean
+    ariaControls?: string
 }
 
 const Button = ({
@@ -17,7 +20,10 @@ const Button = ({
     variant,
     className,
     popoverTarget,
-    popoverTargetAction = "toggle"
+    popoverTargetAction = "toggle",
+    ariaLabel,
+    ariaExpanded,
+    ariaControls
 }: ButtonProps) => {
     const variants = {
         primary: "bg-primary px-4 py-2 rounded-lg",
@@ -28,6 +34,9 @@ const Button = ({
 
     return (
         <button
+            aria-expanded={ariaExpanded}
+            aria-label={ariaLabel}
+            aria-controls={ariaControls}
             popoverTarget={popoverTarget}
             popoverTargetAction={popoverTargetAction}
             className={appliedVariant || className}

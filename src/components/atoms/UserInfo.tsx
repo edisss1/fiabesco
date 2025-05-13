@@ -21,7 +21,7 @@ const UserInfo = ({
     return (
         <Link
             to={`/app/profile/${userID}`}
-            className={`flex items-center gap-4 hover:bg-black/5 transition-colors duration-150 p-1 rounded-lg`}
+            className={`flex items-center gap-4  hover:bg-black/5 transition-colors duration-150 p-1 rounded-lg`}
         >
             <ProfilePicture url={photoURL} />
             <div className="flex flex-col justify-start gap-1">

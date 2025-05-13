@@ -7,7 +7,7 @@ const ProfilePicture = ({ url }: { url: string | undefined }) => {
                     src={url}
                 />
             ) : (
-                <div className="w-12 h-12 rounded-full bg-white" />
+                <div className="w-12 h-12 rounded-full bg-black" />
             )}
         </div>
     )

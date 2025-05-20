@@ -17,7 +17,7 @@ export function useProfileData(
     token: string | null,
     dispatch: AppDispatch
 ) {
-    const { data: profileData } = useQuery<User>({
+    const { data: profileData, isLoading } = useQuery<User>({
         queryKey: ["profileData", userID],
         queryFn: () => getProfileData(token, dispatch, userID),
         refetchOnReconnect: true,
@@ -33,5 +33,5 @@ export function useProfileData(
 
     const posts = data?.posts
 
-    return { profileData, posts }
+    return { profileData, posts, isLoading }
 }

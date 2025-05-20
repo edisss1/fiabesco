@@ -8,22 +8,28 @@ export function useFeedData() {
         triggerOnce: false
     })
 
-    const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-        useInfiniteQuery({
-            queryKey: ["feedPosts"],
-            queryFn: async ({ pageParam = 0 }) => {
-                const params: GetFeedPostsParams = {
-                    limit: 10,
-                    skip: pageParam as number
-                }
-
-                return getFeedPosts(params)
-            },
-            initialPageParam: 0,
-            getNextPageParam: (lastPage) => {
-                return lastPage.hasMore ? lastPage.nextSkip : undefined
+    const {
+        data,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
+        status,
+        isFetching
+    } = useInfiniteQuery({
+        queryKey: ["feedPosts"],
+        queryFn: async ({ pageParam = 0 }) => {
+            const params: GetFeedPostsParams = {
+                limit: 10,
+                skip: pageParam as number
             }
-        })
+
+            return getFeedPosts(params)
+        },
+        initialPageParam: 0,
+        getNextPageParam: (lastPage) => {
+            return lastPage.hasMore ? lastPage.nextSkip : undefined
+        }
+    })
 
     const posts = data?.pages.flatMap((page) =>
         page.feedItems.map((item) => ({
@@ -39,6 +45,7 @@ export function useFeedData() {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
-        status
+        status,
+        isFetching
     }
 }

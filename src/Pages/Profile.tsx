@@ -8,6 +8,7 @@ import Banner from "../components/atoms/Banner"
 import { useProfileData } from "../hooks/useProfileData"
 import ProfileHeader from "../components/molecules/ProfileHeader"
 import PostsContainer from "../components/atoms/PostsContainer"
+import PostSkeleton from "../components/atoms/PostSkeleton"
 
 const Profile = () => {
     const { userID } = useParams()
@@ -16,7 +17,11 @@ const Profile = () => {
         (state: RootState) => state.auth
     )
 
-    const { profileData, posts } = useProfileData(userID, token, dispatch)
+    const { profileData, posts, isLoading } = useProfileData(
+        userID,
+        token,
+        dispatch
+    )
 
     const isOwner = userID === currentUser?._id
 
@@ -26,6 +31,7 @@ const Profile = () => {
                 <Banner isOwner={isOwner} bannerURL={profileData?.bannerURL} />
                 <ProfileHeader profileData={profileData} isOwner={isOwner} />
                 <PostsContainer posts={posts} />
+                {isLoading && <PostSkeleton />}
             </ProfileWrapper>
         </PageWrapper>
     )

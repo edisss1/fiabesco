@@ -3,7 +3,7 @@ import CreatePostForm from "../components/molecules/CreatePostForm"
 import { useEffect } from "react"
 import PostsContainer from "../components/atoms/PostsContainer"
 import { useFeedData } from "../hooks/useFeedData"
-import LoadingSpinner from "../components/atoms/LoadingSpinner"
+import PostSkeleton from "../components/atoms/PostSkeleton"
 
 const Feed = () => {
     const {
@@ -12,7 +12,8 @@ const Feed = () => {
         hasNextPage,
         isFetchingNextPage,
         data,
-        fetchNextPage
+        fetchNextPage,
+        isFetching
     } = useFeedData()
 
     useEffect(() => {
@@ -24,15 +25,9 @@ const Feed = () => {
     return (
         <PageWrapper>
             <CreatePostForm />
-            {data === null && <LoadingSpinner />}
             {data !== null && <PostsContainer posts={data} />}
-            <div ref={scrollContainerRef} className="h-10 mx-auto">
-                {!hasNextPage && (
-                    <p className="text-center text-gray-500">
-                        No more posts to load
-                    </p>
-                )}
-            </div>
+            <div ref={scrollContainerRef} className="h-10"></div>
+            {isFetching && <PostSkeleton />}
         </PageWrapper>
     )
 }

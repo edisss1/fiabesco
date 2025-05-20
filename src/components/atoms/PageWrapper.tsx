@@ -16,10 +16,14 @@ const PageWrapper = ({
     return (
         <div className="flex min-h-screen">
             {sidebarEnabled && <Sidebar />}
-            {headerEnabled && (
-                <h1 className="mt-4 ml-8 text-xl font-bold">{header}</h1>
-            )}
-            <div className="flex flex-col items-center w-full overflow-y-auto ">
+            <div
+                className={`flex flex-col items-start ${
+                    sidebarEnabled && "px-8 pt-4"
+                }  w-full overflow-y-auto `}
+            >
+                {headerEnabled && (
+                    <h1 className="text-xl font-bold">{header}</h1>
+                )}
                 {children}
             </div>
         </div>

@@ -26,7 +26,7 @@ const Sidebar = () => {
         },
         {
             text: "Settings",
-            path: "/app/settings"
+            path: "/app/settings/general"
         },
         {
             text: "Portfolio",

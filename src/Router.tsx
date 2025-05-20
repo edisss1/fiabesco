@@ -3,6 +3,11 @@ import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
 import PostView from "./Pages/PostView"
 
+import NonExistingPath from "./components/atoms/NonExistingPath"
+import Settings from "./Pages/settings/Settings"
+import GeneralSettings from "./Pages/settings/GeneralSettings"
+import AccountSettings from "./Pages/settings/AccountSettings"
+
 const Inbox = lazy(() => import("./Pages/Inbox"))
 const Profile = lazy(() => import("./Pages/Profile"))
 const Following = lazy(() => import("./Pages/Following"))
@@ -27,11 +32,20 @@ const Router = () => {
                         <Route index element={<Inbox />} />
                         <Route path=":conversationID" element={<Inbox />} />
                     </Route>
+                    <Route path="settings" element={<Settings />}>
+                        <Route path="general" element={<GeneralSettings />} />
+                        <Route path="account" element={<AccountSettings />} />
+                        <Route path="privacy" element={<div>Privacy</div>} />
+                        <Route
+                            path="data-storage"
+                            element={<div>Data & Storage</div>}
+                        />
+                    </Route>
                     <Route path="profile/:userID" element={<Profile />} />
                     <Route path="following" element={<Following />} />
                     <Route path="post/:postID" element={<PostView />} />
                 </Route>
-                <Route path="*" element={<Home />} />
+                <Route path="*" element={<NonExistingPath />} />
             </Routes>
         </Suspense>
     )

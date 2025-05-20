@@ -26,7 +26,7 @@ const Feed = () => {
             <CreatePostForm />
             {data === null && <LoadingSpinner />}
             {data !== null && <PostsContainer posts={data} />}
-            <div ref={scrollContainerRef} className="h-10">
+            <div ref={scrollContainerRef} className="h-10 mx-auto">
                 {!hasNextPage && (
                     <p className="text-center text-gray-500">
                         No more posts to load

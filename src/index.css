@@ -109,3 +109,19 @@ body::-webkit-scrollbar-thumb {
     transition: all 0.2s ease-in allow-discrete;
     animation-fill-mode: forwards;
 }
+
+.settings-nav-links li {
+    overflow: hidden;
+}
+
+.settings-nav-links li::after {
+    transition: scale 300ms, translate 250ms;
+}
+
+.settings-nav-links li:hover + li::after {
+    translate: -100%;
+}
+
+.settings-nav-links li:has(+ :hover)::after {
+    translate: 100%;
+}

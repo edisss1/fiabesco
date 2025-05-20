@@ -16,12 +16,12 @@ const SettingsNavLink = ({ path, text }: SettingsNavLinkProps) => {
     }, [isActive, path, location.pathname])
 
     return (
-        <li className="py-1 px-2 text-lg relative after:scale-x-0 hover:after:scale-x-100 after:origin-left font-bold after:content-[''] after:block after:w-[calc(100%+5px)] after:h-1 after:bg-primary  after:rounded-full after:absolute after:bottom-0 after:right-1/2 after:translate-x-1/2">
+        <li className="py-1 px-2 text-lg relative after:scale-x-0 hover:after:scale-x-100 after:origin-left font-bold after:content-[''] after:block after:w-[calc(100%+5px)] after:h-1 after:bg-primary  after:rounded-full after:absolute after:bottom-0 after:right-1/2  after:translate-x-1/2">
             <NavLink
                 className={({ isActive }) =>
                     `${
                         isActive &&
-                        "after:content-[''] after:block after:w-[calc(100%+5px)] after:h-1 after:bg-primary  after:rounded-full after:absolute after:bottom-0 after:right-1/2 after:translate-x-1/2"
+                        "after:content-[''] after:block after:w-[calc(100%+5px)] after:h-1 after:bg-primary  after:rounded-full after:absolute  after:bottom-0 after:right-1/2 after:translate-x-1/2"
                     }
                     `
                 }

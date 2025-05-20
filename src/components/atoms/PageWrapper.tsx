@@ -9,13 +9,15 @@ interface PageWrapperProps {
     sidebarEnabled?: boolean
     headerEnabled?: boolean
     header?: string
+    bannerPresent?: boolean
 }
 
 const PageWrapper = ({
     children,
     sidebarEnabled = true,
     headerEnabled = false,
-    header
+    header,
+    bannerPresent = false
 }: PageWrapperProps) => {
     const isSmall = useMediaQuery("(max-width: 768px)")
     const [sidebarOpened, setSidebarOpened] = useState(!isSmall)
@@ -41,10 +43,14 @@ const PageWrapper = ({
             >
                 <HamburgerIcon />
             </Button>
-            {headerEnabled && (
-                <h1 className="mt-4 ml-8 text-xl font-bold">{header}</h1>
-            )}
-            <div className="flex flex-col items-center w-full overflow-y-auto ">
+            <div
+                className={`flex flex-col ${
+                    sidebarEnabled && !bannerPresent && "px-8 py-4"
+                } items-start w-full overflow-y-auto `}
+            >
+                {headerEnabled && (
+                    <h1 className=" text-xl font-bold">{header}</h1>
+                )}
                 {children}
             </div>
         </div>

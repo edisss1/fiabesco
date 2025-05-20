@@ -26,7 +26,7 @@ const Profile = () => {
     const isOwner = userID === currentUser?._id
 
     return (
-        <PageWrapper>
+        <PageWrapper bannerPresent>
             <ProfileWrapper>
                 <Banner isOwner={isOwner} bannerURL={profileData?.bannerURL} />
                 <ProfileHeader profileData={profileData} isOwner={isOwner} />

@@ -2,7 +2,7 @@ import UserInfoSkeleton from "./UserInfoSkeleton"
 
 const PostSkeleton = () => {
     return (
-        <div className="flex flex-col bg-black/5 animate-pulse rounded-lg items-start w-full gap-4 max-w-[800px] p-4">
+        <div className="flex flex-col mx-auto bg-black/5 animate-pulse rounded-lg items-start w-full gap-4 max-w-[800px] p-4">
             <div className="flex items-start gap-4 w-full">
                 <UserInfoSkeleton />
             </div>

@@ -3,11 +3,10 @@ import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
 import PostView from "./Pages/PostView"
 
-import NonExistingPath from "./components/atoms/NonExistingPath"
-import Settings from "./Pages/settings/Settings"
-import GeneralSettings from "./Pages/settings/GeneralSettings"
-import AccountSettings from "./Pages/settings/AccountSettings"
-
+const NonExistingPath = lazy(() => import("./components/atoms/NonExistingPath"))
+const Settings = lazy(() => import("./Pages/settings/Settings"))
+const GeneralSettings = lazy(() => import("./Pages/settings/GeneralSettings"))
+const AccountSettings = lazy(() => import("./Pages/settings/AccountSettings"))
 const Inbox = lazy(() => import("./Pages/Inbox"))
 const Profile = lazy(() => import("./Pages/Profile"))
 const Following = lazy(() => import("./Pages/Following"))

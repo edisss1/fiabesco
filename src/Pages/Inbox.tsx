@@ -56,7 +56,6 @@ const Inbox = () => {
                     const data = JSON.parse(event.data)
 
                     const incoming = data.message
-                    console.log(incoming)
 
                     if (incoming && incoming.conversationID !== conversationID)
                         return

@@ -7,14 +7,21 @@ import { useNavigate } from "react-router-dom"
 import { logout } from "../../utils/logout"
 import { AnimatePresence, motion } from "framer-motion"
 import { useRef } from "react"
+import HamburgerIcon from "../../assets/HamburgerIcon"
 
 interface SidebarProps {
     sidebarOpened: boolean
     isSmall: boolean
     onClose: () => void
+    setSidebarOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Sidebar = ({ sidebarOpened, isSmall, onClose }: SidebarProps) => {
+const Sidebar = ({
+    sidebarOpened,
+    isSmall,
+    onClose,
+    setSidebarOpened
+}: SidebarProps) => {
     const { user } = useSelector((state: RootState) => state.auth)
     const navigate = useNavigate()
     const dispatch = useDispatch<AppDispatch>()
@@ -57,15 +64,23 @@ const Sidebar = ({ sidebarOpened, isSmall, onClose }: SidebarProps) => {
                     isSmall ? "fixed left-0 top-0 bg-white z-40" : "sticky"
                 } top-0 gap-8 w-full max-w-[250px] p-4 h-screen border-r-2 border-black/70 `}
             >
-                <div className="mt-4">
-                    <UserInfo
-                        firstName={user?.firstName}
-                        lastName={user?.lastName}
-                        handle={user?.handle}
-                        photoURL={user?.photoURL}
-                        userID={user?._id}
-                    />
-                </div>
+                {isSmall && (
+                    <Button
+                        ariaLabel="Close sidebar"
+                        aria-expanded={sidebarOpened}
+                        ariaControls="sidebar"
+                        onClick={() => setSidebarOpened(!sidebarOpened)}
+                    >
+                        <HamburgerIcon />
+                    </Button>
+                )}
+                <UserInfo
+                    firstName={user?.firstName}
+                    lastName={user?.lastName}
+                    handle={user?.handle}
+                    photoURL={user?.photoURL}
+                    userID={user?._id}
+                />
                 <Button
                     onClick={() => logout(navigate, dispatch)}
                     variant="secondary"

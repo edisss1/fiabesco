@@ -1,4 +1,3 @@
-import Select from "../atoms/Select"
 import SettingsNavLink from "../atoms/SettingsNavLink"
 
 const links = [
@@ -23,7 +22,7 @@ const links = [
 const SettingsNav = () => {
     return (
         <nav className="mt-9 mb-6 ">
-            <ul className="flex items-center settings-nav-links ">
+            <ul className="flex items-center settings-nav-links max-sm:justify-center max-sm:flex-wrap">
                 {links.map((link, index) => (
                     <SettingsNavLink key={index} {...link} />
                 ))}

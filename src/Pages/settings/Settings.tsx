@@ -6,7 +6,9 @@ const Settings = () => {
     return (
         <PageWrapper sidebarEnabled headerEnabled header="Settings">
             <SettingsNav />
-            <Outlet />
+            <div className="ps-2">
+                <Outlet />
+            </div>
         </PageWrapper>
     )
 }

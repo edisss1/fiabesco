@@ -1,7 +1,7 @@
 import { FormEvent, useRef, useState } from "react"
 import MoreIcon from "../../assets/MoreIcon"
 import { Comment as CommentType } from "../../types/Comment"
-import { formatDate } from "../../utils/formatDate"
+import { formatDate } from "../../utils/formatTime"
 import Button from "./Button"
 import ProfilePicture from "./ProfilePicture"
 import { useTruncate } from "../../hooks/useTruncate"

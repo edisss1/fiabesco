@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { MessageType } from "../../types/Message"
 import { AppDispatch, RootState } from "../../redux/store"
-import { formatDate } from "../../utils/formatDate"
+import { formatDate } from "../../utils/formatTime"
 import { useEffect, useRef, useState } from "react"
 
 import { AnimatePresence } from "framer-motion"

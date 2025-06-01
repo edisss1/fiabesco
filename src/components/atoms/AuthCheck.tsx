@@ -16,9 +16,10 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const { data: userData } = useQuery<User>({
+    const { data: userData, refetch } = useQuery<User>({
         queryKey: ["userData", emailForData],
         queryFn: async () => {
+            if (!emailForData) return null
             try {
                 if (emailForData) {
                     dispatch(setStatus("loading"))
@@ -43,10 +44,16 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
                 console.error(error)
             }
         },
-        enabled: !!emailForData,
         refetchOnWindowFocus: false,
         refetchOnReconnect: true
     })
+
+    useEffect(() => {
+        if (emailForData) {
+            refetch()
+            console.log("refetching")
+        }
+    }, [emailForData])
 
     useEffect(() => {
         if (user && !location.pathname.startsWith("/app")) {

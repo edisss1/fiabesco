@@ -12,7 +12,7 @@ const PostView = () => {
 
     return (
         <PageWrapper>
-            <div className="flex flex-col w-full max-w-[800px] items-center gap-8 mt-16">
+            <div className="flex flex-col w-full mx-auto max-w-[800px] items-center gap-8 mt-16">
                 {postData && (
                     <Post postedBy={postData.user} {...postData?.post} />
                 )}

@@ -26,8 +26,8 @@ const Button = ({
     ariaControls
 }: ButtonProps) => {
     const variants = {
-        primary: "bg-primary px-4 py-2 rounded-lg",
-        secondary: "bg-secondary px-4 py-2 rounded-lg text-white"
+        primary: "bg-primary px-4 py-2 rounded-lg cursor-pointer",
+        secondary: "bg-secondary px-4 py-2 rounded-lg text-white cursor-pointer"
     }
 
     const appliedVariant = variantEnabled ? variants[variant!] : ""

@@ -1,9 +1,15 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import SettingsForm from "../../components/atoms/SettingsForm"
-import { RootState } from "../../redux/store"
+import { AppDispatch, RootState } from "../../redux/store"
+import Button from "../../components/atoms/Button"
+import { logout } from "../../utils/logout"
+import { useNavigate } from "react-router-dom"
 
 const AccountSettings = () => {
+    const dispatch = useDispatch<AppDispatch>()
     const { user } = useSelector((state: RootState) => state.auth)
+
+    const navigate = useNavigate()
 
     return (
         <div className="flex flex-col gap-4 ">
@@ -56,6 +62,12 @@ const AccountSettings = () => {
                         ).toLocaleDateString()}
                     </span>
                 </p>
+                <Button
+                    onClick={() => logout(navigate, dispatch)}
+                    className="cursor-pointer self-start px-6 py-2 bg-secondary rounded-lg text-white hover:scale-105 transition-transform duration-100 min-w-fit"
+                >
+                    Logout
+                </Button>
             </div>
         </div>
     )

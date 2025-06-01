@@ -1,10 +1,8 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import SidebarLink from "../atoms/SidebarLink"
 import UserInfo from "../atoms/UserInfo"
-import { AppDispatch, RootState } from "../../redux/store"
+import { RootState } from "../../redux/store"
 import Button from "../atoms/Button"
-import { useNavigate } from "react-router-dom"
-import { logout } from "../../utils/logout"
 import { AnimatePresence, motion } from "framer-motion"
 import { useRef } from "react"
 import HamburgerIcon from "../../assets/HamburgerIcon"
@@ -23,8 +21,6 @@ const Sidebar = ({
     setSidebarOpened
 }: SidebarProps) => {
     const { user } = useSelector((state: RootState) => state.auth)
-    const navigate = useNavigate()
-    const dispatch = useDispatch<AppDispatch>()
     const sidebarRef = useRef<HTMLDivElement>(null)
 
     const links = [
@@ -81,12 +77,7 @@ const Sidebar = ({
                     photoURL={user?.photoURL}
                     userID={user?._id}
                 />
-                <Button
-                    onClick={() => logout(navigate, dispatch)}
-                    variant="secondary"
-                >
-                    temporary logout
-                </Button>
+
                 <div className="flex flex-col gap-2">
                     {links.map((link) => (
                         <SidebarLink key={link.path} {...link} />

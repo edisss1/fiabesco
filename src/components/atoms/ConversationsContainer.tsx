@@ -3,6 +3,6 @@ interface ConversationsContainerProps {
 }
 
 const ConversationsContainer = ({ children }: ConversationsContainerProps) => {
-    return <div className="flex flex-col ">{children}</div>
+    return <div className="flex flex-col max-lg:items-center ">{children}</div>
 }
 export default ConversationsContainer

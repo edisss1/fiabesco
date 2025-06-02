@@ -9,13 +9,15 @@ interface ConversationPreviewProps {
     id?: string
     conversationID: string | undefined
     names: string[] | undefined
+    onClick?: () => void
 }
 
 const ConversationPreview = ({
     lastMessage,
     id,
     conversationID,
-    names
+    names,
+    onClick
 }: ConversationPreviewProps) => {
     const { user } = useSelector((state: RootState) => state.auth)
 
@@ -26,6 +28,7 @@ const ConversationPreview = ({
     return (
         <Link
             to={`/app/inbox/${id}`}
+            onClick={onClick}
             className={`${
                 conversationID === id && "bg-secondary"
             } p-2  rounded-lg w-full max-w-[300px] flex gap-2 items-start justify-between text-text-primary transition-colors duration-150`}

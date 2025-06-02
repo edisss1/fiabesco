@@ -3,6 +3,6 @@ interface InboxContainerProps {
 }
 
 const InboxContainer = ({ children }: InboxContainerProps) => {
-    return <main className="flex w-full justify-start ">{children}</main>
+    return <main className="flex w-full justify-start  ">{children}</main>
 }
 export default InboxContainer

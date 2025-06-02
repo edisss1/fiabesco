@@ -11,13 +11,15 @@ interface ConversationProps {
     participants: string[] | undefined
     names: string[] | undefined
     conversationID: string | undefined
+    onClick?: () => void
 }
 
 const Conversation = ({
     messages,
     names,
     participants,
-    conversationID
+    conversationID,
+    onClick
 }: ConversationProps) => {
     const messageListRef = useRef<HTMLDivElement | null>(null)
     const { user } = useSelector((state: RootState) => state.auth)
@@ -36,7 +38,11 @@ const Conversation = ({
 
     return (
         <div className="w-full relative flex flex-col h-[calc(100vh)] items-start">
-            <RecipientInfo recipientID={recepientID} fullName={recipientName} />
+            <RecipientInfo
+                onClick={onClick}
+                recipientID={recepientID}
+                fullName={recipientName}
+            />
             <MessageList ref={messageListRef} messages={messages} />
             <MessageComposer ref={messageListRef} recipientID={recepientID} />
         </div>

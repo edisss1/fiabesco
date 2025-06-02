@@ -18,7 +18,7 @@ const Following = () => {
 
     return (
         <PageWrapper header="Following" headerEnabled>
-            <div className="w-full max-w-[600px] mx-auto flex flex-col gap-8">
+            <div className="w-full max-w-[600px] mx-auto flex flex-col gap-8 px-2">
                 <SearchBar />
                 <FollowedWrapper following={following} />
             </div>

@@ -8,8 +8,8 @@ import { motion } from "framer-motion"
 const Hero = () => {
     return (
         <Section position="relative">
-            <div className="flex">
-                <div className="flex flex-col">
+            <div className="flex flex-wrap-reverse justify-center px-2">
+                <div className="flex flex-col max-lg:items-center">
                     <HeroHeader>
                         Connect,{"  "}
                         <span className="relative">

@@ -12,12 +12,6 @@ export function useConversations(
     const [conversations, setConversations] = useState<Conversation[]>([])
     const { socket } = useSelector((state: RootState) => state.socket)
 
-    // const { data: conversations } = useQuery<Conversation[]>({
-    //     queryKey: ["conversations"],
-    //     queryFn: () => getConversations(userID),
-    //     enabled: !!userID
-    // })
-
     useEffect(() => {
         if (!userID || !socket) return
 

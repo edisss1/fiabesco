@@ -64,7 +64,7 @@ const AccountSettings = () => {
                 </p>
                 <Button
                     onClick={() => logout(navigate, dispatch)}
-                    className="cursor-pointer self-start px-6 py-2 bg-secondary rounded-lg text-white hover:scale-105 transition-transform duration-100 min-w-fit"
+                    className="cursor-pointer self-start px-6 py-2 bg-secondary rounded-lg text-text-primary hover:scale-105 transition-transform duration-100 min-w-fit"
                 >
                     Logout
                 </Button>

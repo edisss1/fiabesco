@@ -4,7 +4,7 @@ interface CarouselImageProps {
 
 const CarouselImage = ({ src }: CarouselImageProps) => {
     return (
-        <div className="relative  group w-[170px] h-[170px] hover:shadow-2xl transition-all">
+        <div className="relative  group w-[170px] h-[170px] hover:shadow-2xl hover:shadow-secondary transition-all">
             <img
                 className="object-cover w-full h-full  aspect-square"
                 src={src}

@@ -27,7 +27,8 @@ const Button = ({
 }: ButtonProps) => {
     const variants = {
         primary: "bg-primary px-4 py-2 rounded-lg cursor-pointer",
-        secondary: "bg-secondary px-4 py-2 rounded-lg text-white cursor-pointer"
+        secondary:
+            "bg-secondary px-4 py-2 rounded-lg text-text-primary cursor-pointer"
     }
 
     const appliedVariant = variantEnabled ? variants[variant!] : ""

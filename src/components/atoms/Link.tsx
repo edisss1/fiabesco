@@ -17,9 +17,9 @@ const Link = ({
 }: LinkProps) => {
     const variants = {
         primary:
-            "bg-primary px-4 py-2 rounded-lg text-white hover:scale-105 transition-transform duration-100 min-w-fit",
+            "bg-primary px-4 py-2 rounded-lg text-text-primary hover:scale-105 transition-transform duration-100 min-w-fit",
         secondary:
-            "bg-secondary px-4 py-2 rounded-lg text-white hover:scale-105 transition-transform duration-100 min-w-fit"
+            "bg-secondary px-4 py-2 rounded-lg text-text-primary hover:scale-105 transition-transform duration-100 min-w-fit"
     }
 
     const appliedVariant = variantEnabled ? variants[variant!] : ""

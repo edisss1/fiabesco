@@ -10,7 +10,7 @@ const Curve = () => {
         >
             <path
                 d="M1 74C78.6667 19.1667 278.7 -57.6 457.5 74"
-                stroke="#008080"
+                stroke="#eadaff"
             />
         </svg>
     )

@@ -6,7 +6,7 @@ interface SectionProps {
 const Section = ({ children, position }: SectionProps) => {
     return (
         <section
-            className={`${position} my-[clamp(60px,10vw,120px)] w-full flex flex-col items-center `}
+            className={`${position} my-[clamp(60px,15vw,200px)] w-full flex flex-col items-center `}
         >
             {children}
         </section>

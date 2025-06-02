@@ -11,7 +11,7 @@ const HeroHeader = ({ children }: HeroHeaderProps) => {
             animate={{ opacity: 1, y: 10, scale: 1 }}
             exit={{ opacity: 0, y: 0 }}
             transition={{ duration: 1, ease: "backInOut" }}
-            className="text-[clamp(2rem,20vw,3rem)] max-w-[800px] text-center mb-6 font-bold text-text-primary"
+            className="text-[clamp(2rem,20vw,4rem)] max-w-[800px] text-left mb-6 font-bold text-text-primary"
         >
             {children}
         </motion.h1>

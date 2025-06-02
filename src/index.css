@@ -5,9 +5,9 @@
 @theme {
     --spacing-xxl: clamp(1rem, 5vw, 4rem);
 
-    --color-primary: #ffa500;
-    --color-secondary: #008080;
-    --color-background: #f0f0f0;
+    --color-primary: #f8d57e;
+    --color-secondary: #eadaff;
+    --color-background: #f9f9f9;
     --color-text-primary: #333333;
     --color-danger: #bb2124;
     --color-success: #22bb33;

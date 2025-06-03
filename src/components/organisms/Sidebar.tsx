@@ -6,6 +6,11 @@ import Button from "../atoms/Button"
 import { AnimatePresence, motion } from "framer-motion"
 import { useRef } from "react"
 import HamburgerIcon from "../../assets/HamburgerIcon"
+import FeedIcon from "../../assets/FeedIcon"
+import InboxIcon from "../../assets/InboxIcon"
+import FollowingIcon from "../../assets/FollowingIcon"
+import SettingsIcon from "../../assets/SettingsIcon"
+import PortfolioIcon from "../../assets/PortfolioIcon"
 
 interface SidebarProps {
     sidebarOpened: boolean
@@ -26,23 +31,28 @@ const Sidebar = ({
     const links = [
         {
             text: "Feed",
-            path: "/app/feed"
+            path: "/app/feed",
+            icon: <FeedIcon />
         },
         {
             text: "Inbox",
-            path: "/app/inbox"
+            path: "/app/inbox",
+            icon: <InboxIcon />
         },
         {
             text: "Following",
-            path: "/app/following"
+            path: "/app/following",
+            icon: <FollowingIcon />
         },
         {
             text: "Settings",
-            path: "/app/settings/general"
+            path: "/app/settings/general",
+            icon: <SettingsIcon />
         },
         {
             text: "Portfolio",
-            path: "/app/portfolio"
+            path: "/app/portfolio",
+            icon: <PortfolioIcon />
         }
     ]
 

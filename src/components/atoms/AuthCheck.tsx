@@ -23,9 +23,8 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
             try {
                 if (emailForData) {
                     dispatch(setStatus("loading"))
-                    const res = await axios.post(
+                    const res = await axios.get(
                         import.meta.env.VITE_BASE_URL + `/users/me`,
-                        { email: emailForData },
                         {
                             headers: {
                                 Authorization: `Bearer ${token}`,

@@ -1,3 +1,5 @@
+import { UserSettings } from "./UserSettings"
+
 export interface User {
     _id?: string
     firstName: string
@@ -13,4 +15,5 @@ export interface User {
     followedBy: string[]
     followedUsers: string[]
     createdAt?: string
+    settings: UserSettings
 }

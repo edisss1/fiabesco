@@ -11,7 +11,7 @@ const SidebarLink = ({ path, text, icon }: SidebarLinkProps) => {
         <NavLink
             className={({ isActive }) =>
                 `flex items-center px-4 py-2 rounded-lg gap-2 ${
-                    isActive ? "bg-secondary" : ""
+                    isActive ? "bg-secondary font-bold" : ""
                 } `
             }
             to={path}

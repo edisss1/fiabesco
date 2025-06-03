@@ -31,13 +31,13 @@ export function useFeedData() {
         }
     })
 
-    const posts = data?.pages.flatMap((page) =>
-        page.feedItems.map((item) => ({
-            post: item.post,
-            user: item.user
-        }))
+    const posts = data?.pages.flatMap(
+        (page) =>
+            page?.feedItems?.map((item) => ({
+                post: item.post,
+                user: item.user
+            })) ?? []
     )
-
     return {
         scrollContainerRef,
         inView,

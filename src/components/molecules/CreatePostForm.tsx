@@ -5,6 +5,9 @@ import { createPost } from "../../utils/createPost"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 import { FormEvent, useState } from "react"
+import FileInput from "../atoms/FileInput"
+import PhotoIcon from "../../assets/PhotoIcon"
+import FileIcon from "../../assets/FileIcon"
 
 const CreatePostForm = () => {
     const [caption, setCaption] = useState("")
@@ -38,9 +41,27 @@ const CreatePostForm = () => {
                     Post
                 </Button>
             </div>
-            <div className="flex items-center gap-4 text-text-primary mt-2">
-                <Button type="button">Photo</Button>
-                <Button type="button">File</Button>
+            <div className="flex items-center gap-4 text-text-primary mt-3">
+                <FileInput
+                    id="photo_upload"
+                    name="photo"
+                    label={
+                        <div className="flex items-center gap-2">
+                            <PhotoIcon />
+                            <span>Photo</span>
+                        </div>
+                    }
+                />
+                <FileInput
+                    id="file_upload"
+                    name="file"
+                    label={
+                        <div className="flex items-center gap-2">
+                            <FileIcon />
+                            <span>File</span>
+                        </div>
+                    }
+                />
             </div>
         </Form>
     )

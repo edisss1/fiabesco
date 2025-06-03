@@ -30,7 +30,7 @@ const ProfileActionButtons = () => {
     const isFollowing = user?.followedUsers?.includes(userID!)
 
     return (
-        <div className="flex items-center [&>*]:cursor-pointer outline  outline-lime-400 flex-wrap max-lg:gap-2 ">
+        <div className="flex items-center [&>*]:cursor-pointerflex-wrap max-lg:gap-2 ">
             <Button
                 onClick={() => startConversation(user?._id, userID, navigate)}
                 className="flex items-center gap-2 p-2 hover:bg-black/5 transition-colors duration-200 ease-in rounded-lg"

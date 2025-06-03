@@ -13,6 +13,15 @@
     --color-success: #22bb33;
     --color-warning: #f0ad4e;
     --color-message-bg: #48a6cf;
+
+    --color-primary-dark: #f8d57e;
+    --color-secondary-dark: #eadaff;
+    --color-background-dark: #1b1b1b;
+    --color-text-primary-dark: #f0f0f0;
+    --color-danger-dark: #ff5c5c;
+    --color-success-dark: #34d399;
+    --color-warning-dark: #fbbf24;
+    --color-message-bg-dark: #38bdf8;
 }
 
 body {

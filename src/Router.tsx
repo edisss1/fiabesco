@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
 import PostView from "./Pages/PostView"
+import PrivacySettings from "./Pages/settings/PrivacySettings"
 
 const NonExistingPath = lazy(() => import("./components/atoms/NonExistingPath"))
 const Settings = lazy(() => import("./Pages/settings/Settings"))
@@ -34,7 +35,7 @@ const Router = () => {
                     <Route path="settings" element={<Settings />}>
                         <Route path="general" element={<GeneralSettings />} />
                         <Route path="account" element={<AccountSettings />} />
-                        <Route path="privacy" element={<div>Privacy</div>} />
+                        <Route path="privacy" element={<PrivacySettings />} />
                         <Route
                             path="data-storage"
                             element={<div>Data & Storage</div>}

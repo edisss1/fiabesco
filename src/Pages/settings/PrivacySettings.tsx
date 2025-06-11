@@ -23,7 +23,7 @@ const PrivacySettings = () => {
             />
 
             <div className="grid gap-4">
-                <h2>Blocked users</h2>
+                <h2 className="text-lg">Blocked users</h2>
                 {blocked?.map((user) => (
                     <BlockedUserCard
                         key={user._id}
@@ -33,6 +33,11 @@ const PrivacySettings = () => {
                         id={user?._id}
                     />
                 ))}
+                {!blocked && (
+                    <span className="text-sm text-text-primary">
+                        No blocked users
+                    </span>
+                )}
             </div>
         </div>
     )

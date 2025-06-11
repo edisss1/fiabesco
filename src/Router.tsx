@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
 import PostView from "./Pages/PostView"
 import PrivacySettings from "./Pages/settings/PrivacySettings"
+import DataStorageSettings from "./Pages/settings/DataStorageSettings"
 
 const NonExistingPath = lazy(() => import("./components/atoms/NonExistingPath"))
 const Settings = lazy(() => import("./Pages/settings/Settings"))
@@ -38,7 +39,7 @@ const Router = () => {
                         <Route path="privacy" element={<PrivacySettings />} />
                         <Route
                             path="data-storage"
-                            element={<div>Data & Storage</div>}
+                            element={<DataStorageSettings />}
                         />
                     </Route>
                     <Route path="profile/:userID" element={<Profile />} />

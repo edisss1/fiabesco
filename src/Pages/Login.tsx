@@ -14,17 +14,21 @@ const Login = () => {
     const dispatch = useDispatch<AppDispatch>()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [success, setSuccess] = useState<boolean | undefined>(undefined)
 
     const navigate = useNavigate()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        await login(email, password, dispatch)
+        const success = await login(email, password, dispatch)
+        setSuccess(success)
 
         setEmail("")
         setPassword("")
 
-        navigate("/app/feed")
+        if (success) {
+            navigate("/app/feed")
+        }
     }
 
     return (
@@ -73,6 +77,9 @@ const Login = () => {
                         Sign up
                     </Link>
                 </div>
+                {success === false && (
+                    <p className="text-red-500">Invalid email or password</p>
+                )}
             </Form>
             <Link
                 className="bg-primary hover:scale-105 transition-transform p-2 rounded-lg absolute top-4 left-4"

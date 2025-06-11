@@ -23,8 +23,10 @@ export const login = async (
         if (data) {
             dispatch(setEmailForData(email))
             dispatch(setToken(data.token as string))
+            return true
         }
     } catch (error) {
         console.error(error)
+        return false
     }
 }

@@ -3,6 +3,7 @@ import { useMediaQuery } from "../../hooks/useMediaQuery"
 import Sidebar from "../organisms/Sidebar"
 import Button from "./Button"
 import HamburgerIcon from "../../assets/HamburgerIcon"
+import PageHeader from "./PageHeader"
 
 interface PageWrapperProps {
     children: React.ReactNode
@@ -55,9 +56,7 @@ const PageWrapper = ({
                                 <HamburgerIcon />
                             </Button>
                         )}
-                        {headerEnabled && (
-                            <h1 className=" text-xl font-bold">{header}</h1>
-                        )}
+                        {headerEnabled && <PageHeader header={header} />}
                     </div>
                 )}
                 {children}

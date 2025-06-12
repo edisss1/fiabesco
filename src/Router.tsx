@@ -1,10 +1,14 @@
 import { Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import Loading from "./components/atoms/Loading"
-import PostView from "./Pages/PostView"
-import PrivacySettings from "./Pages/settings/PrivacySettings"
-import DataStorageSettings from "./Pages/settings/DataStorageSettings"
+import CreatePortfolio from "./Pages/CreatePortfolio"
 
+const Portfolio = lazy(() => import("./Pages/Portfolio"))
+const PostView = lazy(() => import("./Pages/PostView"))
+const PrivacySettings = lazy(() => import("./Pages/settings/PrivacySettings"))
+const DataStorageSettings = lazy(
+    () => import("./Pages/settings/DataStorageSettings")
+)
 const NonExistingPath = lazy(() => import("./components/atoms/NonExistingPath"))
 const Settings = lazy(() => import("./Pages/settings/Settings"))
 const GeneralSettings = lazy(() => import("./Pages/settings/GeneralSettings"))
@@ -45,6 +49,11 @@ const Router = () => {
                     <Route path="profile/:userID" element={<Profile />} />
                     <Route path="following" element={<Following />} />
                     <Route path="post/:postID" element={<PostView />} />
+                    <Route path="portfolio" element={<Portfolio />} />
+                    <Route
+                        path="create-portfolio"
+                        element={<CreatePortfolio />}
+                    />
                 </Route>
                 <Route path="*" element={<NonExistingPath />} />
             </Routes>

@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "./slices/authSlice"
 import websocketReducer from "./slices/websocketSlice"
 import messageReducer from "./slices/messagesSlice"
+import portfolioReducer from "./slices/portfolioSlice"
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
         socket: websocketReducer,
-        messages: messageReducer
+        messages: messageReducer,
+        portfolio: portfolioReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

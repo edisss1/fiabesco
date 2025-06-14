@@ -7,6 +7,7 @@ interface TextareaProps {
     id: string
     className?: string
     maxLength?: number
+    label?: string
 }
 
 const Textarea = ({
@@ -15,7 +16,8 @@ const Textarea = ({
     placeholder,
     id,
     className,
-    maxLength
+    maxLength,
+    label
 }: TextareaProps) => {
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
 
@@ -27,18 +29,21 @@ const Textarea = ({
     }
 
     return (
-        <textarea
-            ref={textAreaRef}
-            maxLength={maxLength}
-            className={className}
-            value={value}
-            onChange={(e) => {
-                onChange(e)
-                calculateSize()
-            }}
-            placeholder={placeholder}
-            id={id}
-        ></textarea>
+        <div className="flex flex-col gap-2">
+            {label && <label htmlFor={id}>{label}</label>}
+            <textarea
+                ref={textAreaRef}
+                maxLength={maxLength}
+                className={className}
+                value={value}
+                onChange={(e) => {
+                    onChange(e)
+                    calculateSize()
+                }}
+                placeholder={placeholder}
+                id={id}
+            ></textarea>
+        </div>
     )
 }
 export default Textarea

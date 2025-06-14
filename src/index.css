@@ -138,5 +138,4 @@ body::-webkit-scrollbar-thumb {
 .portfolio-projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    margin-inline: auto;
 }

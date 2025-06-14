@@ -1,9 +1,9 @@
 interface CreatePortfolioSectionHeaderProps {
     header: string
 }
-const CreatePortfolioSectionHeader = ({
+const PortfolioSectionHeader = ({
     header
 }: CreatePortfolioSectionHeaderProps) => {
     return <h2 className="text-2xl font-bold">{header}</h2>
 }
-export default CreatePortfolioSectionHeader
+export default PortfolioSectionHeader

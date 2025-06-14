@@ -1,4 +1,4 @@
-import CreatePortfolioSectionHeader from "../atoms/CreatePortfolioSectionHeader"
+import CreatePortfolioSectionHeader from "../atoms/PortfolioSectionHeader"
 
 interface CreatePortfolioSectionProps {
     header: string

@@ -12,7 +12,7 @@ import PortfolioContactDesc from "../components/molecules/PortfolioContactDesc"
 const Portfolio = () => {
     let portfolio: boolean = false
 
-    if (portfolio) {
+    if (!portfolio) {
         return (
             <PageWrapper headerEnabled header="Portfolio">
                 <PortfolioFallback />
@@ -22,7 +22,7 @@ const Portfolio = () => {
 
     const mockProjects: Array<
         React.ComponentProps<typeof PortfolioProjectCard>["project"]
-    > = Array(15).fill({
+    > = Array(16).fill({
         img: "https://via.placeholder.com/150",
         title: "This is a mock project",
         link: "https://via.placeholder.com/150"
@@ -52,10 +52,14 @@ const Portfolio = () => {
                         userName="John Doe"
                         aboutText="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem iure expedita error ea! Eum architecto harum modi corporis dolor perspiciatis dolores, asperiores veniam repellat iusto nostrum, officiis possimus, natus id saepe deserunt illum placeat! Laboriosam recusandae ullam nostrum, voluptatibus adipisci laudantium nemo corrupti. Perspiciatis repellendus exercitationem libero autem cumque. Sint nobis hic totam non ullam accusamus labore nisi autem recusandae accusantium unde perferendis, vero ad quod quidem ipsam! Qui ratione et eveniet nemo eaque odit deserunt accusamus asperiores tenetur"
                     />
-                    <PortfolioProjects projects={mockProjects} />
-                    <div className="flex items-start w-full max-w-[800px] flex-wrap justify-between mx-auto ">
-                        <PortfolioContactDesc contactInfo={mockContactInfo} />
-                        <PortfolioContactForm onSubmit={mockSubmit} />
+                    <div className="flex flex-col items-center gap-9  mx-auto">
+                        <PortfolioProjects projects={mockProjects} />
+                        <div className="flex items-start w-full  flex-wrap justify-between mx-auto ">
+                            <PortfolioContactDesc
+                                contactInfo={mockContactInfo}
+                            />
+                            <PortfolioContactForm onSubmit={mockSubmit} />
+                        </div>
                     </div>
                 </PortfolioMain>
             </PageWrapper>

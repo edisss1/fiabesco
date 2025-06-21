@@ -8,7 +8,7 @@ interface PortfolioProjectsProps {
 
 const PortfolioProjects = ({ projects }: PortfolioProjectsProps) => {
     return (
-        <div className="flex flex-col items-center gap-9  mx-auto">
+        <>
             <PortfolioSectionHeader header="Latest projects" />
 
             <div className="portfolio-projects grid w-full gap-4 max-w-[1100px]">
@@ -16,7 +16,7 @@ const PortfolioProjects = ({ projects }: PortfolioProjectsProps) => {
                     <PortfolioProjectCard project={project} />
                 ))}
             </div>
-        </div>
+        </>
     )
 }
 export default PortfolioProjects

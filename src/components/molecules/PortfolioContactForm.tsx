@@ -16,7 +16,10 @@ const PortfolioContactForm = ({ onSubmit }: PortfolioContactFormProps) => {
                 label="Message"
                 className="border-2 rounded-lg min-h-[150px]"
             />
-            <Button className="bg-primary px-6 py-2 rounded-lg place-self-start">
+            <Button
+                className="bg-primary px-6 py-2 rounded-lg place-self-start cursor-pointer "
+                type="submit"
+            >
                 Send
             </Button>
         </form>

@@ -1,4 +1,9 @@
+import ArtStationIcon from "../../assets/social-media/ArtStationIcon"
+import BehanceIcon from "../../assets/social-media/BehanceIcon"
+import DribbbleIcon from "../../assets/social-media/DribbbleIcon"
+import PinterestIcon from "../../assets/social-media/PinterestIcon"
 import { Portfolio } from "../../types/Portfolio"
+import PortfolioAnchor from "../atoms/PortfolioAnchor"
 
 interface PortfolioContactDescProps {
     contactInfo: Portfolio["contactInfo"]
@@ -13,6 +18,24 @@ const PortfolioContactDesc = ({ contactInfo }: PortfolioContactDescProps) => {
                 to working with inspiring people. Use the form below to reach
                 out — I’d love to hear what you're thinking.
             </p>
+            <div className="flex items-center gap-4">
+                <PortfolioAnchor
+                    icon={<BehanceIcon />}
+                    url={contactInfo.behanceProfileLink}
+                />
+                <PortfolioAnchor
+                    icon={<DribbbleIcon />}
+                    url={contactInfo.dribbbleProfileLink}
+                />
+                <PortfolioAnchor
+                    icon={<PinterestIcon />}
+                    url={contactInfo.pinterestProfileLink}
+                />
+                <PortfolioAnchor
+                    icon={<ArtStationIcon />}
+                    url={contactInfo.artStationProfileLink}
+                />
+            </div>
         </div>
     )
 }

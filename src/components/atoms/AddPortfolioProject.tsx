@@ -2,16 +2,33 @@ import { FormEvent, useEffect, useState } from "react"
 import ProjectImgUpload from "../../assets/ProjectImgUpload"
 import ExternalLinkIcon from "../../assets/ExternalLinkIcon"
 import Button from "./Button"
+import { Portfolio } from "../../types/Portfolio"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "../../redux/store"
+import { addProject } from "../../redux/slices/portfolioSlice"
 
 const AddPortfolioProject = () => {
     const [selectedImg, setSelectedImg] = useState<File | null>(null)
     const [previewURL, setPreviewURL] = useState<string | null>(null)
     const [projectTitle, setProjectTitle] = useState<string>("")
     const [projectLink, setProjectLink] = useState<string>("")
+    const dispatch = useDispatch<AppDispatch>()
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
+        const project: Portfolio["projects"][0] = {
+            img: selectedImg as File,
+            title: projectTitle,
+            link: projectLink
+        }
+        dispatch(addProject(project))
+
+        setSelectedImg(null)
+        setPreviewURL(null)
+        setProjectTitle("")
+        setProjectLink("")
     }
+
     const isValid = selectedImg !== null && projectTitle.trim() !== ""
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,13 +74,14 @@ const AddPortfolioProject = () => {
                             type="file"
                             onChange={onFileChange}
                             accept="image/*"
-                        />{" "}
+                        />
                     </>
                 )}
             </div>
             <input
                 className="p-1 rounded-lg focus:outline-primary"
                 placeholder="Write title here..."
+                value={projectTitle}
                 type="text"
                 onChange={(e) => setProjectTitle(e.target.value)}
             />
@@ -72,11 +90,16 @@ const AddPortfolioProject = () => {
                 <input
                     placeholder="Paste a link..."
                     className="p-1 rounded-lg focus:outline-primary max-w-[116px]"
+                    value={projectLink}
                     type="text"
                     onChange={(e) => setProjectLink(e.target.value)}
                 />
             </div>
-            {isValid && <Button variant="secondary">+ </Button>}
+            {isValid && (
+                <Button type="submit" variant="secondary">
+                    +{" "}
+                </Button>
+            )}
         </form>
     )
 }

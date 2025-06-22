@@ -9,8 +9,40 @@ interface PortfolioState {
 }
 
 const initialState: PortfolioState = {
-    portfolioData: {} as Portfolio,
-    initialData: {} as Portfolio,
+    portfolioData: {
+        userID: "",
+        about: "",
+        projects: [], // ✅ important!
+        appearance: {
+            textColor: "",
+            bgColor: "",
+            primaryColor: ""
+        },
+        contactInfo: {
+            email: "",
+            behanceProfileLink: "",
+            dribbbleProfileLink: "",
+            pinterestProfileLink: "",
+            artStationProfileLink: ""
+        }
+    },
+    initialData: {
+        userID: "",
+        about: "",
+        projects: [], // ✅ important here too
+        appearance: {
+            textColor: "",
+            bgColor: "",
+            primaryColor: ""
+        },
+        contactInfo: {
+            email: "",
+            behanceProfileLink: "",
+            dribbbleProfileLink: "",
+            pinterestProfileLink: "",
+            artStationProfileLink: ""
+        }
+    },
     status: "idle",
     error: null
 }
@@ -25,12 +57,7 @@ const portfolioSlice = createSlice({
         updateAbout: (state, action: PayloadAction<Portfolio["about"]>) => {
             state.portfolioData.about = action.payload
         },
-        updateProjects: (
-            state,
-            action: PayloadAction<Portfolio["projects"]>
-        ) => {
-            state.portfolioData.projects = action.payload
-        },
+
         addProject: (
             state,
             action: PayloadAction<Portfolio["projects"][0]>
@@ -52,5 +79,11 @@ const portfolioSlice = createSlice({
     }
 })
 
-export const { setPortfolioData } = portfolioSlice.actions
+export const {
+    setPortfolioData,
+    updateAbout,
+    addProject,
+    updateAppearance,
+    updateContactInfo
+} = portfolioSlice.actions
 export default portfolioSlice.reducer

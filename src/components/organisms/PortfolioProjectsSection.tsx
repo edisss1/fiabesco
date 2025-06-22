@@ -1,10 +1,10 @@
-import PortfolioProjectUpload from "../atoms/AddPortfolioProject"
 import CreatePortfolioSection from "../molecules/CreatePortfolioSection"
+import PortfolioProjectsList from "../molecules/PortfolioProjectsList"
 
 const PortfolioProjectsSection = () => {
     return (
         <CreatePortfolioSection header="Add your projects">
-            <PortfolioProjectUpload />
+            <PortfolioProjectsList />
         </CreatePortfolioSection>
     )
 }

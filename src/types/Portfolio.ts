@@ -8,7 +8,7 @@ export interface Portfolio {
 }
 
 interface PortfolioProject {
-    img: string
+    img: string | File
     title: string
     link: string
 }

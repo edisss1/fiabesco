@@ -13,7 +13,7 @@ const PortfolioProjectCard = ({ project }: PortfolioProjectCardProps) => {
             className="w-full max-w-[250px]"
         >
             <img
-                src={project.img}
+                src={project.img as string}
                 alt={`Screenshot of ${project.title}`}
                 className="w-full object-cover aspect-square rounded-lg bg-text-primary/40"
             />

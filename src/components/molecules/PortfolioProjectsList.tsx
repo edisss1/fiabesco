@@ -12,9 +12,9 @@ const PortfolioProjectsList = () => {
             <AddPortfolioProject />
             <div className="flex items-center gap-4">
                 {projects &&
-                    projects.map((project) => (
+                    projects.map((project, index) => (
                         <ProjectsListCard
-                            key={project.img as string}
+                            key={`${project.title}-${index}` as string}
                             {...project}
                         />
                     ))}

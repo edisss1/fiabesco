@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import FormInput from "../atoms/FormInput"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -24,7 +24,6 @@ const MessageComposer = ({
     const senderID = useSelector((state: RootState) => state.auth.user?._id)
     const [content, setContent] = useState("")
     const [newContent, setNewContent] = useState("")
-    const client = useQueryClient()
 
     useEffect(() => {
         if (isEditing) {

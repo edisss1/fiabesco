@@ -53,7 +53,8 @@ const initialState: PortfolioState = {
 
 export const createPortfolio = createAsyncThunk(
     "portfolio/createPortfolio",
-    async (_, { getState, rejectWithValue }) => {
+    async (userID: string | undefined, { getState, rejectWithValue }) => {
+        if (!userID) return
         try {
             const state = getState() as RootState
             const originalPortfolio = state.portfolio.portfolioData
@@ -79,12 +80,16 @@ export const createPortfolio = createAsyncThunk(
 
             formData.append("portfolio", JSON.stringify(portfolio))
 
-            const res = await api.post("/portfolios/create", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data"
+            const res = await api.post(
+                `/portfolios/${userID}/create`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
                 }
-            })
-
+            )
+            console.log(res.data)
             return res.data
         } catch (err: any) {
             return rejectWithValue(err.response.data || "Upload failed")

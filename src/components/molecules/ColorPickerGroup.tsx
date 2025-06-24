@@ -1,8 +1,14 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ColorPicker from "../atoms/ColorPicker"
-import { RootState } from "../../redux/store"
+import { AppDispatch, RootState } from "../../redux/store"
+import {
+    updateBgColor,
+    updatePrimaryColor,
+    updateTextColor
+} from "../../redux/slices/portfolioSlice"
 
 const ColorPickerGroup = () => {
+    const dispatch = useDispatch<AppDispatch>()
     const { textColor, bgColor, primaryColor } = useSelector(
         (state: RootState) => state.portfolio.portfolioData.appearance
     )
@@ -13,19 +19,19 @@ const ColorPickerGroup = () => {
                 text="Text"
                 id="color-text"
                 value={textColor}
-                onChange={() => {}}
+                onChange={(e) => dispatch(updateTextColor(e.target.value))}
             />
             <ColorPicker
                 text="Background"
                 id="color-bg"
                 value={bgColor}
-                onChange={() => {}}
+                onChange={(e) => dispatch(updateBgColor(e.target.value))}
             />
             <ColorPicker
                 text="Primary"
                 id="color-primary"
                 value={primaryColor}
-                onChange={() => {}}
+                onChange={(e) => dispatch(updatePrimaryColor(e.target.value))}
             />
         </div>
     )

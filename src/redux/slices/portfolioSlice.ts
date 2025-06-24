@@ -12,11 +12,11 @@ const initialState: PortfolioState = {
     portfolioData: {
         userID: "",
         about: "",
-        projects: [], // ✅ important!
+        projects: [],
         appearance: {
-            textColor: "",
-            bgColor: "",
-            primaryColor: ""
+            textColor: "#333333",
+            bgColor: "#F9F9F9",
+            primaryColor: "#F8D57E"
         },
         contactInfo: {
             email: "",
@@ -29,7 +29,7 @@ const initialState: PortfolioState = {
     initialData: {
         userID: "",
         about: "",
-        projects: [], // ✅ important here too
+        projects: [],
         appearance: {
             textColor: "",
             bgColor: "",
@@ -64,17 +64,30 @@ const portfolioSlice = createSlice({
         ) => {
             state.portfolioData.projects.push(action.payload)
         },
-        updateAppearance: (
-            state,
-            action: PayloadAction<Portfolio["appearance"]>
-        ) => {
-            state.portfolioData.appearance = action.payload
-        },
+
         updateContactInfo: (
             state,
             action: PayloadAction<Portfolio["contactInfo"]>
         ) => {
             state.portfolioData.contactInfo = action.payload
+        },
+        updatePrimaryColor: (
+            state,
+            action: PayloadAction<Portfolio["appearance"]["primaryColor"]>
+        ) => {
+            state.portfolioData.appearance.primaryColor = action.payload
+        },
+        updateTextColor: (
+            state,
+            action: PayloadAction<Portfolio["appearance"]["textColor"]>
+        ) => {
+            state.portfolioData.appearance.textColor = action.payload
+        },
+        updateBgColor: (
+            state,
+            action: PayloadAction<Portfolio["appearance"]["bgColor"]>
+        ) => {
+            state.portfolioData.appearance.bgColor = action.payload
         }
     }
 })
@@ -83,7 +96,9 @@ export const {
     setPortfolioData,
     updateAbout,
     addProject,
-    updateAppearance,
-    updateContactInfo
+    updateContactInfo,
+    updatePrimaryColor,
+    updateTextColor,
+    updateBgColor
 } = portfolioSlice.actions
 export default portfolioSlice.reducer

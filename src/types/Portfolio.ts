@@ -2,6 +2,7 @@ export interface Portfolio {
     _id?: string
     userID: string
     about: string
+    allowEmails: boolean
     projects: PortfolioProject[]
     appearance: PortfolioAppearance
     contactInfo: PortfolioContactInfo

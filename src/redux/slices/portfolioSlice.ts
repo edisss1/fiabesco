@@ -1,5 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Portfolio } from "../../types/Portfolio"
+import { RootState } from "../store"
+import { api } from "../../services/api"
 
 interface PortfolioState {
     portfolioData: Portfolio
@@ -12,6 +14,7 @@ const initialState: PortfolioState = {
     portfolioData: {
         userID: "",
         about: "",
+        allowEmails: false,
         projects: [],
         appearance: {
             textColor: "#333333",
@@ -29,6 +32,7 @@ const initialState: PortfolioState = {
     initialData: {
         userID: "",
         about: "",
+        allowEmails: false,
         projects: [],
         appearance: {
             textColor: "",
@@ -46,6 +50,47 @@ const initialState: PortfolioState = {
     status: "idle",
     error: null
 }
+
+export const createPortfolio = createAsyncThunk(
+    "portfolio/createPortfolio",
+    async (_, { getState, rejectWithValue }) => {
+        try {
+            const state = getState() as RootState
+            const originalPortfolio = state.portfolio.portfolioData
+
+            const formData = new FormData()
+            const projectsWithImages = originalPortfolio.projects.map(
+                (project: Portfolio["projects"][0], index) => {
+                    if (project.img instanceof File) {
+                        formData.append(`project-img-${index}`, project.img)
+                        return {
+                            ...project,
+                            img: ""
+                        }
+                    }
+                    return project
+                }
+            )
+
+            const portfolio = {
+                ...originalPortfolio,
+                projects: projectsWithImages
+            }
+
+            formData.append("portfolio", JSON.stringify(portfolio))
+
+            const res = await api.post("/portfolios/create", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+
+            return res.data
+        } catch (err: any) {
+            return rejectWithValue(err.response.data || "Upload failed")
+        }
+    }
+)
 
 const portfolioSlice = createSlice({
     name: "portfolio",
@@ -65,12 +110,6 @@ const portfolioSlice = createSlice({
             state.portfolioData.projects.push(action.payload)
         },
 
-        updateContactInfo: (
-            state,
-            action: PayloadAction<Portfolio["contactInfo"]>
-        ) => {
-            state.portfolioData.contactInfo = action.payload
-        },
         updatePrimaryColor: (
             state,
             action: PayloadAction<Portfolio["appearance"]["primaryColor"]>
@@ -88,6 +127,19 @@ const portfolioSlice = createSlice({
             action: PayloadAction<Portfolio["appearance"]["bgColor"]>
         ) => {
             state.portfolioData.appearance.bgColor = action.payload
+        },
+        updateAllowEmails: (state, action: PayloadAction<boolean>) => {
+            state.portfolioData.allowEmails = action.payload
+        },
+        updateSocialLinks: (
+            state,
+            action: PayloadAction<{
+                field: keyof Portfolio["contactInfo"]
+                value: string
+            }>
+        ) => {
+            const { field, value } = action.payload
+            state.portfolioData.contactInfo[field] = value
         }
     }
 })
@@ -96,9 +148,10 @@ export const {
     setPortfolioData,
     updateAbout,
     addProject,
-    updateContactInfo,
     updatePrimaryColor,
     updateTextColor,
-    updateBgColor
+    updateBgColor,
+    updateAllowEmails,
+    updateSocialLinks
 } = portfolioSlice.actions
 export default portfolioSlice.reducer

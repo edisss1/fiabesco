@@ -49,7 +49,7 @@ const Router = () => {
                     <Route path="profile/:userID" element={<Profile />} />
                     <Route path="following" element={<Following />} />
                     <Route path="post/:postID" element={<PostView />} />
-                    <Route path="portfolio" element={<Portfolio />} />
+                    <Route path=":userID/portfolio" element={<Portfolio />} />
                     <Route
                         path="create-portfolio"
                         element={<CreatePortfolio />}

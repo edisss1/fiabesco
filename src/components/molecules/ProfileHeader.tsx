@@ -8,13 +8,19 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { api } from "../../services/api"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
+import Link from "../atoms/Link"
 
 interface ProfileHeaderProps {
     profileData: User | undefined
     isOwner: boolean
+    userID: string | undefined
 }
 
-const ProfileHeader = ({ profileData, isOwner }: ProfileHeaderProps) => {
+const ProfileHeader = ({
+    profileData,
+    isOwner,
+    userID
+}: ProfileHeaderProps) => {
     const { user } = useSelector((state: RootState) => state.auth)
     const [isEditing, setIsEditing] = useState(false)
     const [newBio, setNewBio] = useState(profileData?.bio)
@@ -94,7 +100,15 @@ const ProfileHeader = ({ profileData, isOwner }: ProfileHeaderProps) => {
                     </div>
                 </div>
             </div>
-            {!isOwner && <ProfileActionButtons />}
+            <div className="flex flex-col items-center">
+                {!isOwner && <ProfileActionButtons />}
+                <Link
+                    className="mt-4 border-2 border-secondary px-4 py-2 rounded-lg hover:bg-secondary hover:text-text-primary transition-colors duration-200"
+                    path={`/app/${userID}/portfolio`}
+                >
+                    View portfolio
+                </Link>
+            </div>
         </div>
     )
 }

@@ -1,69 +1,73 @@
-import { FormEvent } from "react"
 import PageWrapper from "../components/atoms/PageWrapper"
 import PortfolioMain from "../components/atoms/PortfolioMain"
-import PortfolioProjectCard from "../components/atoms/PortfolioProjectCard"
 import PortfolioAboutSection from "../components/molecules/PortfolioAboutDisplay"
 import PortfolioContactForm from "../components/molecules/PortfolioContactForm"
 import PortfolioFallback from "../components/molecules/PortfolioFallback"
 import PortfolioProjects from "../components/molecules/PortfolioProjects"
 import PortfolioNav from "../components/organisms/PortfolioNav"
 import PortfolioContactDesc from "../components/molecules/PortfolioContactDesc"
+import { useQuery } from "@tanstack/react-query"
+import { getPortfolio } from "../utils/getPortfolio"
+import { useParams } from "react-router-dom"
+import { Suspense } from "react"
+import Loading from "../components/atoms/Loading"
+import { Portfolio as IPortfolio } from "../types/Portfolio"
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/store"
 
 const Portfolio = () => {
-    let portfolio: boolean = false
+    const { userID } = useParams()
+    const { user: currentUser } = useSelector((state: RootState) => state.auth)
+    const { data: portfolio, isFetching } = useQuery<IPortfolio | undefined>({
+        queryKey: ["portfolio", userID],
+        queryFn: () => getPortfolio(userID),
+        refetchOnWindowFocus: false
+    })
 
-    if (!portfolio) {
+    const isOwner = userID === currentUser?._id
+    console.log(isOwner)
+
+    if (isFetching) {
+        return <Loading />
+    } else if (!portfolio) {
         return (
-            <PageWrapper headerEnabled header="Portfolio">
-                <PortfolioFallback />
+            <PageWrapper sidebarEnabled>
+                {isOwner ? (
+                    <PortfolioFallback />
+                ) : (
+                    <div className="text-center text-text-primary m-auto">
+                        <h2 className="text-2xl font-semibold">
+                            This user doesn't have a portfolio yet
+                        </h2>
+                    </div>
+                )}
             </PageWrapper>
         )
     }
 
-    const mockProjects: Array<
-        React.ComponentProps<typeof PortfolioProjectCard>["project"]
-    > = Array(16).fill({
-        img: "https://via.placeholder.com/150",
-        title: "This is a mock project",
-        link: "https://via.placeholder.com/150"
-    })
-
-    const mockContactInfo: React.ComponentProps<
-        typeof PortfolioContactDesc
-    >["contactInfo"] = {
-        email: "johndoe@example.com",
-        behanceProfileLink: "https://www.behance.net/johndoe",
-        dribbbleProfileLink: "https://dribbble.com/johndoe",
-        pinterestProfileLink: "https://www.pinterest.com/johndoe/",
-        artStationProfileLink: "https://www.artstation.com/johndoe"
-    }
-
-    const mockSubmit = (e: FormEvent) => {
-        e.preventDefault()
-        alert("Form submitted")
-    }
-
     return (
-        <>
+        <Suspense fallback={<Loading />}>
             <PageWrapper sidebarEnabled={false}>
                 <PortfolioNav />
                 <PortfolioMain>
                     <PortfolioAboutSection
                         userName="John Doe"
-                        aboutText="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem iure expedita error ea! Eum architecto harum modi corporis dolor perspiciatis dolores, asperiores veniam repellat iusto nostrum, officiis possimus, natus id saepe deserunt illum placeat! Laboriosam recusandae ullam nostrum, voluptatibus adipisci laudantium nemo corrupti. Perspiciatis repellendus exercitationem libero autem cumque. Sint nobis hic totam non ullam accusamus labore nisi autem recusandae accusantium unde perferendis, vero ad quod quidem ipsam! Qui ratione et eveniet nemo eaque odit deserunt accusamus asperiores tenetur"
+                        aboutText={portfolio.about}
                     />
                     <div className="flex flex-col items-center gap-9  mx-auto">
-                        <PortfolioProjects projects={mockProjects} />
+                        <PortfolioProjects projects={portfolio.projects} />
                         <div className="flex items-start w-full  flex-wrap justify-between mx-auto ">
                             <PortfolioContactDesc
-                                contactInfo={mockContactInfo}
+                                contactInfo={portfolio.contactInfo}
                             />
-                            <PortfolioContactForm onSubmit={mockSubmit} />
+                            <PortfolioContactForm
+                                onSubmit={(e) => console.log(e)}
+                            />
                         </div>
                     </div>
                 </PortfolioMain>
             </PageWrapper>
-        </>
+        </Suspense>
     )
 }
 export default Portfolio

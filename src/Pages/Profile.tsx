@@ -29,7 +29,11 @@ const Profile = () => {
         <PageWrapper bannerPresent>
             <ProfileWrapper>
                 <Banner isOwner={isOwner} bannerURL={profileData?.bannerURL} />
-                <ProfileHeader profileData={profileData} isOwner={isOwner} />
+                <ProfileHeader
+                    userID={userID}
+                    profileData={profileData}
+                    isOwner={isOwner}
+                />
                 <PostsContainer posts={posts} />
                 {isLoading && <PostSkeleton />}
             </ProfileWrapper>

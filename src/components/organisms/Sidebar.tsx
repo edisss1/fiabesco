@@ -51,7 +51,7 @@ const Sidebar = ({
         },
         {
             text: "Portfolio",
-            path: "/app/portfolio",
+            path: `/app/${user?._id}/portfolio`,
             icon: <PortfolioIcon />
         }
     ]

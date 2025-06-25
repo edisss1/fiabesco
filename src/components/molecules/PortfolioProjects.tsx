@@ -11,7 +11,7 @@ const PortfolioProjects = ({ projects }: PortfolioProjectsProps) => {
         <>
             <PortfolioSectionHeader header="Latest projects" />
 
-            <div className="portfolio-projects grid w-full gap-4 max-w-[1100px]">
+            <div className="portfolio-projects grid w-full  gap-4 max-w-[1100px]">
                 {projects.map((project) => (
                     <PortfolioProjectCard project={project} />
                 ))}

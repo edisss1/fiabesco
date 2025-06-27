@@ -11,6 +11,7 @@ interface PageWrapperProps {
     headerEnabled?: boolean
     header?: string
     bannerPresent?: boolean
+    background?: string
 }
 
 const PageWrapper = ({
@@ -18,7 +19,8 @@ const PageWrapper = ({
     sidebarEnabled = true,
     headerEnabled = false,
     header,
-    bannerPresent = false
+    bannerPresent = false,
+    background
 }: PageWrapperProps) => {
     const isSmall = useMediaQuery("(max-width: 768px)")
     const [sidebarOpened, setSidebarOpened] = useState(!isSmall)
@@ -27,7 +29,12 @@ const PageWrapper = ({
         setSidebarOpened(!isSmall)
     }, [isSmall])
     return (
-        <div className="flex min-h-screen sm:px-2">
+        <div
+            style={{
+                backgroundColor: background ? background : undefined
+            }}
+            className="flex min-h-screen sm:px-2"
+        >
             {sidebarEnabled && (
                 <Sidebar
                     setSidebarOpened={setSidebarOpened}

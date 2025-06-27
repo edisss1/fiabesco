@@ -47,20 +47,30 @@ const Portfolio = () => {
 
     return (
         <Suspense fallback={<Loading />}>
-            <PageWrapper sidebarEnabled={false}>
+            <PageWrapper
+                background={portfolio.appearance.bgColor}
+                sidebarEnabled={false}
+            >
                 <PortfolioNav />
                 <PortfolioMain>
                     <PortfolioAboutSection
+                        textColor={portfolio.appearance.textColor}
                         userName={portfolio.userName}
                         aboutText={portfolio.about}
                     />
                     <div className="flex flex-col items-center gap-9  mx-auto">
-                        <PortfolioProjects projects={portfolio.projects} />
+                        <PortfolioProjects
+                            textColor={portfolio.appearance.textColor}
+                            projects={portfolio.projects}
+                        />
                         <div className="flex items-start w-full gap-9  flex-wrap justify-between mx-auto ">
                             <PortfolioContactDesc
+                                textColor={portfolio.appearance.textColor}
                                 contactInfo={portfolio.contactInfo}
                             />
                             <PortfolioContactForm
+                                primaryColor={portfolio.appearance.primaryColor}
+                                textColor={portfolio.appearance.textColor}
                                 onSubmit={(e) => console.log(e)}
                             />
                         </div>

@@ -4,12 +4,16 @@ import PortfolioSectionHeader from "../atoms/PortfolioSectionHeader"
 
 interface PortfolioProjectsProps {
     projects: Portfolio["projects"]
+    textColor: string
 }
 
-const PortfolioProjects = ({ projects }: PortfolioProjectsProps) => {
+const PortfolioProjects = ({ projects, textColor }: PortfolioProjectsProps) => {
     return (
         <>
-            <PortfolioSectionHeader header="Latest projects" />
+            <PortfolioSectionHeader
+                textColor={textColor}
+                header="Latest projects"
+            />
 
             <div className="portfolio-projects place-items-center  max-w-[1100px]">
                 {projects.map((project) => (

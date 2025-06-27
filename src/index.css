@@ -136,7 +136,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .portfolio-projects {
-    --grid-max-col-count: 3;
+    --grid-max-col-count: 4;
     --grid-min-col-size: 200px;
     --grid-gap: 1rem;
 

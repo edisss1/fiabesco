@@ -5,21 +5,29 @@ import Textarea from "../atoms/Textarea"
 
 interface PortfolioContactFormProps {
     onSubmit: (e: FormEvent) => void
+    textColor: string
+    primaryColor: string
 }
 
-const PortfolioContactForm = ({ onSubmit }: PortfolioContactFormProps) => {
+const PortfolioContactForm = ({
+    onSubmit,
+    textColor,
+    primaryColor
+}: PortfolioContactFormProps) => {
     return (
         <form
             className="w-full md:max-w-1/2 max-md:w-full grid gap-4"
             onSubmit={onSubmit}
         >
-            <FormInput label="Name" />
-            <FormInput label="Email" />
+            <FormInput textColor={textColor} label="Name" />
+            <FormInput textColor={textColor} label="Email" />
             <Textarea
+                textColor={textColor}
                 label="Message"
-                className="border-2 rounded-lg min-h-[150px]"
+                className="border-2 rounded-lg min-h-[150px] resize-none"
             />
             <Button
+                style={{ backgroundColor: primaryColor }}
                 className="bg-primary px-6 py-2 rounded-lg place-self-start cursor-pointer "
                 type="submit"
             >

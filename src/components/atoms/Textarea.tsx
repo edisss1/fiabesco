@@ -8,6 +8,7 @@ interface TextareaProps {
     className?: string
     maxLength?: number
     label?: string
+    textColor?: string
 }
 
 const Textarea = ({
@@ -17,7 +18,8 @@ const Textarea = ({
     id,
     className,
     maxLength,
-    label
+    label,
+    textColor
 }: TextareaProps) => {
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
 
@@ -30,8 +32,16 @@ const Textarea = ({
 
     return (
         <div className="flex flex-col gap-2">
-            {label && <label htmlFor={id}>{label}</label>}
+            {label && (
+                <label style={{ color: textColor && textColor }} htmlFor={id}>
+                    {label}
+                </label>
+            )}
             <textarea
+                style={{
+                    color: textColor && textColor,
+                    borderColor: textColor && textColor
+                }}
                 ref={textAreaRef}
                 maxLength={maxLength}
                 className={className}

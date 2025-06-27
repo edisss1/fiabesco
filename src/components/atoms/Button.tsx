@@ -10,6 +10,7 @@ interface ButtonProps {
     ariaLabel?: string
     ariaExpanded?: boolean
     ariaControls?: string
+    style?: React.CSSProperties
 }
 
 const Button = ({
@@ -23,7 +24,8 @@ const Button = ({
     popoverTargetAction = "toggle",
     ariaLabel,
     ariaExpanded,
-    ariaControls
+    ariaControls,
+    style
 }: ButtonProps) => {
     const variants = {
         primary: "bg-primary px-4 py-2 rounded-lg cursor-pointer",
@@ -35,6 +37,7 @@ const Button = ({
 
     return (
         <button
+            style={style}
             aria-expanded={ariaExpanded}
             aria-label={ariaLabel}
             aria-controls={ariaControls}

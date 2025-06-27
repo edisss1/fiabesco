@@ -13,6 +13,7 @@ interface PortfolioState {
 const initialState: PortfolioState = {
     portfolioData: {
         userID: "",
+        userName: "",
         about: "",
         allowEmails: false,
         projects: [],
@@ -31,6 +32,7 @@ const initialState: PortfolioState = {
     },
     initialData: {
         userID: "",
+        userName: "",
         about: "",
         allowEmails: false,
         projects: [],

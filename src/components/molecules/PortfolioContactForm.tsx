@@ -9,7 +9,10 @@ interface PortfolioContactFormProps {
 
 const PortfolioContactForm = ({ onSubmit }: PortfolioContactFormProps) => {
     return (
-        <form className="w-full max-w-1/2 grid gap-4" onSubmit={onSubmit}>
+        <form
+            className="w-full md:max-w-1/2 max-md:w-full grid gap-4"
+            onSubmit={onSubmit}
+        >
             <FormInput label="Name" />
             <FormInput label="Email" />
             <Textarea

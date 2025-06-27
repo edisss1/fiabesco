@@ -51,12 +51,12 @@ const Portfolio = () => {
                 <PortfolioNav />
                 <PortfolioMain>
                     <PortfolioAboutSection
-                        userName="John Doe"
+                        userName={portfolio.userName}
                         aboutText={portfolio.about}
                     />
                     <div className="flex flex-col items-center gap-9  mx-auto">
                         <PortfolioProjects projects={portfolio.projects} />
-                        <div className="flex items-start w-full  flex-wrap justify-between mx-auto ">
+                        <div className="flex items-start w-full gap-9  flex-wrap justify-between mx-auto ">
                             <PortfolioContactDesc
                                 contactInfo={portfolio.contactInfo}
                             />

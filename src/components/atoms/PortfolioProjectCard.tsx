@@ -2,11 +2,16 @@ import { Portfolio } from "../../types/Portfolio"
 
 interface PortfolioProjectCardProps {
     project: Portfolio["projects"][number]
+    textColor?: string
 }
 
-const PortfolioProjectCard = ({ project }: PortfolioProjectCardProps) => {
+const PortfolioProjectCard = ({
+    project,
+    textColor
+}: PortfolioProjectCardProps) => {
     return (
         <a
+            style={{ color: textColor && textColor }}
             href={project.link}
             target="_blank"
             aria-label={`View project: ${project.title}`}

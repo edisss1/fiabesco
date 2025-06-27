@@ -17,7 +17,10 @@ const PortfolioProjects = ({ projects, textColor }: PortfolioProjectsProps) => {
 
             <div className="portfolio-projects place-items-center  max-w-[1100px]">
                 {projects.map((project) => (
-                    <PortfolioProjectCard project={project} />
+                    <PortfolioProjectCard
+                        textColor={textColor}
+                        project={project}
+                    />
                 ))}
             </div>
         </>

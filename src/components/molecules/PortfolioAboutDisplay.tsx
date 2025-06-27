@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux"
 import PortfolioHeader from "../atoms/PortfolioHeader"
-import { RootState } from "../../redux/store"
 
 interface PortfolioAboutDisplayProps {
     userName: string

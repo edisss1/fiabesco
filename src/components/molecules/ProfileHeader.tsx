@@ -9,6 +9,7 @@ import { api } from "../../services/api"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 import Link from "../atoms/Link"
+import ProfilePicture from "../atoms/ProfilePicture"
 
 interface ProfileHeaderProps {
     profileData: User | undefined
@@ -53,7 +54,7 @@ const ProfileHeader = ({
         <div className="px-4 flex items-center justify-between gap-4 flex-wrap text-text-primary ">
             <div className="flex items-start gap-2">
                 {profileData?.photoURL ? (
-                    <img src={profileData.photoURL} />
+                    <ProfilePicture url={profileData?.photoURL} />
                 ) : (
                     <div className="w-12 h-12 rounded-full bg-white" />
                 )}

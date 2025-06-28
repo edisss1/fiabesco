@@ -1,6 +1,6 @@
 import CrossIcon from "../../assets/CrossIcon"
 import Button from "./Button"
-import ProfilePicture from "./ProfilePicture"
+import ProfilePicture from "../molecules/ProfilePicture"
 
 interface BlockedUserCardProps {
     photoURL: string

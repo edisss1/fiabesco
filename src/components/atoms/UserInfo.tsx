@@ -1,4 +1,4 @@
-import ProfilePicture from "./ProfilePicture"
+import ProfilePicture from "../molecules/ProfilePicture"
 import { Link } from "react-router-dom"
 
 interface UserInfoProps {

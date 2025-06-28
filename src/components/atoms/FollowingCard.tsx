@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import MoreIcon from "../../assets/MoreIcon"
 import Button from "./Button"
-import ProfilePicture from "./ProfilePicture"
+import ProfilePicture from "../molecules/ProfilePicture"
 
 interface FollowingCardProps {
     userName: string | undefined

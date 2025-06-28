@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { User } from "../../types/User"
 import ProfileActionButtons from "./ProfileActionButtons"
 import Button from "../atoms/Button"
@@ -9,7 +9,7 @@ import { api } from "../../services/api"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 import Link from "../atoms/Link"
-import ProfilePicture from "../atoms/ProfilePicture"
+import ProfilePicture from "./ProfilePicture"
 
 interface ProfileHeaderProps {
     profileData: User | undefined
@@ -46,18 +46,23 @@ const ProfileHeader = ({
         },
         onSuccess: () =>
             queryClient.invalidateQueries({
-                queryKey: ["profileData"]
+                queryKey: ["profileData", "userData"]
             })
+    })
+
+    useEffect(() => {
+        console.log(user)
     })
 
     return (
         <div className="px-4 flex items-center justify-between gap-4 flex-wrap text-text-primary ">
             <div className="flex items-start gap-2">
-                {profileData?.photoURL ? (
-                    <ProfilePicture url={profileData?.photoURL} />
-                ) : (
-                    <div className="w-12 h-12 rounded-full bg-white" />
-                )}
+                <ProfilePicture
+                    updateEnabled
+                    userID={userID}
+                    url={profileData?.photoURL}
+                />
+
                 <div className="flex flex-col gap-1">
                     <p className="text-lg font-medium">
                         {profileData?.firstName} {profileData?.lastName}

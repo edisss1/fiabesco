@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { MessageType } from "../../types/Message"
-import ProfilePicture from "./ProfilePicture"
+import ProfilePicture from "../molecules/ProfilePicture"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 

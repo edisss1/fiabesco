@@ -97,7 +97,7 @@ const AddPortfolioProject = () => {
             </div>
             {isValid && (
                 <Button type="submit" variant="secondary">
-                    +{" "}
+                    +
                 </Button>
             )}
         </form>

@@ -32,11 +32,14 @@ const authSlice = createSlice({
         },
         setStatus: (state, action: PayloadAction<"idle" | "loading">) => {
             state.status = action.payload
+        },
+        updatePhotoURL: (state, action: PayloadAction<string>) => {
+            state.user!.photoURL = action.payload
         }
     }
 })
 
-export const { setUser, setToken, setEmailForData, setStatus } =
+export const { setUser, setToken, setEmailForData, setStatus, updatePhotoURL } =
     authSlice.actions
 
 export default authSlice.reducer

@@ -16,7 +16,7 @@ const PortfolioContactForm = ({
 }: PortfolioContactFormProps) => {
     return (
         <form
-            className="w-full md:max-w-1/2 max-md:w-full grid gap-4"
+            className="w-full md:min-w-[400px] max-md:w-full grid gap-4"
             onSubmit={onSubmit}
         >
             <FormInput textColor={textColor} label="Name" />

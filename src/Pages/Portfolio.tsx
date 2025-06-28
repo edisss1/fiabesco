@@ -63,7 +63,7 @@ const Portfolio = () => {
                             textColor={portfolio.appearance.textColor}
                             projects={portfolio.projects}
                         />
-                        <div className="flex items-start w-full gap-9  flex-wrap justify-between mx-auto ">
+                        <div className="flex items-start w-full gap-9 flex-wrap  justify-between mx-auto ">
                             <PortfolioContactDesc
                                 textColor={portfolio.appearance.textColor}
                                 contactInfo={portfolio.contactInfo}

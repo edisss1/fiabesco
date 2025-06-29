@@ -28,7 +28,11 @@ const Profile = () => {
     return (
         <PageWrapper bannerPresent>
             <ProfileWrapper>
-                <Banner isOwner={isOwner} bannerURL={profileData?.bannerURL} />
+                <Banner
+                    userID={userID}
+                    isOwner={isOwner}
+                    bannerURL={profileData?.bannerURL}
+                />
                 <ProfileHeader
                     userID={userID}
                     profileData={profileData}

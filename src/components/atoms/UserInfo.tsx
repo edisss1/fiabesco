@@ -23,7 +23,7 @@ const UserInfo = ({
             to={`/app/profile/${userID}`}
             className={`flex items-center gap-4  hover:bg-black/5 transition-colors duration-150 p-1 rounded-lg`}
         >
-            <ProfilePicture url={photoURL} />
+            <ProfilePicture dimensions="w-9 h-9" url={photoURL} />
             <div className="flex flex-col justify-start gap-1">
                 <p className="text-lg">
                     {firstName} {lastName}

@@ -4,6 +4,7 @@ interface FileInputProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     accept?: string
     onClick?: () => void
+    className?: string
 }
 
 const FileInput = ({
@@ -11,11 +12,12 @@ const FileInput = ({
     name,
     onChange,
     accept,
-    onClick
+    onClick,
+    className
 }: FileInputProps) => {
     return (
         <>
-            <label className="cursor-pointer">
+            <label className={`cursor-pointer ${className}`}>
                 {label}
                 <input
                     onClick={onClick}

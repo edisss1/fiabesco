@@ -24,7 +24,7 @@
     --color-message-bg-dark: #38bdf8;
 }
 
-body {
+body, #root {
     min-height: 100vh;
     font-family: "Nunito", sans-serif;
     @apply bg-background text-text-primary;

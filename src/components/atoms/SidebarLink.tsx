@@ -10,7 +10,7 @@ const SidebarLink = ({ path, text, icon }: SidebarLinkProps) => {
     return (
         <NavLink
             className={({ isActive }) =>
-                `flex items-center px-4 py-2 rounded-lg gap-2 ${
+                `flex items-center px-4 py-2 rounded-lg gap-2 hover:bg-secondary hover:font-bold transition-all duration-200 ${
                     isActive ? "bg-secondary font-bold" : ""
                 } `
             }

@@ -5,20 +5,32 @@ export const createPost = async (
     token: string | null,
     userID: string | undefined,
     caption: string,
-    e: FormEvent
+    e: FormEvent,
+    images?: File[] | null
 ) => {
     e.preventDefault()
     if (!token || !userID) return
 
     try {
-        const res = await api.post(`/users/${userID}/posts`, {
-            caption
+        const formData = new FormData()
+
+        images?.forEach((img, index) => {
+            formData.append(`post-img-${index}`, img)
         })
 
-        const data = res.data
+        const post = {
+            caption,
+            images: images?.map(() => "") || []
+        }
 
-        return data
-    } catch (error) {
-        console.error(error)
-    }
+        formData.append("post", JSON.stringify(post))
+
+        const res = await api.post(`/users/${userID}/posts`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        })
+
+        return res.data
+    } catch (error) {}
 }

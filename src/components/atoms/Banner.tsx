@@ -66,6 +66,7 @@ const Banner = ({ bannerURL, isOwner, userID }: BannerProps) => {
                 <div className="absolute z-[100] text-white opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200  left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2">
                     <FileInput
                         onChange={handleFileUpload}
+                        accept="image/*"
                         name="banner"
                         label={
                             <div className="flex flex-col items-center">

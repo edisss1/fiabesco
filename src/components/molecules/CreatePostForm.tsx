@@ -11,17 +11,27 @@ import FileIcon from "../../assets/FileIcon"
 
 const CreatePostForm = () => {
     const [caption, setCaption] = useState("")
+    const [images, setImages] = useState<File[]>([])
     const { user, token } = useSelector((state: RootState) => state.auth)
     const queryClient = useQueryClient()
 
     const { mutate: post } = useMutation({
         mutationKey: ["post"],
-        mutationFn: (e: FormEvent) => createPost(token, user?._id, caption, e),
+        mutationFn: (e: FormEvent) =>
+            createPost(token, user?._id, caption, e, images),
         onSuccess: () =>
             queryClient.invalidateQueries({
                 queryKey: ["feedPosts"]
             })
     })
+
+    const handlePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+
+        if (e.target.files) {
+            setImages((prev) => [...(prev || []), file!])
+        }
+    }
 
     return (
         <Form
@@ -43,17 +53,17 @@ const CreatePostForm = () => {
             </div>
             <div className="flex items-center gap-4 text-text-primary mt-3">
                 <FileInput
-                    id="photo_upload"
+                    onChange={handlePictureChange}
+                    accept="image/*"
                     name="photo"
                     label={
                         <div className="flex items-center gap-2">
                             <PhotoIcon />
-                            <span>Photo</span>
+                            <span>Picture</span>
                         </div>
                     }
                 />
                 <FileInput
-                    id="file_upload"
                     name="file"
                     label={
                         <div className="flex items-center gap-2">

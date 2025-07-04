@@ -3,6 +3,7 @@ export interface Post {
     userID: string
     caption: string
     images: string[]
+    files: string[]
     tags: string[]
     likesCount: number
     commentsCount: number

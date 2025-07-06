@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useState } from "react"
 import { User } from "../../types/User"
 import ProfileActionButtons from "./ProfileActionButtons"
 import Button from "../atoms/Button"
@@ -50,14 +50,11 @@ const ProfileHeader = ({
             })
     })
 
-    useEffect(() => {
-        console.log(user)
-    })
-
     return (
         <div className="px-4 flex items-center justify-between gap-4 flex-wrap text-text-primary ">
             <div className="flex items-start gap-2">
                 <ProfilePicture
+                    isOwner={userID === user?._id}
                     updateEnabled
                     userID={userID}
                     url={profileData?.photoURL}

@@ -17,11 +17,11 @@ const Profile = () => {
         (state: RootState) => state.auth
     )
 
-    const { profileData, posts, isLoading } = useProfileData(
-        userID,
-        token,
-        dispatch
-    )
+    const {
+        profileData,
+        data: posts,
+        isLoading
+    } = useProfileData(userID, token, dispatch)
 
     const isOwner = userID === currentUser?._id
 

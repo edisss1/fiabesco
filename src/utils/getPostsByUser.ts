@@ -1,15 +1,22 @@
 import { api } from "../services/api"
+import { FeedItem } from "../types/FeedItem"
 
-export const getPostsByUser = async (userID: string | undefined) => {
-    try {
-        const res = await api.get(
-            import.meta.env.VITE_BASE_URL + `/users/${userID}/post`
-        )
+export interface GetPostsByUserRes {
+    feedItems: FeedItem[]
+}
 
-        const data = res.data
+export interface GetPostsByUserParams {
+    page: number
+}
 
-        return data
-    } catch (error) {
-        console.error(error)
-    }
+export const getPostsByUser = async (
+    userID: string | undefined,
+    params: GetPostsByUserParams
+) => {
+    const { page } = params
+    const res = await api.get(`/users/${userID}/post?page=${page}`)
+
+    const posts = (res.data as FeedItem[]) ?? []
+
+    return { posts }
 }

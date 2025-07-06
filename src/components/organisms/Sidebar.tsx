@@ -81,8 +81,7 @@ const Sidebar = ({
                     </Button>
                 )}
                 <UserInfo
-                    firstName={user?.firstName}
-                    lastName={user?.lastName}
+                    userName={`${user?.firstName} ${user?.lastName}`}
                     handle={user?.handle}
                     photoURL={user?.photoURL}
                     userID={user?._id}

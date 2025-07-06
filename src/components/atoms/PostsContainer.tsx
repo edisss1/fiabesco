@@ -1,9 +1,8 @@
 import Post from "./Post"
-import { Post as PostType } from "../../types/Post"
-import { User } from "../../types/User"
+import { FeedItem } from "../../types/FeedItem"
 
 interface PostsContainerProps {
-    posts?: { post: PostType; user: User }[]
+    posts?: FeedItem[]
     ref?: (node?: Element | null) => void
 }
 
@@ -16,9 +15,17 @@ const PostsContainer = ({ posts, ref }: PostsContainerProps) => {
             {posts &&
                 posts.map((post) => (
                     <Post
-                        postedBy={post.user}
+                        postedBy={post.userName}
                         key={post.post._id}
-                        {...post.post}
+                        caption={post.post.caption}
+                        images={post.post.images}
+                        userID={post.post.userID}
+                        createdAt={post.post.createdAt}
+                        likesCount={post.post.likesCount}
+                        commentsCount={post.post.commentsCount}
+                        _id={post.post._id}
+                        photoURL={post.photoURL}
+                        handle={post.handle}
                     />
                 ))}
         </div>

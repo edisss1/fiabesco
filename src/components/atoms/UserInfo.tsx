@@ -2,8 +2,7 @@ import ProfilePicture from "../molecules/ProfilePicture"
 import { Link } from "react-router-dom"
 
 interface UserInfoProps {
-    firstName: string | undefined
-    lastName: string | undefined
+    userName: string | undefined
     handle?: string | undefined
     photoURL: string | undefined
     userID: string | undefined
@@ -11,8 +10,7 @@ interface UserInfoProps {
 }
 
 const UserInfo = ({
-    firstName,
-    lastName,
+    userName,
     handle,
     photoURL,
     userID,
@@ -25,9 +23,7 @@ const UserInfo = ({
         >
             <ProfilePicture dimensions="w-9 h-9" url={photoURL} />
             <div className="flex flex-col justify-start gap-1">
-                <p className="text-lg">
-                    {firstName} {lastName}
-                </p>
+                <p className="text-lg">{userName}</p>
                 {handle && (
                     <span className="max-w-[120px] truncate text-sm">
                         @{handle}

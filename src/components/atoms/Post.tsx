@@ -7,10 +7,10 @@ import UserInfo from "./UserInfo"
 import { RootState } from "../../redux/store"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { likePost } from "../../utils/likePost"
-import { User } from "../../types/User"
 import PostActions from "./PostActions"
 import { useRef } from "react"
 import { useTruncate } from "../../hooks/useTruncate"
+import PostImages from "./PostImages"
 
 interface PostProps {
     caption: string
@@ -20,7 +20,9 @@ interface PostProps {
     likesCount: number
     commentsCount: number
     _id?: string
-    postedBy: User
+    postedBy: string
+    photoURL: string
+    handle: string
 }
 
 const Post = ({
@@ -31,7 +33,9 @@ const Post = ({
     likesCount,
     commentsCount,
     _id,
-    postedBy
+    postedBy,
+    handle,
+    photoURL
 }: PostProps) => {
     const contentRef = useRef<HTMLParagraphElement | null>(null)
     const { user } = useSelector((state: RootState) => state.auth)
@@ -42,7 +46,7 @@ const Post = ({
 
     const isOwner = userID === user?._id
 
-    const { mutate: like, data: likes } = useMutation({
+    const { mutate: like } = useMutation({
         mutationKey: ["like"],
         mutationFn: () => likePost(user?._id, _id),
         onSuccess: () => {
@@ -57,10 +61,9 @@ const Post = ({
             <div className="flex items-start gap-4">
                 <UserInfo
                     userID={userID}
-                    firstName={postedBy?.firstName}
-                    lastName={postedBy?.lastName}
-                    handle={postedBy?.handle}
-                    photoURL={postedBy?.photoURL}
+                    userName={postedBy}
+                    handle={handle}
+                    photoURL={photoURL}
                 />
                 <span className="p-1">{created.toLocaleDateString()}</span>
             </div>
@@ -81,8 +84,11 @@ const Post = ({
                         {isReadingMore ? "Read less" : "Read more"}
                     </Button>
                 )}
-                {images &&
-                    images.map((img) => <img src={img} loading="lazy" />)}
+                {images && (
+                    <div className="w-full">
+                        <PostImages images={images} />
+                    </div>
+                )}
             </div>
             <div className="flex items-center gap-4 ">
                 <PostActions

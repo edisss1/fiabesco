@@ -3,34 +3,21 @@ import { FeedItem } from "../types/FeedItem"
 
 export interface GetFeedPostsRes {
     feedItems: FeedItem[]
-    nextSkip?: number
-    hasMore: boolean
 }
 
 export interface GetFeedPostsParams {
-    sampleSize?: number
-    limit?: number
-    skip?: number
+    page: number
 }
 
 export const getFeedPosts = async (
     params: GetFeedPostsParams
 ): Promise<GetFeedPostsRes> => {
-    const { sampleSize, limit, skip } = params
+    const { page } = params
 
-    const res = await api.get("/posts/feed", {
-        params: {
-            sample: sampleSize,
-            limit,
-            skip
-        }
-    })
+    const res = await api.get(`/posts/feed?page=${page}`)
 
-    const feedItems = res.data.feedItems as FeedItem[]
-
+    const feedItems = (res.data as FeedItem[]) ?? []
     return {
-        feedItems: feedItems,
-        hasMore: res.data.hasMore,
-        nextSkip: res.data.nextSkip
+        feedItems
     }
 }

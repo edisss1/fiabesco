@@ -24,7 +24,8 @@
     --color-message-bg-dark: #38bdf8;
 }
 
-body, #root {
+body,
+#root {
     min-height: 100vh;
     font-family: "Nunito", sans-serif;
     @apply bg-background text-text-primary;
@@ -156,4 +157,17 @@ body::-webkit-scrollbar-thumb {
         auto-fit,
         minmax(var(--grid-col-min-size-calc), 1fr)
     );
+}
+
+.post-images::-webkit-scrollbar {
+    height: 3px;
+}
+.post-images::-webkit-scrollbar-thumb {
+    @apply bg-text-primary;
+    border-radius: 9999px;
+}
+
+.post-images::-webkit-scrollbar-track {
+    @apply bg-secondary;
+    border-radius: 9999px;
 }

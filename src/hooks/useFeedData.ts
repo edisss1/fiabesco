@@ -19,25 +19,26 @@ export function useFeedData() {
         queryKey: ["feedPosts"],
         queryFn: async ({ pageParam = 0 }) => {
             const params: GetFeedPostsParams = {
-                limit: 10,
-                skip: pageParam as number
+                page: pageParam
             }
 
             return getFeedPosts(params)
         },
-        initialPageParam: 0,
-        getNextPageParam: (lastPage) => {
-            return lastPage.hasMore ? lastPage.nextSkip : undefined
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, allPages) => {
+            if (
+                !Array.isArray(lastPage.feedItems) ||
+                lastPage.feedItems.length === 0
+            ) {
+                return undefined
+            }
+            return allPages.length + 1
         }
     })
 
-    const posts = data?.pages.flatMap(
-        (page) =>
-            page?.feedItems?.map((item) => ({
-                post: item.post,
-                user: item.user
-            })) ?? []
-    )
+    const posts = data?.pages.flatMap((page) => page.feedItems)
+
+    console.log("posts", posts)
     return {
         scrollContainerRef,
         inView,

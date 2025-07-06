@@ -5,6 +5,7 @@ interface FileInputProps {
     accept?: string
     onClick?: () => void
     className?: string
+    allowMultiple?: boolean
 }
 
 const FileInput = ({
@@ -13,7 +14,8 @@ const FileInput = ({
     onChange,
     accept,
     onClick,
-    className
+    className,
+    allowMultiple
 }: FileInputProps) => {
     return (
         <>
@@ -26,6 +28,7 @@ const FileInput = ({
                     onChange={onChange}
                     name={name}
                     accept={accept}
+                    multiple={allowMultiple}
                 />
             </label>
         </>

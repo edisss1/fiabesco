@@ -1,5 +1,6 @@
 import Post from "./Post"
 import { FeedItem } from "../../types/FeedItem"
+import Loading from "./Loading"
 
 interface PostsContainerProps {
     posts?: FeedItem[]
@@ -13,21 +14,25 @@ const PostsContainer = ({ posts, ref }: PostsContainerProps) => {
             className="flex flex-col px-2 gap-4 items-center mt-16 w-full mx-auto max-w-[800px]"
         >
             {posts &&
-                posts.map((post) => (
-                    <Post
-                        postedBy={post.userName}
-                        key={post.post._id}
-                        caption={post.post.caption}
-                        images={post.post.images}
-                        userID={post.post.userID}
-                        createdAt={post.post.createdAt}
-                        likesCount={post.post.likesCount}
-                        commentsCount={post.post.commentsCount}
-                        _id={post.post._id}
-                        photoURL={post.photoURL}
-                        handle={post.handle}
-                    />
-                ))}
+                posts.map((post) => {
+                    if (!post || !post.post || !post.userName)
+                        return <Loading />
+                    return (
+                        <Post
+                            postedBy={post.userName}
+                            key={post.post._id}
+                            caption={post.post.caption}
+                            images={post.post.images}
+                            userID={post.post.userID}
+                            createdAt={post.post.createdAt}
+                            likesCount={post.post.likesCount}
+                            commentsCount={post.post.commentsCount}
+                            _id={post.post._id}
+                            photoURL={post.photoURL}
+                            handle={post.handle}
+                        />
+                    )
+                })}
         </div>
     )
 }

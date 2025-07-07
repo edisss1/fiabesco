@@ -4,11 +4,12 @@ import Form from "../atoms/Form"
 import { createPost } from "../../utils/createPost"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useState } from "react"
 import FileInput from "../atoms/FileInput"
 import PhotoIcon from "../../assets/PhotoIcon"
 import FileIcon from "../../assets/FileIcon"
 import PostImagePreview from "../atoms/PostImagePreview"
+import { AnimatePresence, motion } from "framer-motion"
 
 const CreatePostForm = () => {
     const [caption, setCaption] = useState("")
@@ -82,15 +83,45 @@ const CreatePostForm = () => {
                     }
                 />
             </div>
+
             {previews.length > 0 && (
                 <div className="mt-4 flex gap-3 items-center max-w-full overflow-x-auto scrollbar-thin post-images py-2">
-                    {previews.map((url, index) => (
-                        <PostImagePreview
-                            onClick={() => removeImage(index)}
-                            key={index}
-                            url={url}
-                        />
-                    ))}
+                    <AnimatePresence mode="popLayout">
+                        {previews.map((url, index) => (
+                            <motion.div
+                                key={url}
+                                layout
+                                initial={{
+                                    display: "none",
+                                    opacity: 0,
+                                    x: -10,
+                                    scale: 0.9
+                                }}
+                                animate={{
+                                    display: "block",
+                                    opacity: 1,
+                                    x: 0,
+                                    scale: 1
+                                }}
+                                exit={{
+                                    display: "none",
+                                    opacity: 0,
+                                    x: 10,
+                                    scale: 0
+                                }}
+                                transition={{
+                                    duration: 0.3,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                <PostImagePreview
+                                    key={`${url}-img-${index}`}
+                                    onClick={() => removeImage(index)}
+                                    url={url}
+                                />
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
                 </div>
             )}
         </Form>

@@ -13,9 +13,9 @@ const Form = ({ children, className, onSubmit, x, useMotion }: FormProps) => {
 
     return (
         <FormEl
-            initial={{ opacity: 0, x }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: "backInOut" }}
+            initial={useMotion ? { opacity: 0, x } : {}}
+            animate={useMotion ? { opacity: 1, x } : {}}
+            transition={useMotion ? { duration: 0.5, ease: "backInOut" } : {}}
             onSubmit={onSubmit}
             className={`${className} px-4`}
         >

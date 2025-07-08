@@ -21,7 +21,7 @@ const Button = ({
     variant,
     className,
     popoverTarget,
-    popoverTargetAction = "toggle",
+    popoverTargetAction,
     ariaLabel,
     ariaExpanded,
     ariaControls,

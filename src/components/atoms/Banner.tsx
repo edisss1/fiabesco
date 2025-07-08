@@ -51,7 +51,7 @@ const Banner = ({ bannerURL, isOwner, userID }: BannerProps) => {
             className={`w-full h-[200px] group relative after:z-40 ${
                 isOwner &&
                 !previewURL &&
-                "after:inset-0 after:absolute after:bg-none hover:after:bg-black/50 after:transition-all after:duration-200 after:w-full after:content-['']  "
+                "after:inset-0 after:absolute after:backdrop-blur-none after:bg-none hover:after:bg-black/50 hover:after:backdrop-blur-sm after:transition-all after:duration-200 after:w-full after:content-['']  "
             }`}
         >
             {bannerURL || previewURL ? (

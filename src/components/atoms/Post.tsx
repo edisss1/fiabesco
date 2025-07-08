@@ -67,7 +67,7 @@ const Post = ({
                 />
                 <span className="p-1">{created.toLocaleDateString()}</span>
             </div>
-            <div className="flex flex-col gap-4 mt-2 relative">
+            <div className="flex flex-col gap-4 mt-2 relative w-full">
                 <p
                     ref={contentRef}
                     className={`break-words ${
@@ -84,11 +84,7 @@ const Post = ({
                         {isReadingMore ? "Read less" : "Read more"}
                     </Button>
                 )}
-                {images && (
-                    <div className="w-full">
-                        <PostImages images={images} />
-                    </div>
-                )}
+                {images && <PostImages images={images} />}
             </div>
             <div className="flex items-center gap-4 ">
                 <PostActions

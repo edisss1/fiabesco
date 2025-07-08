@@ -33,7 +33,8 @@ export function useFeedData() {
                 return undefined
             }
             return allPages.length + 1
-        }
+        },
+        refetchOnWindowFocus: false
     })
 
     const posts = data?.pages.flatMap((page) => page.feedItems)

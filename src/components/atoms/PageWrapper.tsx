@@ -33,7 +33,7 @@ const PageWrapper = ({
             style={{
                 backgroundColor: background ? background : undefined
             }}
-            className="flex min-h-screen sm:px-2"
+            className="flex min-h-screen "
         >
             {sidebarEnabled && (
                 <Sidebar

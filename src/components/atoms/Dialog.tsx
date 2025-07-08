@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import Button from "./Button"
 import CrossIcon from "../../assets/CrossIcon"
-import { AnimatePresence, motion } from "framer-motion"
 
 interface DialogProps {
     children: React.ReactNode
@@ -46,28 +45,21 @@ const Dialog = ({ dialogRef, children }: DialogProps) => {
     }, [dialogRef])
 
     return (
-        <AnimatePresence>
-            {open && (
-                <motion.dialog
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={` ${
-                        dialogRef.current?.open ? "flex flex-col" : ""
-                    } bg-background py-4 px-4 gap-2 w-full max-w-[400px] min-h-[200px] backdrop:bg-text-primary/20   backdrop:backdrop-blur-sm
+        <dialog
+            className={` ${
+                dialogRef.current?.open ? "flex flex-col" : ""
+            } bg-background py-4 px-4 gap-2 w-full max-w-[400px] min-h-[200px] backdrop:bg-text-primary/60   backdrop:backdrop-blur-sm
               backdrop:pointer-events-none fixed top-1/2 left-1/2 -translate-1/2 rounded-lg`}
-                    ref={dialogRef}
-                >
-                    <Button
-                        onClick={() => dialogRef.current?.close()}
-                        className="cursor-pointer self-end-safe p-1 hover:bg-secondary rounded-full transition-colors duration-200"
-                    >
-                        <CrossIcon />
-                    </Button>
-                    {children}
-                </motion.dialog>
-            )}
-        </AnimatePresence>
+            ref={dialogRef}
+        >
+            <Button
+                onClick={() => dialogRef.current?.close()}
+                className="cursor-pointer self-end-safe p-1 hover:bg-secondary rounded-full transition-colors duration-200"
+            >
+                <CrossIcon />
+            </Button>
+            {children}
+        </dialog>
     )
 }
 export default Dialog

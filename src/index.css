@@ -42,6 +42,10 @@ body::-webkit-scrollbar-thumb {
     @apply rounded-full bg-secondary;
 }
 
+body:has(dialog[open]) {
+    overflow: hidden;
+}
+
 .carousel-wrapper {
     @apply mt-6;
 }

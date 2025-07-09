@@ -2,7 +2,7 @@ import PageWrapper from "../components/atoms/PageWrapper"
 import { useParams } from "react-router-dom"
 import Post from "../components/atoms/Post"
 import CreateCommentForm from "../components/molecules/CreateCommentForm"
-import Comment from "../components/atoms/Comment"
+import Comment from "../components/molecules/Comment"
 import { usePostView } from "../hooks/usePostView"
 
 const PostView = () => {

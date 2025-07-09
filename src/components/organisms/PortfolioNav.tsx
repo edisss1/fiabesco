@@ -9,10 +9,10 @@ interface PortfolioNavProps {
 
 const PortfolioNav = ({ editLinkEnabled = false }: PortfolioNavProps) => {
     return (
-        <nav className="flex items-center justify-between p-4">
+        <nav className="flex items-center justify-between p-4 dark:bg-primary dark:m-2 dark:rounded-lg dark:text-text-primary">
             <div className="flex items-center gap-2">
                 <Link to={"/app/feed"}>
-                    <Arrow />
+                    <Arrow className="dark:[&>*]:stroke-text-primary!" />
                 </Link>
                 <PageHeader header="Portfolio" />
             </div>

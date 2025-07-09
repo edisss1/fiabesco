@@ -15,7 +15,7 @@ const SectionHeader = ({ children }: SectionHeaderProps) => {
             ref={ref}
             initial={{ opacity: 0, y: -50, scale: 0.8 }}
             animate={inView ? { opacity: 1, y: 10, scale: 1 } : {}}
-            className="text-2xl text-text-primary font-semibold"
+            className="text-2xl text-text-primary dark:text-text-primary-dark font-semibold"
         >
             {children}
         </motion.h2>

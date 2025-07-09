@@ -12,7 +12,7 @@ const Hero = () => {
                 <div className="flex flex-col max-lg:items-center">
                     <HeroHeader>
                         Connect,{"  "}
-                        <span className="relative">
+                        <span className="relative dark:text-text-primary">
                             Create,
                             <Brush />
                         </span>

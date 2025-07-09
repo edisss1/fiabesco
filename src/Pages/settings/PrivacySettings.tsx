@@ -34,7 +34,7 @@ const PrivacySettings = () => {
                     />
                 ))}
                 {!blocked && (
-                    <span className="text-sm text-text-primary">
+                    <span className="text-sm text-text-primary dark:text-text-primary-dark">
                         No blocked users
                     </span>
                 )}

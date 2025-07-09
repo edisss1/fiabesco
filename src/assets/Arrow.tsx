@@ -1,6 +1,7 @@
-const Arrow = () => {
+const Arrow = ({ className }: { className?: string }) => {
     return (
         <svg
+            className={`[&>*]:stroke-text-primary dark:[&>*]:stroke-text-primary-dark ${className}`}
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -9,7 +10,6 @@ const Arrow = () => {
         >
             <path
                 d="M18 12L6 12M6 12L11 17M6 12L11 7"
-                stroke="#000000"
                 strokeLinecap="round"
                 strokeLinejoin="round"
             />

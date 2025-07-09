@@ -51,7 +51,7 @@ const AddPortfolioProject = () => {
         >
             <div
                 className={`w-full relative rounded-lg aspect-square ${
-                    !previewURL && "bg-primary"
+                    !previewURL && "bg-primary dark:bg-primary-dark"
                 }`}
             >
                 {previewURL && (

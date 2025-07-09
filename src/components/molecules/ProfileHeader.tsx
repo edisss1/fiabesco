@@ -51,7 +51,7 @@ const ProfileHeader = ({
     })
 
     return (
-        <div className="px-4 flex items-center justify-between gap-4 flex-wrap text-text-primary ">
+        <div className="px-4 flex items-center justify-between gap-4 flex-wrap text-text-primary dark:text-text-primary-dark ">
             <div className="flex items-start gap-2">
                 <ProfilePicture
                     isOwner={userID === user?._id}
@@ -97,7 +97,7 @@ const ProfileHeader = ({
                                 onClick={() => setIsEditing(true)}
                                 className="cursor-pointer hover:bg-black/30 rounded-lg transition-all"
                             >
-                                <PencilIcon />
+                                <PencilIcon className="dark:[&>*]:fill-text-primary-dark" />
                             </Button>
                         )}
                     </div>

@@ -22,7 +22,7 @@ const SettingsForm = ({
             <div className="flex w-full max-w-[350px] md:gap-9 max-md:flex-col justify-between ">
                 <label htmlFor={id}>{label}</label>
                 <input
-                    className="border-2  border-text-primary max-w-[300px] focus:outline-primary p-2 rounded-lg"
+                    className="border-2  border-text-primary dark:border-text-primary-dark max-w-[300px] focus:outline-primary p-2 rounded-lg"
                     type="text"
                     id={id}
                     value={value}

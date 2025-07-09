@@ -23,7 +23,7 @@ const CommentActions = ({
 
     return (
         <>
-            <div className="flex flex-col items-start gap-2 text-sm text-white">
+            <div className="flex flex-col items-start gap-2 text-sm text-white dark:text-text-primary">
                 <Button onClick={copyComment}>
                     {isCopying ? "Copied!" : "Copy"}
                 </Button>

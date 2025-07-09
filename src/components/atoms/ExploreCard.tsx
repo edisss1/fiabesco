@@ -17,7 +17,7 @@ const ExploreCard = ({ header, text, index }: ExploreCardProps) => {
             initial={{ opacity: 0, y: -50, scale: 0.8 }}
             animate={isVisible ? { opacity: 1, y: 10, scale: 1 } : {}}
             transition={{ delay: index! * 0.5, duration: 1, ease: "backInOut" }}
-            className="flex text-text-primary flex-col items-center gap-4 max-w-[300px]"
+            className="flex text-text-primary dark:text-text-primary-dark flex-col items-center gap-4 max-w-[300px]"
         >
             <h3 className="text-xl font-medium">{header}</h3>
             <p className="text-center">{text}</p>

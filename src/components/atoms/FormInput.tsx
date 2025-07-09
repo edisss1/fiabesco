@@ -18,7 +18,7 @@ const FormInput = ({
     type,
     value,
     placeholder,
-    className = "border-2 user-invalid:border-danger border-text-primary focus:outline-primary p-2 rounded-lg",
+    className = "border-2 user-invalid:border-danger border-text-primary dark:border-text-primary-dark dark:focus:outline-primary-dark focus:outline-primary p-2 rounded-lg",
     flexDirection = "flex-col",
     alignItems = "",
     textColor
@@ -27,10 +27,14 @@ const FormInput = ({
         <div
             className={`flex w-full ${flexDirection && flexDirection} ${
                 alignItems && alignItems
-            }  gap-2 text-text-primary `}
+            }  gap-2 text-text-primary dark:text-text-primary-dark `}
         >
             {label && (
-                <label style={{ color: textColor && textColor }} htmlFor={id}>
+                <label
+                    className={`${!textColor && "dark:text-text-primary-dark"}`}
+                    style={{ color: textColor && textColor }}
+                    htmlFor={id}
+                >
                     {label}
                 </label>
             )}

@@ -48,7 +48,7 @@ const Dialog = ({ dialogRef, children }: DialogProps) => {
         <dialog
             className={` ${
                 dialogRef.current?.open ? "flex flex-col" : ""
-            } bg-background py-4 px-4 gap-2 w-full max-w-[400px] min-h-[200px] backdrop:bg-text-primary/60   backdrop:backdrop-blur-sm
+            } bg-background dark:bg-background-dark py-4 px-4 gap-2 w-full max-w-[400px] min-h-[200px] backdrop:bg-text-primary/60   backdrop:backdrop-blur-sm
               backdrop:pointer-events-none fixed top-1/2 left-1/2 -translate-1/2 rounded-lg`}
             ref={dialogRef}
         >
@@ -56,7 +56,7 @@ const Dialog = ({ dialogRef, children }: DialogProps) => {
                 onClick={() => dialogRef.current?.close()}
                 className="cursor-pointer self-end-safe p-1 hover:bg-secondary rounded-full transition-colors duration-200"
             >
-                <CrossIcon />
+                <CrossIcon className="dark:[&>*]:fill-text-primary-dark" />
             </Button>
             {children}
         </dialog>

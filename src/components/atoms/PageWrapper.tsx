@@ -51,7 +51,7 @@ const PageWrapper = ({
             >
                 {sidebarEnabled && (
                     <div
-                        className={`sticky top-0 flex items-center justf bg-background w-full z-20  ps-3`}
+                        className={`sticky top-0 flex items-center justf  bg-background dark:bg-background-dark w-full z-20  ps-3`}
                     >
                         {isSmall && (
                             <Button

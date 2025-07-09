@@ -82,12 +82,12 @@ const PfpUpdate = ({ userID, dialogRef }: PFPUpdateProps) => {
     }
 
     return (
-        <div className="w-full flex flex-col items-center gap-4">
+        <div className="w-full flex flex-col items-center gap-4 dark:text-text-primary-dark">
             <FileInput
                 name="profile-picture"
                 onChange={handleFileChange}
                 label={
-                    <div className="flex items-center gap-2 justify-center">
+                    <div className="flex items-center gap-2 justify-center text-text-primary">
                         <ProjectImgUpload />
                         <p>Choose local file</p>
                     </div>

@@ -28,7 +28,7 @@ body,
 #root {
     min-height: 100vh;
     font-family: "Nunito", sans-serif;
-    @apply bg-background text-text-primary;
+    @apply bg-background text-text-primary dark:bg-background-dark dark:text-text-primary-dark;
 }
 
 body::-webkit-scrollbar {
@@ -60,9 +60,10 @@ body:has(dialog[open]) {
 
 .carousel-wrapper::before,
 .carousel-wrapper::after {
+    @apply bg-background dark:bg-background-dark;
     content: "";
     width: 50px;
-    background: var(--color-background);
+
     position: absolute;
     height: 120%;
     filter: blur(10px);

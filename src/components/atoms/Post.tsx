@@ -57,7 +57,7 @@ const Post = ({
     })
 
     return (
-        <div className="flex flex-col bg-black/5 transition-colors duration-150 rounded-lg items-start  w-full gap-4 max-w-[800px] p-4 ">
+        <div className="flex flex-col bg-black/5 dark:bg-background/5 transition-colors duration-150 rounded-lg items-start  w-full gap-4 max-w-[800px] p-4 ">
             <div className="flex items-start gap-4">
                 <UserInfo
                     userID={userID}
@@ -78,7 +78,7 @@ const Post = ({
                 </p>
                 {showButton && (
                     <Button
-                        className="absolute bottom-0 right-0 bg-background rounded-md  px-2 "
+                        className="absolute bottom-0 right-0 bg-background dark:bg-background-dark rounded-md  px-2 "
                         onClick={() => setIsReadingMore((prev) => !prev)}
                     >
                         {isReadingMore ? "Read less" : "Read more"}

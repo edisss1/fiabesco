@@ -1,6 +1,7 @@
 const FileIcon = () => {
     return (
         <svg
+            className="[&>*]:fill-text-primary dark:[&>*]:fill-text-primary-dark"
             width="24"
             height="24"
             viewBox="0 0 24 24"

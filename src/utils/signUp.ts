@@ -1,7 +1,6 @@
 import axios from "axios"
 import { AppDispatch } from "../redux/store"
 import { login } from "./login"
-import { setEmailForData } from "../redux/slices/authSlice"
 
 export const signUp = async (
     firstName: string,
@@ -41,7 +40,6 @@ export const signUp = async (
         const data = res.data
 
         if (data) {
-            dispatch(setEmailForData(email))
             await login(email, password, dispatch)
         }
 

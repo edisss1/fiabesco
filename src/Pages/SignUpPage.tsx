@@ -53,7 +53,7 @@ const SignUp = () => {
             >
                 <div className="grid place-items-center gap-6">
                     <Fiabesco />
-                    <h2 className="text-text-primary font-bold">
+                    <h2 className="text-text-primary dark:text-text-primary-dark font-bold">
                         Connect, create, and share your art with the world.
                         Let's bring your vision to life.
                     </h2>
@@ -98,7 +98,7 @@ const SignUp = () => {
                     />
                     <Button
                         type="submit"
-                        className=" bg-primary py-2 rounded-lg cursor-pointer"
+                        className=" bg-primary py-2 rounded-lg cursor-pointer text-text-primary"
                     >
                         Join
                     </Button>
@@ -106,7 +106,7 @@ const SignUp = () => {
                 <div className="flex items-center gap-2">
                     <p>Already have an account? </p>
                     <Link
-                        className="text-text-primary opacity-70 hover:opacity-100 transition-opacity duration-300"
+                        className="text-text-primary dark:text-text-primary-dark opacity-70 hover:opacity-100 transition-opacity duration-300"
                         to={"/auth/login"}
                     >
                         Login
@@ -114,7 +114,7 @@ const SignUp = () => {
                 </div>
             </Form>
             <Link
-                className="bg-primary hover:scale-105 transition-transform  p-2 rounded-lg absolute top-4 left-4"
+                className="bg-primary  hover:scale-105 transition-transform  p-2 rounded-lg absolute top-4 left-4"
                 to={"/"}
             >
                 <Arrow />

@@ -45,13 +45,13 @@ const CreatePostForm = () => {
         <Form
             useMotion={false}
             onSubmit={post}
-            className="w-full max-w-[500px] mx-auto text-white mt-6"
+            className="w-full max-w-[500px] mx-auto text-white  mt-6"
         >
             <div className="flex items-center gap-4 w-full">
                 <input
                     value={caption}
                     onChange={(e) => setCaption(e.target.value)}
-                    className="border-b-2 text-text-primary p-2 focus:border-primary focus:outline-none transition-all duration-300  border-text-primary w-full max-w-[400px]"
+                    className="border-b-2 text-text-primary dark:text-text-primary-dark p-2 focus:border-primary focus:outline-none transition-all duration-300  border-text-primary w-full max-w-[400px]"
                     type="text"
                     placeholder="Share your art..."
                 />
@@ -59,7 +59,7 @@ const CreatePostForm = () => {
                     Post
                 </Button>
             </div>
-            <div className="flex items-center gap-4 text-text-primary mt-3">
+            <div className="flex items-center gap-4 text-text-primary dark:text-text-primary-dark mt-3">
                 <FileInput
                     onChange={handlePictureChange}
                     accept="image/*"
@@ -67,7 +67,7 @@ const CreatePostForm = () => {
                     name="photo"
                     label={
                         <div className="flex items-center gap-2">
-                            <PhotoIcon />
+                            <PhotoIcon className="dark:[&>*]:stroke-text-primary-dark" />
                             <span>Picture</span>
                         </div>
                     }

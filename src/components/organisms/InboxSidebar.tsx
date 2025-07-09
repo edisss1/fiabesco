@@ -28,7 +28,7 @@ const InboxSidebar = ({
                 isConversationOpened && isSmall
                     ? "-translate-x-full"
                     : "translate-x-0"
-            } p-4 border-r-2 w-full lg:max-w-[300px] max-lg:absolute h-screen inset-0 bg-background z-[100] transition-transform duration-[450ms]`}
+            } p-4 border-r-2 w-full lg:max-w-[300px] max-lg:absolute h-screen inset-0 bg-background dark:bg-background-dark z-[100] transition-transform duration-[450ms]`}
         >
             <div className="flex items-center gap-2">
                 <Button

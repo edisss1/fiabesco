@@ -69,7 +69,7 @@ const Inbox = () => {
                         messages={messages}
                     />
                 ) : (
-                    <div className="flex items-center px-2 py-1 bg-primary self-center rounded-full justify-center mx-auto max-lg:-z-[100]">
+                    <div className="flex items-center px-2 py-1 bg-primary text-text-primary self-center rounded-full justify-center mx-auto max-lg:-z-[100]">
                         <span className="font-bold">Select a conversation</span>
                     </div>
                 )}

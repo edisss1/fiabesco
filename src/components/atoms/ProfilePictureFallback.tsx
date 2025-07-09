@@ -7,7 +7,7 @@ const ProfilePictureFallback = ({
 }) => {
     return (
         <div
-            className={`w-12 h-12 rounded-full flex items-center justify-center border-2 border-text-primary ${
+            className={`w-12 h-12 rounded-full flex items-center justify-center border-2 border-text-primary dark:border-text-primary-dark ${
                 updateEnabled ? "group-hover:border-transparent" : ""
             }`}
         >

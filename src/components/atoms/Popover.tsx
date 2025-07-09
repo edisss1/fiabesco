@@ -32,7 +32,7 @@ const Popover = ({ children }: PopoverProps) => {
     }, [])
 
     return (
-        <div className="relative inline-block">
+        <div className="relative inline-block ">
             <button
                 ref={triggerRef}
                 onClick={toggleVisibility}

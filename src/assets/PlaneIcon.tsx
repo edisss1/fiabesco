@@ -1,6 +1,7 @@
 const PlaneIcon = () => {
     return (
         <svg
+            className="dark:[&>*]:stroke-text-primary-dark"
             width="24"
             height="24"
             viewBox="0 0 17 17"

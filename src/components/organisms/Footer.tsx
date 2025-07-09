@@ -4,7 +4,7 @@ import { footerLinks } from "../../constants/footerLinks"
 
 const Footer = () => {
     return (
-        <footer className="bg-primary px-xxl py-6 grid  grid-rows-4 max-lg:grid-rows-2 text-text-primary ">
+        <footer className="bg-primary  px-xxl py-6 grid  grid-rows-4 max-lg:grid-rows-2 text-text-primary ">
             <div className="flex justify-between max-lg:flex-col max-lg:gap-6">
                 <Fiabesco />
                 <div className="grid grid-cols-2 gap-4">

@@ -11,7 +11,7 @@ interface PostActionsProps {
 
 const PostActions = ({ count, onClick, icon, type, to }: PostActionsProps) => {
     const className =
-        "p-1 rounded-full hover:bg-primary/50 transition-colors duration-200 flex items-center justify-center"
+        "p-1 rounded-full hover:bg-primary/50 dark:hover:bg-secondary/50 transition-colors duration-200 flex items-center justify-center"
 
     return (
         <div>

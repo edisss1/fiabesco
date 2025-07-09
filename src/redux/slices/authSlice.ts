@@ -4,14 +4,12 @@ import { User } from "../../types/User"
 interface AuthState {
     token: string | null
     user: User | null
-    emailForData: string | null
     status: "loading" | "idle"
 }
 
 const initialState: AuthState = {
     token: localStorage.getItem("token") || null,
     user: null,
-    emailForData: localStorage.getItem("dataEmail") || null,
     status: "idle"
 }
 
@@ -26,10 +24,7 @@ const authSlice = createSlice({
             state.token = action.payload
             localStorage.setItem("token", action.payload)
         },
-        setEmailForData: (state, action: PayloadAction<string>) => {
-            state.emailForData = action.payload
-            localStorage.setItem("dataEmail", action.payload)
-        },
+
         setStatus: (state, action: PayloadAction<"idle" | "loading">) => {
             state.status = action.payload
         },
@@ -39,7 +34,7 @@ const authSlice = createSlice({
     }
 })
 
-export const { setUser, setToken, setEmailForData, setStatus, updatePhotoURL } =
+export const { setUser, setToken, setStatus, updatePhotoURL } =
     authSlice.actions
 
 export default authSlice.reducer

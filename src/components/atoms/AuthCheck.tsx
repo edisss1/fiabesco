@@ -10,35 +10,33 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     const dispatch = useDispatch<AppDispatch>()
-    const { token, user, emailForData, status } = useSelector(
+    const { token, user, status } = useSelector(
         (state: RootState) => state.auth
     )
     const navigate = useNavigate()
     const location = useLocation()
 
     const { data: userData, refetch } = useQuery<User>({
-        queryKey: ["userData", emailForData],
+        queryKey: ["userData", user?._id],
         queryFn: async () => {
-            if (!emailForData) return null
+            if (!token) return null
             try {
-                if (emailForData) {
-                    dispatch(setStatus("loading"))
-                    const res = await axios.get(
-                        import.meta.env.VITE_BASE_URL + `/users/me`,
-                        {
-                            headers: {
-                                Authorization: `Bearer ${token}`,
-                                "Content-Type": "application/json"
-                            }
+                dispatch(setStatus("loading"))
+                const res = await axios.get(
+                    import.meta.env.VITE_BASE_URL + `/users/me`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json"
                         }
-                    )
+                    }
+                )
 
-                    const data = res.data
+                const data = res.data
 
-                    dispatch(setStatus("idle"))
+                dispatch(setStatus("idle"))
 
-                    return data
-                }
+                return data
             } catch (error) {
                 console.error(error)
             }
@@ -48,11 +46,11 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     })
 
     useEffect(() => {
-        if (emailForData) {
+        if (token) {
             refetch()
             console.log("refetching")
         }
-    }, [emailForData])
+    }, [token])
 
     useEffect(() => {
         if (user && !location.pathname.startsWith("/app")) {

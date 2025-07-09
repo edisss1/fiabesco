@@ -47,7 +47,7 @@ const PageWrapper = ({
             <div
                 className={`flex flex-col ${
                     sidebarEnabled && !bannerPresent && "md:px-8  py-4"
-                } items-start w-full overflow-y-auto `}
+                } items-start w-full `}
             >
                 {sidebarEnabled && (
                     <div

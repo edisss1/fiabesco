@@ -1,5 +1,4 @@
 import { FormEvent, useRef, useState } from "react"
-import MoreIcon from "../../assets/MoreIcon"
 import { Comment as CommentType } from "../../types/Comment"
 import { formatDate } from "../../utils/formatTime"
 import Button from "./Button"
@@ -88,22 +87,16 @@ const Comment = ({
             </div>
             <div className="absolute top-2 right-2 flex flex-row-reverse items-center gap-2">
                 <div className="flex items-center gap-4 ">
-                    <Button
-                        popoverTarget="popover"
-                        className="rotate-90 hover:bg-white/60 rounded-lg transition-colors duration-200 relative popover-comment-btn"
-                    >
-                        <MoreIcon />
-                    </Button>
-                    <Popover id="popover" className="p-2 rounded-lg bg-primary">
+                    <Popover id={`comment-actions-${_id}`}>
                         <CommentActions
-                            commentID={_id}
-                            setIsEditing={setIsEditing}
                             isOwner={isOwner}
+                            setIsEditing={setIsEditing}
                             commentContent={content}
+                            commentID={_id}
                         />
                     </Popover>
                 </div>
-                <span className="">{formatDate(createdAt)}</span>
+                <span className="text-sm">{formatDate(createdAt)}</span>
             </div>
         </div>
     )

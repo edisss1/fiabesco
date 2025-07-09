@@ -103,27 +103,6 @@ body:has(dialog[open]) {
     border-radius: 9999px;
 }
 
-.popover-comment-btn {
-    anchor-name: --popover-comment-btn;
-}
-
-.popover {
-    position: absolute;
-    margin: 0;
-    inset: auto;
-    position-anchor: --popover-comment-btn;
-    top: anchor(top);
-    right: anchor(left);
-}
-
-.popover:popover-open {
-    display: grid;
-    opacity: 1;
-    transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in allow-discrete;
-    animation-fill-mode: forwards;
-}
-
 .settings-nav-links li {
     overflow: hidden;
 }

@@ -2,6 +2,8 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --spacing-xxl: clamp(1rem, 5vw, 4rem);
 
@@ -22,6 +24,21 @@
     --color-success-dark: #34d399;
     --color-warning-dark: #fbbf24;
     --color-message-bg-dark: #38bdf8;
+}
+
+@layer utilities {
+    @keyframes switch-theme {
+        0% {
+            clip-path: circle(0% at 50% 50%);
+        }
+        100% {
+            clip-path: circle(100% at 50% 50%);
+        }
+    }
+
+    .animate-theme {
+        animation: switch-theme 0.8s forwards ease-out;
+    }
 }
 
 body,

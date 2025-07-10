@@ -68,7 +68,7 @@ const Sidebar = ({
                 transition={{ duration: 0.2, ease: "easeIn" }}
                 className={`flex flex-col  ${
                     isSmall ? "fixed left-0 top-0 bg-white z-40" : "sticky"
-                } top-0 gap-8 w-full max-w-[250px] p-4 h-screen border-r-2 border-black/70 `}
+                } top-0 gap-8 w-full max-w-[250px] p-4 h-screen border-r-2 border-text-primary/70 dark:border-transparent `}
             >
                 {isSmall && (
                     <Button

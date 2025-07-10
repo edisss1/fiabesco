@@ -30,7 +30,7 @@ const ConversationPreview = ({
             to={`/app/inbox/${id}`}
             onClick={onClick}
             className={`${
-                conversationID === id && "bg-secondary"
+                conversationID === id && "bg-secondary text-text-primary!"
             } p-2  rounded-lg w-full max-w-[300px] flex gap-2 items-start justify-between text-text-primary dark:text-text-primary-dark transition-colors duration-150`}
         >
             <div className="flex gap-2 items-center">

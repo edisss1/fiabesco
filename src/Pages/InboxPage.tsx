@@ -1,10 +1,10 @@
 import InboxContainer from "../components/atoms/InboxContainer"
 import PageWrapper from "../components/atoms/PageWrapper"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../redux/store"
 import Conversation from "../components/organisms/Conversation"
-import { useEffect, useState } from "react"
+import { Key, useEffect, useState } from "react"
 import { useConversations } from "../hooks/useConversations"
 import { setSocket } from "../redux/slices/websocketSlice"
 import { useMessages } from "../hooks/useMessages"
@@ -22,6 +22,7 @@ const Inbox = () => {
     const { messages } = useMessages(socket, conversationID, conversationData)
 
     const [isConversationOpened, setIsConversationOpened] = useState(false)
+    const navigate = useNavigate()
 
     const handleOpen = () => {
         setIsConversationOpened(true)
@@ -47,6 +48,21 @@ const Inbox = () => {
             }
         }
     }, [conversationID, user?._id])
+
+    const handleExitConversation = (e: KeyboardEvent) => {
+        console.log("Key pressed: ", e.key === "Escape")
+        if (e.key === "Escape") {
+            handleClose()
+            navigate("/app/inbox")
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleExitConversation)
+        return () => {
+            document.removeEventListener("keydown", handleExitConversation)
+        }
+    }, [])
 
     return (
         <PageWrapper sidebarEnabled={false}>

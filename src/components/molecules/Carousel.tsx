@@ -10,7 +10,7 @@ const Carousel = () => {
             transition={{ duration: 1, ease: "backInOut" }}
             className="overflow-hidden w-full h-[15rem] relative flex  carousel-wrapper max-w-[1000px]"
         >
-            <div className="flex gap-6  ">
+            <div className="flex gap-6 ">
                 <div className="flex gap-6 carousel">
                     {carouselImages.map((image) => (
                         <CarouselImage {...image} />

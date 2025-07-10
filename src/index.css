@@ -32,12 +32,12 @@
             clip-path: circle(0% at 50% 50%);
         }
         100% {
-            clip-path: circle(100% at 50% 50%);
+            clip-path: circle(150% at 50% 50%);
         }
     }
 
     .animate-theme {
-        animation: switch-theme 0.8s forwards ease-out;
+        animation: switch-theme 1s forwards linear;
     }
 }
 
@@ -77,15 +77,18 @@ body:has(dialog[open]) {
 
 .carousel-wrapper::before,
 .carousel-wrapper::after {
-    @apply bg-background dark:bg-background-dark;
     content: "";
     width: 50px;
-
     position: absolute;
     height: 120%;
     filter: blur(10px);
     top: -16px;
     z-index: 40;
+}
+
+.dark .carousel-wrapper::before,
+.dark .carousel-wrapper::after {
+    @apply bg-background-dark;
 }
 
 .carousel-wrapper::after {

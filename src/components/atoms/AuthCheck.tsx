@@ -16,6 +16,15 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate()
     const location = useLocation()
 
+    useEffect(() => {
+        const storedTheme = localStorage.getItem("theme")
+        const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches
+        const isDark = storedTheme === "dark" || (!storedTheme && prefersDark)
+        document.documentElement.classList.toggle("dark", isDark)
+    }, [])
+
     const { data: userData, refetch } = useQuery<User>({
         queryKey: ["userData", user?._id],
         queryFn: async () => {

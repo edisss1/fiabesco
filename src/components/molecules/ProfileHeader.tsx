@@ -10,6 +10,8 @@ import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 import Link from "../atoms/Link"
 import ProfilePicture from "./ProfilePicture"
+import Bio from "../atoms/Bio"
+import { compactNumber } from "../../utils/compactNumber"
 
 interface ProfileHeaderProps {
     profileData: User | undefined
@@ -52,55 +54,41 @@ const ProfileHeader = ({
 
     return (
         <div className="px-4 flex items-center justify-between gap-4 flex-wrap text-text-primary dark:text-text-primary-dark ">
-            <div className="flex items-start gap-2">
-                <ProfilePicture
-                    isOwner={userID === user?._id}
-                    updateEnabled
-                    userID={userID}
-                    url={profileData?.photoURL}
-                />
-
-                <div className="flex flex-col gap-1">
-                    <p className="text-lg font-medium">
-                        {profileData?.firstName} {profileData?.lastName}
-                    </p>
-                    <div className="flex items-center gap-2">
-                        {!isEditing && (
-                            <span className="text-sm">
-                                {profileData?.bio
-                                    ? profileData.bio
-                                    : "No bio yet"}
-                            </span>
-                        )}
-                        {isOwner && isEditing && (
-                            <form
-                                onSubmit={updateBio}
-                                className="flex items-center gap-2"
-                            >
-                                <input
-                                    className="border-b-2 focus:outline-none focus:border-secondary transition-all"
-                                    placeholder="Enter your new bio"
-                                    type="text"
-                                    value={newBio}
-                                    onChange={(e) => setNewBio(e.target.value)}
-                                />
-                                <Button
-                                    type="submit"
-                                    className="cursor-pointer hover:bg-black/30 rounded-lg p-1 transition-all"
-                                >
-                                    <CheckMarkIcon />
-                                </Button>
-                            </form>
-                        )}
-                        {isOwner && !isEditing && (
-                            <Button
-                                onClick={() => setIsEditing(true)}
-                                className="cursor-pointer hover:bg-black/30 rounded-lg transition-all"
-                            >
-                                <PencilIcon className="dark:[&>*]:fill-text-primary-dark" />
-                            </Button>
-                        )}
+            <div className="flex flex-col gap-3">
+                <div className="flex items-start gap-2">
+                    <ProfilePicture
+                        isOwner={userID === user?._id}
+                        updateEnabled
+                        userID={userID}
+                        url={profileData?.photoURL}
+                    />
+                    <div className="flex flex-col gap-1">
+                        <p className="text-lg font-medium">
+                            {profileData?.firstName} {profileData?.lastName}
+                        </p>
+                        <Bio
+                            bio={profileData?.bio}
+                            updateBio={updateBio}
+                            isEditing={isEditing}
+                            isOwner={isOwner}
+                            handleBioChange={(e) => setNewBio(e.target.value)}
+                            handleIsEditingChange={() =>
+                                setIsEditing(!isEditing)
+                            }
+                            newBio={newBio}
+                        />
                     </div>
+                </div>
+                <div className="flex items-center gap-4">
+                    <p>
+                        {compactNumber(profileData?.followersCount)}{" "}
+                        {profileData?.followersCount === 1
+                            ? "follower"
+                            : "followers"}
+                    </p>
+                    <p>
+                        {compactNumber(profileData?.followingCount)} following
+                    </p>
                 </div>
             </div>
             <div className="flex flex-col items-center">

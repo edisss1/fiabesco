@@ -1,54 +1,53 @@
-# React + TypeScript + Vite
+# 🎨 Fiabesco – Social Media Platform for Artists
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Fiabesco is a modern social media application crafted exclusively for artists to showcase their work, connect with fellow creatives, and grow their audience. The app is designed with performance, interactivity, and creative freedom in mind.
 
-Currently, two official plugins are available:
+## 🧠 Idea
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Fiabesco aims to be a networking platform where visual artists, illustrators, and digital designers can:
 
-## Expanding the ESLint configuration
+- Post and share their artwork
+- Like, comment, and save inspiring pieces
+- Build profiles and engage with a like-minded community
+- Grow their presence and visibility in the digital art scene
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠️ Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Frontend:
+- **React** – Component-based UI framework for scalable applications  
+- **TypeScript** – Strong typing for improved reliability and developer experience  
+- **Redux Toolkit** – State management for predictable and maintainable logic  
+- **Tailwind CSS** – Utility-first CSS framework for responsive and consistent UI  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Backend:
+> Built with **Go (Fiber)** and **MongoDB**  
+> [Backend Repo](https://github.com/edisss1/fiabesco-backend)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 📸 Key Features
+
+- 🎨 **Artwork Feed** – Explore a feed of creative posts
+- 🧑‍🎨 **Artist Profiles** – Showcase portfolio and bio
+- 💬 **Social Interactions** – Like, comment, and engage with others
+- 🔍 **Search & Explore** – Discover new artists and artworks
+
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js ≥ 18
+
+
+### Installation
+
+```bash
+git clone https://github.com/edisss1/fiabesco.git
+cd fiabesco
+npm i
+npm run dev

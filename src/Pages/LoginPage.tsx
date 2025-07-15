@@ -63,9 +63,9 @@ const Login = () => {
 
                     <Button
                         type="submit"
-                        className=" bg-primary py-2 rounded-lg cursor-pointer"
+                        className=" bg-primary py-2 rounded-lg cursor-pointer text-text-primary"
                     >
-                        Join
+                        Log in
                     </Button>
                 </div>
                 <div className="flex items-center gap-2">

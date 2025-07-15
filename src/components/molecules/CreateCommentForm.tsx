@@ -4,10 +4,10 @@ import Button from "../atoms/Button"
 import Form from "../atoms/Form"
 import FormInput from "../atoms/FormInput"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { commentPost } from "../../utils/commentPost"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
+import { commentPost } from "../../services/endpoints/posts/commentPost"
 
 const CreateCommentForm = () => {
     const { postID } = useParams()

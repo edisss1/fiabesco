@@ -13,10 +13,10 @@ const Hero = () => {
                     <HeroHeader>
                         Connect,{"  "}
                         <span className="relative dark:text-text-primary">
-                            Create,
+                            Create
                             <Brush />
                         </span>
-                        {"  "}
+                        ,{"  "}
                         and Share Your Art with the World.
                     </HeroHeader>
                     <Link

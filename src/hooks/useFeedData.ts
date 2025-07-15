@@ -43,7 +43,6 @@ export function useFeedData() {
 
     const posts = data?.pages.flatMap((page) => page.feedItems)
 
-    console.log("posts", posts)
     return {
         scrollContainerRef,
         inView,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import Button from "./Button"
 import CrossIcon from "../../assets/CrossIcon"
 
@@ -8,8 +8,6 @@ interface DialogProps {
 }
 
 const Dialog = ({ dialogRef, children }: DialogProps) => {
-    const [open, setOpen] = useState(dialogRef.current?.open)
-
     const handleClickOutside = (e: MouseEvent) => {
         if (
             dialogRef.current &&
@@ -25,24 +23,6 @@ const Dialog = ({ dialogRef, children }: DialogProps) => {
             window.removeEventListener("mousedown", handleClickOutside)
         }
     }, [])
-
-    useEffect(() => {
-        const dialog = dialogRef.current
-        if (!dialog) return
-
-        const onOpen = () => setOpen(true)
-        const onClose = () => setOpen(false)
-
-        dialog.addEventListener("open", onOpen)
-        dialog.addEventListener("close", onClose)
-
-        console.log(open)
-
-        return () => {
-            dialog.removeEventListener("open", onOpen)
-            dialog.removeEventListener("close", onClose)
-        }
-    }, [dialogRef])
 
     return (
         <dialog

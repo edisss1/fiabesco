@@ -20,9 +20,13 @@ const authSlice = createSlice({
         setUser: (state, action: PayloadAction<User | null>) => {
             state.user = action.payload
         },
-        setToken: (state, action: PayloadAction<string>) => {
+        setToken: (state, action: PayloadAction<string | null>) => {
             state.token = action.payload
-            localStorage.setItem("token", action.payload)
+            if (action.payload) {
+                localStorage.setItem("token", action.payload)
+            } else {
+                localStorage.removeItem("token")
+            }
         },
 
         setStatus: (state, action: PayloadAction<"idle" | "loading">) => {

@@ -63,10 +63,6 @@ export function useConversations(
         }
     }, [socket, userID])
 
-    useEffect(() => {
-        console.log(conversations)
-    }, [conversations])
-
     const { data: conversationData } = useQuery({
         queryKey: ["conversationData", conversationID],
         queryFn: () => getConversationData(conversationID),

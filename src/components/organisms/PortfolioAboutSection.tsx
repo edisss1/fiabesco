@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import Textarea from "../atoms/Textarea"
 import CreatePortfolioSection from "../molecules/CreatePortfolioSection"
 import { useDispatch, useSelector } from "react-redux"
@@ -10,9 +9,6 @@ const PortfolioAboutSection = () => {
     const { about } = useSelector(
         (state: RootState) => state.portfolio.portfolioData
     )
-    useEffect(() => {
-        console.log(about)
-    }, [about])
 
     return (
         <CreatePortfolioSection header="Tell us about yourself">

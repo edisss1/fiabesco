@@ -50,6 +50,7 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
                 console.error(error)
             }
         },
+        enabled: !!token,
         refetchOnWindowFocus: false,
         refetchOnReconnect: true
     })
@@ -62,14 +63,16 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     }, [token])
 
     useEffect(() => {
-        if (user && !location.pathname.startsWith("/app")) {
+        if (token && !location.pathname.startsWith("/app")) {
             navigate("/app/feed")
         }
-    }, [user, dispatch, location.pathname])
+    }, [dispatch, location.pathname, token])
 
     useEffect(() => {
         if (userData) {
             dispatch(setUser(userData as User))
+        } else {
+            dispatch(setUser(null))
         }
     }, [userData])
 

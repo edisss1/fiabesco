@@ -18,18 +18,15 @@ const messagesSlice = createSlice({
     reducers: {
         setEditing: (state, action: PayloadAction<boolean>) => {
             state.isEditing = action.payload
-            console.log("Is editing: ", state.isEditing)
         },
         setMessageToEdit: (
             state,
             action: PayloadAction<string | undefined>
         ) => {
             state.messageToEdit = action.payload
-            console.log("Message to edit: ", state.messageToEdit)
         },
         setMessageID: (state, action: PayloadAction<string | undefined>) => {
             state.messageID = action.payload
-            console.log("Message ID: ", state.messageID)
         }
     }
 })

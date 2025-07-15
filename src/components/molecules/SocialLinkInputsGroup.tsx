@@ -6,7 +6,6 @@ import PinterestIcon from "../../assets/social-media/PinterestIcon"
 import FormInput from "../atoms/FormInput"
 import { AppDispatch, RootState } from "../../redux/store"
 import { updateSocialLinks } from "../../redux/slices/portfolioSlice"
-import { useEffect } from "react"
 
 const SocialLinkInputsGroup = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -18,20 +17,6 @@ const SocialLinkInputsGroup = () => {
     } = useSelector(
         (state: RootState) => state.portfolio.portfolioData.contactInfo
     )
-
-    useEffect(() => {
-        console.log(
-            behanceProfileLink,
-            dribbbleProfileLink,
-            pinterestProfileLink,
-            artStationProfileLink
-        )
-    }, [
-        behanceProfileLink,
-        dribbbleProfileLink,
-        pinterestProfileLink,
-        artStationProfileLink
-    ])
 
     return (
         <div className="flex flex-col gap-4 max-w-[250px]">

@@ -8,7 +8,6 @@ import {
     updateAllowEmails,
     updateSocialLinks
 } from "../../redux/slices/portfolioSlice"
-import { useEffect } from "react"
 
 const PortfolioContactSection = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -32,10 +31,6 @@ const PortfolioContactSection = () => {
             dispatch(updateSocialLinks({ field: "email", value: "" }))
         }
     }
-
-    useEffect(() => {
-        console.log(contactEmail)
-    }, [contactEmail])
 
     return (
         <CreatePortfolioSection header="Share your contact information">

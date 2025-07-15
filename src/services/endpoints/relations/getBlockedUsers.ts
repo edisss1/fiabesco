@@ -11,7 +11,6 @@ export const getBlockedUsers = async (userID: string | undefined) => {
 
         const data = res.data as User[]
 
-        console.log(data)
         return data
     } catch (error) {
         console.error(error)

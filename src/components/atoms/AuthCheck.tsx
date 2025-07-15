@@ -66,6 +66,7 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
         if (token && !location.pathname.startsWith("/app")) {
             navigate("/app/feed")
             console.log("redirecting")
+            console.log("redirecting")
         }
     }, [dispatch, location.pathname, token])
 

@@ -1,6 +1,6 @@
-import { api } from "../services/api"
-import { Comment } from "../types/Comment"
-import { User } from "../types/User"
+import { Comment } from "../../../types/Comment"
+import { User } from "../../../types/User"
+import { api } from "../../api"
 
 export interface CommentsResponse {
     comment: Comment

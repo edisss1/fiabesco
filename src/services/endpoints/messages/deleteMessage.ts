@@ -1,4 +1,4 @@
-import { api } from "../services/api"
+import { api } from "../../api"
 
 export const deleteMessage = async (messageID: string | undefined) => {
     if (!messageID) return

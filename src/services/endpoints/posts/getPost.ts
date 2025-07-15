@@ -1,5 +1,5 @@
-import { api } from "../services/api"
-import { FeedItem } from "../types/FeedItem"
+import { FeedItem } from "../../../types/FeedItem"
+import { api } from "../../api"
 
 export const getPost = async (postID: string | undefined) => {
     if (!postID) return

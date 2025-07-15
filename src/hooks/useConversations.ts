@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
 import { Conversation } from "../types/Conversation"
-import { getConversationData } from "../utils/getConversationData"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
+import { getConversationData } from "../services/endpoints/messages/getConversationData"
 
 export function useConversations(
     userID: string | undefined,

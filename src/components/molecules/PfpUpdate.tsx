@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { updatePhotoURL } from "../../redux/slices/authSlice"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../../redux/store"
-import { changePFP } from "../../utils/changePFP"
+import { changePFP } from "../../services/endpoints/users/changePFP"
 
 interface PFPUpdateProps {
     userID: string | undefined

@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query"
 import BlockedUserCard from "../../components/atoms/BlockedUserCard"
 import Select from "../../components/atoms/Select"
 import { profileVisibilityOptions } from "../../constants/profileVisibilityOptions"
-import { getBlockedUsers } from "../../utils/getBlockedUsers"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
+import { getBlockedUsers } from "../../services/endpoints/relations/getBlockedUsers"
 
 const PrivacySettings = () => {
     const { user } = useSelector((state: RootState) => state.auth)

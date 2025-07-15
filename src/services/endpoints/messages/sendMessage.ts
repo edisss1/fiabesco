@@ -1,6 +1,6 @@
 import { FormEvent } from "react"
-import { api } from "../services/api"
-import { MessageType } from "../types/Message"
+import { MessageType } from "../../../types/Message"
+import { api } from "../../api"
 
 export const sendMessage = async (
     content: string,

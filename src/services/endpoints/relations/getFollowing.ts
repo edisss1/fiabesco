@@ -1,5 +1,5 @@
-import { api } from "../services/api"
-import { User } from "../types/User"
+import { User } from "../../../types/User"
+import { api } from "../../api"
 
 export const getFollowing = async (userID: string | undefined) => {
     if (!userID) return

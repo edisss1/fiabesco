@@ -1,10 +1,13 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import { User } from "../types/User"
 import { AppDispatch } from "../redux/store"
-import { getProfileData } from "../utils/getProfileData"
-import { getPostsByUser, GetPostsByUserParams } from "../utils/getPostsByUser"
 import { FeedItem } from "../types/FeedItem"
 import { useInView } from "react-intersection-observer"
+import { getProfileData } from "../services/endpoints/users/getProfileData"
+import {
+    getPostsByUser,
+    GetPostsByUserParams
+} from "../services/endpoints/posts/getPostsByUser"
 
 export function useProfileData(
     userID: string | undefined,

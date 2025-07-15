@@ -1,5 +1,5 @@
-import { api } from "../services/api"
-import { Portfolio } from "../types/Portfolio"
+import { Portfolio } from "../../../types/Portfolio"
+import { api } from "../../api"
 
 export const getPortfolio = async (userID: string | undefined) => {
     if (!userID) return

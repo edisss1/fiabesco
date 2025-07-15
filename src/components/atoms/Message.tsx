@@ -11,8 +11,8 @@ import {
     setMessageID,
     setMessageToEdit
 } from "../../redux/slices/messagesSlice"
-import { deleteMessage } from "../../utils/deleteMessage"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { deleteMessage } from "../../services/endpoints/messages/deleteMessage"
 interface MessageProps {
     message: MessageType
     onShowContextMenu?: () => void

@@ -6,11 +6,11 @@ import Button from "./Button"
 import UserInfo from "./UserInfo"
 import { RootState } from "../../redux/store"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { likePost } from "../../utils/likePost"
 import PostActions from "./PostActions"
 import { useRef } from "react"
 import { useTruncate } from "../../hooks/useTruncate"
 import PostImages from "./PostImages"
+import { likePost } from "../../services/endpoints/posts/likePost"
 
 interface PostProps {
     caption: string

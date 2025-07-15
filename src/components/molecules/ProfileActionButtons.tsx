@@ -2,11 +2,11 @@ import { useNavigate, useParams } from "react-router-dom"
 import FollowIcon from "../../assets/FollowIcon"
 import MessageIcon from "../../assets/MessageIcon"
 import Button from "../atoms/Button"
-import { startConversation } from "../../utils/startConversation"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { followUser } from "../../utils/followUser"
+import { followUser } from "../../services/endpoints/relations/followUser"
+import { startConversation } from "../../services/endpoints/messages/startConversation"
 
 const ProfileActionButtons = () => {
     const { userID } = useParams()

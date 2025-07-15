@@ -1,6 +1,6 @@
 import axios from "axios"
-import { setStatus } from "../redux/slices/authSlice"
-import { AppDispatch } from "../redux/store"
+import { AppDispatch } from "../../../redux/store"
+import { setStatus } from "../../../redux/slices/authSlice"
 
 export const getProfileData = async (
     token: string | null,

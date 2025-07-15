@@ -1,6 +1,6 @@
-import { api } from "../services/api"
-import { Conversation } from "../types/Conversation"
-import { MessageType } from "../types/Message"
+import { Conversation } from "../../../types/Conversation"
+import { MessageType } from "../../../types/Message"
+import { api } from "../../api"
 
 export const getConversationData = async (
     conversationID: string | undefined

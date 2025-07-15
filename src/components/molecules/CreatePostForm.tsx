@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import Button from "../atoms/Button"
 import Form from "../atoms/Form"
-import { createPost } from "../../utils/createPost"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 import { FormEvent, useState } from "react"
@@ -10,6 +9,7 @@ import PhotoIcon from "../../assets/PhotoIcon"
 import FileIcon from "../../assets/FileIcon"
 import PostImagePreview from "../atoms/PostImagePreview"
 import { AnimatePresence, motion } from "framer-motion"
+import { createPost } from "../../services/endpoints/posts/createPost"
 
 const CreatePostForm = () => {
     const [caption, setCaption] = useState("")

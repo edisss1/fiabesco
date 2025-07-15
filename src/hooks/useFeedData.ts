@@ -1,6 +1,10 @@
 import { useInView } from "react-intersection-observer"
-import { getFeedPosts, GetFeedPostsParams } from "../utils/getFeedPosts"
+
 import { useInfiniteQuery } from "@tanstack/react-query"
+import {
+    getFeedPosts,
+    GetFeedPostsParams
+} from "../services/endpoints/posts/getFeedPosts"
 
 export function useFeedData() {
     const { ref: scrollContainerRef, inView } = useInView({

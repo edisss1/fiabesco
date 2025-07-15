@@ -7,13 +7,13 @@ import PortfolioProjects from "../components/molecules/PortfolioProjects"
 import PortfolioNav from "../components/organisms/PortfolioNav"
 import PortfolioContactDesc from "../components/molecules/PortfolioContactDesc"
 import { useQuery } from "@tanstack/react-query"
-import { getPortfolio } from "../utils/getPortfolio"
 import { useParams } from "react-router-dom"
 import { Suspense } from "react"
 import Loading from "../components/atoms/Loading"
 import { Portfolio as IPortfolio } from "../types/Portfolio"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
+import { getPortfolio } from "../services/endpoints/users/getPortfolio"
 
 const Portfolio = () => {
     const { userID } = useParams()

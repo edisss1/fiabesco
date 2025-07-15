@@ -3,9 +3,9 @@ import PageWrapper from "../components/atoms/PageWrapper"
 import { User } from "../types/User"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-import { getFollowing } from "../utils/getFollowing"
 import FollowedWrapper from "../components/molecules/FollowedWrapper"
 import SearchBar from "../components/atoms/SearchBar"
+import { getFollowing } from "../services/endpoints/relations/getFollowing"
 
 const Following = () => {
     const { user } = useSelector((state: RootState) => state.auth)

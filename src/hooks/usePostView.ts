@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
-import { getPost } from "../utils/getPost"
-import { getComments } from "../utils/getComments"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
+import { getPost } from "../services/endpoints/posts/getPost"
+import { getComments } from "../services/endpoints/comments/getComments"
 
 export function usePostView(postID: string | undefined) {
     const { user } = useSelector((state: RootState) => state.auth)

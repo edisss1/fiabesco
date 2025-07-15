@@ -1,6 +1,6 @@
 import axios from "axios"
-import { AppDispatch } from "../redux/store"
-import { setToken } from "../redux/slices/authSlice"
+import { AppDispatch } from "../../../redux/store"
+import { setToken } from "../../../redux/slices/authSlice"
 
 export const login = async (
     email: string,

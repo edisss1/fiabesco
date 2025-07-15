@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux"
 import SettingsForm from "../../components/atoms/SettingsForm"
 import { AppDispatch, RootState } from "../../redux/store"
 import Button from "../../components/atoms/Button"
-import { logout } from "../../utils/logout"
 import { useNavigate } from "react-router-dom"
+import { logout } from "../../services/endpoints/auth/logout"
 
 const AccountSettings = () => {
     const dispatch = useDispatch<AppDispatch>()

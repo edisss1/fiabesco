@@ -5,10 +5,10 @@ import Button from "../components/atoms/Button"
 import Form from "../components/atoms/Form"
 import FormInput from "../components/atoms/FormInput"
 import Arrow from "../assets/Arrow"
-import { signUp } from "../utils/signUp"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../redux/store"
+import { signUp } from "../services/endpoints/auth/signUp"
 
 const SignUp = () => {
     const dispatch = useDispatch<AppDispatch>()

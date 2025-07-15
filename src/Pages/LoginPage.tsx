@@ -8,7 +8,7 @@ import Fiabesco from "../assets/Fiabesco"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../redux/store"
-import { login } from "../utils/login"
+import { login } from "../services/endpoints/auth/login"
 
 const Login = () => {
     const dispatch = useDispatch<AppDispatch>()

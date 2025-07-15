@@ -3,7 +3,7 @@ import UploadPhotoIcon from "../../assets/UploadPhotoIcon"
 import FileInput from "./FileInput"
 import Button from "./Button"
 import { useMutation } from "@tanstack/react-query"
-import { uploadBanner } from "../../utils/uploadBanner"
+import { uploadBanner } from "../../services/endpoints/users/uploadBanner"
 
 interface BannerProps {
     bannerURL: string | undefined

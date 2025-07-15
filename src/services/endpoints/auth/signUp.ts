@@ -1,6 +1,6 @@
 import axios from "axios"
-import { AppDispatch } from "../redux/store"
 import { login } from "./login"
+import { AppDispatch } from "../../../redux/store"
 
 export const signUp = async (
     firstName: string,

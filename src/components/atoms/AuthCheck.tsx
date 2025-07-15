@@ -65,16 +65,21 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         if (token && !location.pathname.startsWith("/app")) {
             navigate("/app/feed")
+            console.log("redirecting")
         }
     }, [dispatch, location.pathname, token])
 
     useEffect(() => {
-        if (userData) {
-            dispatch(setUser(userData as User))
-        } else {
-            dispatch(setUser(null))
+        if (!userData) {
+            if (user !== null) {
+                dispatch(setUser(null))
+                console.log("clearing user")
+            }
+        } else if (!user || user._id !== userData._id) {
+            dispatch(setUser(userData))
+            console.log("setting user")
         }
-    }, [userData])
+    }, [userData, user, dispatch])
 
     if (status === "loading") {
         return <Loading />

@@ -7,9 +7,9 @@ import { useTruncate } from "../../hooks/useTruncate"
 import Popover from "../atoms/Popover"
 import CommentActions from "./CommentActions"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { editComment } from "../../utils/editComment"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
+import { editComment } from "../../services/endpoints/comments/editComment"
 
 interface CommentProps extends CommentType {
     userName: string | undefined

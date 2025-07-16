@@ -4,55 +4,102 @@ import { AppDispatch, RootState } from "../../redux/store"
 import Button from "../../components/atoms/Button"
 import { useNavigate } from "react-router-dom"
 import { logout } from "../../services/endpoints/auth/logout"
+import { useEffect, useState } from "react"
+import { useAccountSettings } from "../../hooks/useAccountSettings"
 
 const AccountSettings = () => {
     const dispatch = useDispatch<AppDispatch>()
     const { user } = useSelector((state: RootState) => state.auth)
+    const [formData, setFormData] = useState({
+        firstName: user?.firstName || "",
+        lastName: user?.lastName || "",
+        email: user?.email || "",
+        handle: user?.handle || "",
+        password: ""
+    })
+    const { updateFirstName, updateLastName, updateEmail, updateHandle } =
+        useAccountSettings(
+            formData.firstName,
+            formData.lastName,
+            formData.email,
+            formData.handle
+        )
+
+    const fieldChanged = (key: keyof typeof formData) => {
+        return formData[key] !== user?.[key]
+    }
+
+    useEffect(() => {
+        setFormData({
+            firstName: user?.firstName || "",
+            lastName: user?.lastName || "",
+            email: user?.email || "",
+            handle: user?.handle || "",
+            password: ""
+        })
+    }, [user])
 
     const navigate = useNavigate()
 
     return (
         <div className="flex flex-col gap-4 ">
             <SettingsForm
-                hasChanged
-                onSubmit={(e) => console.log(e)}
+                hasChanged={fieldChanged("firstName")}
+                onSubmit={updateFirstName}
                 id="first-name"
                 label="First name"
-                onChange={(e) => console.log(e)}
-                value={""}
+                onChange={(e) =>
+                    setFormData((prev) => ({
+                        ...prev,
+                        firstName: e.target.value
+                    }))
+                }
+                value={formData.firstName}
+                type="text"
             />
             <SettingsForm
-                hasChanged
-                onSubmit={(e) => console.log(e)}
+                hasChanged={fieldChanged("lastName")}
+                onSubmit={updateLastName}
                 id="last-name"
                 label="Last name"
-                onChange={(e) => console.log(e)}
-                value={""}
+                onChange={(e) =>
+                    setFormData((prev) => ({
+                        ...prev,
+                        lastName: e.target.value
+                    }))
+                }
+                value={formData.lastName}
+                type="text"
             />
             <SettingsForm
-                hasChanged
-                onSubmit={(e) => console.log(e)}
+                hasChanged={fieldChanged("email")}
+                onSubmit={updateEmail}
                 id="email"
                 label="Email"
-                onChange={(e) => console.log(e)}
-                value={""}
+                onChange={(e) =>
+                    setFormData((prev) => ({
+                        ...prev,
+                        email: e.target.value
+                    }))
+                }
+                value={formData.email}
+                type="email"
             />
             <SettingsForm
-                hasChanged
-                onSubmit={(e) => console.log(e)}
+                hasChanged={fieldChanged("handle")}
+                onSubmit={updateHandle}
                 id="handle"
                 label="Handle"
-                onChange={(e) => console.log(e)}
-                value={""}
+                onChange={(e) =>
+                    setFormData((prev) => ({
+                        ...prev,
+                        handle: e.target.value
+                    }))
+                }
+                value={formData.handle}
+                type="text"
             />
-            <SettingsForm
-                hasChanged
-                onSubmit={(e) => console.log(e)}
-                id="pwd"
-                label="Password"
-                onChange={(e) => console.log(e)}
-                value={""}
-            />
+
             <div className="flex flex-col gap-6 mt-4">
                 <p>
                     Member since{" "}

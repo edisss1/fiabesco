@@ -8,6 +8,8 @@ interface SettingsFormProps {
     id: string
     hasChanged: boolean
     onSubmit: (e: FormEvent) => void
+    ref?: React.RefObject<HTMLInputElement> | null
+    type?: string
 }
 
 const SettingsForm = ({
@@ -15,23 +17,33 @@ const SettingsForm = ({
     onChange,
     label,
     id,
-    hasChanged
+    hasChanged,
+    ref,
+    type,
+    onSubmit
 }: SettingsFormProps) => {
     return (
-        <form className="flex items-center gap-4 max-md:items-end">
-            <div className="flex w-full max-w-[350px] md:gap-9 max-md:flex-col justify-between ">
+        <form onSubmit={onSubmit} className="flex items-end gap-4">
+            <div className="flex flex-col gap-2">
                 <label htmlFor={id}>{label}</label>
                 <input
-                    className="border-2  border-text-primary dark:border-text-primary-dark max-w-[300px] focus:outline-primary p-2 rounded-lg"
-                    type="text"
+                    ref={ref && ref}
+                    className="focus:outline-primary p-2 rounded-lg border-2 border-text-primary dark:border-text-primary-dark"
+                    type={type}
                     id={id}
                     value={value}
                     onChange={onChange}
                 />
             </div>
-            <Button className="min-w-fit " variant="secondary" variantEnabled>
-                Save
-            </Button>
+            {hasChanged && (
+                <Button
+                    className="min-w-fit "
+                    variant="secondary"
+                    variantEnabled
+                >
+                    Save
+                </Button>
+            )}
         </form>
     )
 }

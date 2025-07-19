@@ -48,20 +48,21 @@ const Banner = ({ bannerURL, isOwner, userID }: BannerProps) => {
 
     return (
         <div
-            className={`w-full h-[200px] group relative after:z-40 ${
+            className={`w-full h-[200px] group relative   ${
                 isOwner &&
                 !previewURL &&
-                "after:inset-0 after:absolute after:backdrop-blur-none after:bg-none hover:after:bg-black/50 hover:after:backdrop-blur-sm after:transition-all after:duration-200 after:w-full after:content-['']  "
+                " after:inset-0 after:absolute after:backdrop-blur-none after:bg-none  hover:after:backdrop-blur-sm after:transition-all after:duration-200 after:w-full after:content-['']  "
             }`}
         >
-            {bannerURL || previewURL ? (
-                <img
-                    className="h-[200px] w-full object-cover "
-                    src={previewURL ? previewURL : bannerURL}
-                />
-            ) : (
-                <div className="bg-text-primary/40  h-full"></div>
-            )}
+            {bannerURL ||
+                (previewURL ? (
+                    <img
+                        className="h-[200px] w-full object-cover "
+                        src={previewURL ? previewURL : bannerURL}
+                    />
+                ) : (
+                    <div className="bg-gradient-to-tr from-primary to-secondary w-full h-full"></div>
+                ))}
             {isOwner && !previewURL && (
                 <div className="absolute z-[100] text-white opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200  left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2">
                     <FileInput
@@ -69,7 +70,7 @@ const Banner = ({ bannerURL, isOwner, userID }: BannerProps) => {
                         accept="image/*"
                         name="banner"
                         label={
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-center text-text-primary">
                                 <UploadPhotoIcon />
                                 <p>{bannerURL ? "Update" : "Upload"} banner</p>
                             </div>

@@ -27,23 +27,20 @@ const ProfileActionButtons = () => {
         }
     })
 
-    const isFollowing = user?.followedUsers?.includes(userID!)
-
     return (
-        <div className="flex items-center [&>*]:cursor-pointer flex-wrap max-lg:gap-2 ">
-            <Button
-                onClick={() => startConversation(user?._id, userID, navigate)}
-                className="flex items-center gap-2 p-2 hover:bg-black/5 transition-colors duration-200 ease-in rounded-lg"
-            >
-                <MessageIcon />
-                Message
-            </Button>
+        <div className="flex items-center [&>*]:cursor-pointer flex-wrap max-lg:gap-2 gap-4 ">
             <Button
                 onClick={follow}
-                className="flex items-center gap-2 p-2 hover:bg-black/5 transition-colors duration-200 ease-in rounded-lg"
+                className="flex items-center gap-2 p-2 bg-secondary hover:scale-105 transition-all duration-200 ease-in rounded-lg"
             >
                 <FollowIcon />
-                {isFollowing ? "Unfollow" : "Follow"}
+                Follow
+            </Button>
+            <Button
+                onClick={() => startConversation(user?._id, userID, navigate)}
+                className="flex items-center gap-2 p-2 bg-secondary hover:scale-105 transition-all duration-200 ease-in rounded-lg"
+            >
+                <MessageIcon />
             </Button>
         </div>
     )

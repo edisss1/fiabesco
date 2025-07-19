@@ -1,7 +1,7 @@
 const UploadPhotoIcon = () => {
     return (
         <svg
-            className="[&>*]:stroke-white"
+            className="[&>*]:stroke-text-primary"
             width="20"
             height="20"
             viewBox="0 0 24 24"

@@ -1,9 +1,7 @@
 import { FormEvent, useState } from "react"
 import { User } from "../../types/User"
 import ProfileActionButtons from "./ProfileActionButtons"
-import Button from "../atoms/Button"
-import PencilIcon from "../../assets/PencilIcon"
-import CheckMarkIcon from "../../assets/CheckMarkIcon"
+
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { api } from "../../services/api"
 import { useSelector } from "react-redux"
@@ -12,6 +10,10 @@ import Link from "../atoms/Link"
 import ProfilePicture from "./ProfilePicture"
 import Bio from "../atoms/Bio"
 import { compactNumber } from "../../utils/compactNumber"
+import Button from "../atoms/Button"
+import InfoIcon from "../../assets/InfoIcon"
+import LocationIcon from "../../assets/LocationIcon"
+import PortfolioIcon from "../../assets/PortfolioIcon"
 
 interface ProfileHeaderProps {
     profileData: User | undefined
@@ -63,7 +65,7 @@ const ProfileHeader = ({
                         url={profileData?.photoURL}
                     />
                     <div className="flex flex-col gap-1">
-                        <p className="text-lg font-medium">
+                        <p className="text-2xl font-medium">
                             {profileData?.firstName} {profileData?.lastName}
                         </p>
                         <Bio
@@ -79,26 +81,28 @@ const ProfileHeader = ({
                         />
                     </div>
                 </div>
-                <div className="flex items-center gap-4">
-                    <p>
-                        {compactNumber(profileData?.followersCount)}{" "}
-                        {profileData?.followersCount === 1
-                            ? "follower"
-                            : "followers"}
-                    </p>
-                    <p>
-                        {compactNumber(profileData?.followingCount)} following
-                    </p>
+                <div className="flex items-center gap-3">
+                    <Button className="flex items-center gap-1.5">
+                        <InfoIcon />
+                        <span>Profile details</span>
+                    </Button>
+                    <Button className="flex items-center gap-1.5">
+                        <LocationIcon />
+                        <span>Location</span>
+                    </Button>
+                    <Link
+                        path={`/app/${userID}/portfolio`}
+                        className="flex items-center gap-1.5"
+                    >
+                        <PortfolioIcon />
+                        <span className="bg-linear-to-tr from-[#BC39EF] to-[#DE0463] bg-clip-text text-transparent">
+                            Portfolio
+                        </span>
+                    </Link>
                 </div>
             </div>
             <div className="flex flex-col items-center">
                 {!isOwner && <ProfileActionButtons />}
-                <Link
-                    className="mt-4 border-2 border-secondary px-4 py-2 rounded-lg hover:bg-secondary hover:text-text-primary transition-colors duration-200"
-                    path={`/app/${userID}/portfolio`}
-                >
-                    View portfolio
-                </Link>
             </div>
         </div>
     )

@@ -5,9 +5,10 @@ import CrossIcon from "../../assets/CrossIcon"
 interface DialogProps {
     children: React.ReactNode
     dialogRef: React.RefObject<HTMLDialogElement | null>
+    header?: string
 }
 
-const Dialog = ({ dialogRef, children }: DialogProps) => {
+const Dialog = ({ dialogRef, children, header }: DialogProps) => {
     const handleClickOutside = (e: MouseEvent) => {
         if (
             dialogRef.current &&
@@ -26,18 +27,19 @@ const Dialog = ({ dialogRef, children }: DialogProps) => {
 
     return (
         <dialog
-            className={` ${
-                dialogRef.current?.open ? "flex flex-col" : ""
-            } bg-background dark:bg-background-dark py-4 px-4 gap-2 w-full max-w-[400px] min-h-[200px] backdrop:bg-text-primary/60   backdrop:backdrop-blur-sm
-              backdrop:pointer-events-none fixed top-1/2 left-1/2 -translate-1/2 rounded-lg`}
+            open={dialogRef.current?.open}
             ref={dialogRef}
+            className={` bg-background dark:bg-background-dark py-4 px-4 gap-2 w-full max-w-[400px] min-h-[200px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg backdrop:bg-text-primary/60 backdrop:backdrop-blur-sm backdrop:pointer-events-none`}
         >
-            <Button
-                onClick={() => dialogRef.current?.close()}
-                className="cursor-pointer self-end-safe p-1 hover:bg-secondary rounded-full transition-colors duration-200"
-            >
-                <CrossIcon className="dark:[&>*]:fill-text-primary-dark" />
-            </Button>
+            <div className="relative mb-2 flex items-center justify-between">
+                {header && <h1 className="text-lg font-medium">{header}</h1>}
+                <Button
+                    onClick={() => dialogRef.current?.close()}
+                    className="cursor-pointer self-end p-1 hover:bg-secondary rounded-full transition-colors duration-200"
+                >
+                    <CrossIcon className="dark:[&>*]:fill-text-primary-dark" />
+                </Button>
+            </div>
             {children}
         </dialog>
     )

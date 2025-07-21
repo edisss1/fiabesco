@@ -67,23 +67,25 @@ const Post = ({
                 />
                 <span className="p-1">{created.toLocaleDateString()}</span>
             </div>
-            <div className="flex flex-col gap-4 mt-2 relative w-full">
-                <p
-                    ref={contentRef}
-                    className={`break-words ${
-                        !isReadingMore ? "line-clamp-2" : ""
-                    } `}
-                >
-                    {truncatedContent}
-                </p>
-                {showButton && (
-                    <Button
-                        className="absolute bottom-0 right-0 bg-background dark:bg-background-dark rounded-md  px-2 "
-                        onClick={() => setIsReadingMore((prev) => !prev)}
+            <div className="flex flex-col gap-4 mt-2  w-full">
+                <div className="relative">
+                    <p
+                        ref={contentRef}
+                        className={`break-words ${
+                            !isReadingMore ? "line-clamp-2" : ""
+                        } `}
                     >
-                        {isReadingMore ? "Read less" : "Read more"}
-                    </Button>
-                )}
+                        {truncatedContent}
+                    </p>
+                    {showButton && (
+                        <Button
+                            className="absolute bottom-0 right-0 bg-background dark:bg-background-dark rounded-md  px-2 "
+                            onClick={() => setIsReadingMore((prev) => !prev)}
+                        >
+                            {isReadingMore ? "Read less" : "Read more"}
+                        </Button>
+                    )}
+                </div>
                 {images && <PostImages images={images} />}
             </div>
             <div className="flex items-center gap-4 ">

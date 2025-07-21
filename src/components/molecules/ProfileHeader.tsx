@@ -14,6 +14,7 @@ import Button from "../atoms/Button"
 import InfoIcon from "../../assets/InfoIcon"
 import LocationIcon from "../../assets/LocationIcon"
 import PortfolioIcon from "../../assets/PortfolioIcon"
+import ProfileInfo from "./ProfileInfo"
 
 interface ProfileHeaderProps {
     profileData: User | undefined
@@ -81,25 +82,7 @@ const ProfileHeader = ({
                         />
                     </div>
                 </div>
-                <div className="flex items-center gap-3">
-                    <Button className="flex items-center gap-1.5">
-                        <InfoIcon />
-                        <span>Profile details</span>
-                    </Button>
-                    <Button className="flex items-center gap-1.5">
-                        <LocationIcon />
-                        <span>Location</span>
-                    </Button>
-                    <Link
-                        path={`/app/${userID}/portfolio`}
-                        className="flex items-center gap-1.5"
-                    >
-                        <PortfolioIcon />
-                        <span className="bg-linear-to-tr from-[#BC39EF] to-[#DE0463] bg-clip-text text-transparent">
-                            Portfolio
-                        </span>
-                    </Link>
-                </div>
+                <ProfileInfo profileData={profileData} userID={userID} />
             </div>
             <div className="flex flex-col items-center">
                 {!isOwner && <ProfileActionButtons />}

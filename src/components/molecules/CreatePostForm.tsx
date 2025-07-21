@@ -10,6 +10,7 @@ import FileIcon from "../../assets/FileIcon"
 import PostImagePreview from "../atoms/PostImagePreview"
 import { AnimatePresence, motion } from "framer-motion"
 import { createPost } from "../../services/endpoints/posts/createPost"
+import Textarea from "../atoms/Textarea"
 
 const CreatePostForm = () => {
     const [caption, setCaption] = useState("")
@@ -48,13 +49,22 @@ const CreatePostForm = () => {
             className="w-full max-w-[500px] mx-auto text-white  mt-6"
         >
             <div className="flex items-center gap-4 w-full">
-                <input
+                {/* <input
                     value={caption}
                     onChange={(e) => setCaption(e.target.value)}
                     className="border-b-2 text-text-primary dark:text-text-primary-dark p-2 focus:border-primary focus:outline-none transition-all duration-300  border-text-primary w-full max-w-[400px]"
                     type="text"
                     placeholder="Share your art..."
-                />
+                /> */}
+                <div className="w-full max-w-[400px]">
+                    <Textarea
+                        value={caption}
+                        onChange={(e) => setCaption(e.target.value)}
+                        id="caption"
+                        placeholder="Share your art..."
+                        className="block box border-b-2 text-text-primary dark:text-text-primary-dark px-2  focus:border-primary focus:outline-none transition-all duration-300  border-text-primary resize-none leading-none"
+                    />
+                </div>
                 <Button type="submit" variant="primary">
                     Post
                 </Button>

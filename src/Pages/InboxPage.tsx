@@ -67,6 +67,7 @@ const Inbox = () => {
         <PageWrapper sidebarEnabled={false}>
             <InboxContainer>
                 <InboxSidebar
+                    userID={user?._id}
                     isConversationOpened={isConversationOpened}
                     conversations={conversations}
                     conversationID={conversationID}
@@ -80,7 +81,6 @@ const Inbox = () => {
                         participants={
                             conversationData?.conversation.participants
                         }
-                        names={conversationData?.conversation.names}
                         messages={messages}
                     />
                 ) : (

@@ -11,12 +11,14 @@ interface InboxSidebarProps {
     conversationID: string | undefined
     onClick?: () => void
     isConversationOpened: boolean
+    userID: string | undefined
 }
 
 const InboxSidebar = ({
     conversations,
     conversationID,
     onClick,
+    userID,
     isConversationOpened
 }: InboxSidebarProps) => {
     const navigate = useNavigate()
@@ -40,16 +42,25 @@ const InboxSidebar = ({
                 <h1 className="text-lg font-bold">Messages</h1>
             </div>
             <ConversationsContainer>
-                {conversations?.map((conversation) => (
-                    <ConversationPreview
-                        onClick={onClick}
-                        conversationID={conversationID}
-                        key={conversation._id}
-                        names={conversation.names}
-                        id={conversation._id}
-                        lastMessage={conversation.lastMessage}
-                    />
-                ))}
+                {conversations?.map((conversation) => {
+                    const recipient = conversation.participants.find(
+                        (p) => p._id !== userID
+                    )
+
+                    const name = recipient?.userName
+                    const photoURL = recipient?.photoURL
+                    return (
+                        <ConversationPreview
+                            onClick={onClick}
+                            conversationID={conversationID}
+                            recipientName={name}
+                            photoURL={photoURL}
+                            key={conversation._id}
+                            id={conversation._id}
+                            lastMessage={conversation.lastMessage}
+                        />
+                    )
+                })}
             </ConversationsContainer>
         </div>
     )

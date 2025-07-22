@@ -1,10 +1,15 @@
 import { MessageType } from "./Message"
 import { User } from "./User"
 
+export interface Participant {
+    _id?: string
+    userName: string
+    photoURL: string
+}
+
 export interface Conversation {
     _id?: string
-    participants: string[]
-    names: string[]
+    participants: Participant[]
     isGroup: boolean
     name: string
     lastMessage: MessageType

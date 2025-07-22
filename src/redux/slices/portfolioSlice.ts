@@ -91,7 +91,6 @@ export const createPortfolio = createAsyncThunk(
                     }
                 }
             )
-            console.log(res.data)
             return res.data
         } catch (err: any) {
             return rejectWithValue(err.response.data || "Upload failed")

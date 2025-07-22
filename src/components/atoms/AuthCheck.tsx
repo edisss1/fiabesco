@@ -58,14 +58,12 @@ const AuthCheck = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         if (token) {
             refetch()
-            console.log("refetching")
         }
     }, [token])
 
     useEffect(() => {
         if (token && !location.pathname.startsWith("/app")) {
             navigate("/app/feed")
-            console.log("redirecting")
         }
     }, [dispatch, location.pathname, token])
 

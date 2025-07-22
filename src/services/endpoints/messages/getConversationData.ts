@@ -7,7 +7,7 @@ export const getConversationData = async (
 ) => {
     if (!conversationID) return
 
-    const res = await api.get(`/conversations/${conversationID}`)
+    const res = await api.get(`/conversations/conversation/${conversationID}`)
 
     const conversation = res.data.conversation as Conversation
     const messages = res.data.messages as MessageType[]

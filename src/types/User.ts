@@ -16,4 +16,6 @@ export interface User {
     followedUsers: string[]
     createdAt?: string
     settings: UserSettings
+    lastSeen?: string
+    isOnline?: boolean
 }

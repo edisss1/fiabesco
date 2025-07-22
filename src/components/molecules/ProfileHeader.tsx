@@ -1,19 +1,12 @@
 import { FormEvent, useState } from "react"
 import { User } from "../../types/User"
 import ProfileActionButtons from "./ProfileActionButtons"
-
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { api } from "../../services/api"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
-import Link from "../atoms/Link"
 import ProfilePicture from "./ProfilePicture"
 import Bio from "../atoms/Bio"
-import { compactNumber } from "../../utils/compactNumber"
-import Button from "../atoms/Button"
-import InfoIcon from "../../assets/InfoIcon"
-import LocationIcon from "../../assets/LocationIcon"
-import PortfolioIcon from "../../assets/PortfolioIcon"
 import ProfileInfo from "./ProfileInfo"
 
 interface ProfileHeaderProps {

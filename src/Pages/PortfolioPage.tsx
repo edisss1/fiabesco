@@ -25,7 +25,6 @@ const Portfolio = () => {
     })
 
     const isOwner = userID === currentUser?._id
-    console.log(isOwner)
 
     if (isFetching) {
         return <Loading />

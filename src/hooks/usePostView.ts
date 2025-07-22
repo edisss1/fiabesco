@@ -13,8 +13,6 @@ export function usePostView(postID: string | undefined) {
         enabled: !!postID
     })
 
-    console.log(postData?.post)
-
     const { data: comments } = useQuery({
         queryKey: ["comments"],
         queryFn: () => getComments(postID)

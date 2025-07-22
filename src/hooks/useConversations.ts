@@ -23,7 +23,6 @@ export function useConversations(
                 }
             }
             socket.send(JSON.stringify(payload))
-            console.log("Sent message")
         }
 
         if (socket.readyState === WebSocket.OPEN) {

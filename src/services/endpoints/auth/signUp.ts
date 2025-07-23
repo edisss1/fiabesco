@@ -46,5 +46,7 @@ export const signUp = async (
         if (res.status !== 200) {
             throw new Error(res.data.error)
         }
-    } catch (error) {}
+    } catch (error) {
+        console.error(error)
+    }
 }

@@ -29,7 +29,7 @@ const MessageComposer = ({
         if (isEditing) {
             setNewContent(messageToEdit as string)
         }
-    }, [messageToEdit])
+    }, [messageToEdit, isEditing])
 
     const { mutate: send } = useMutation({
         mutationKey: ["send"],

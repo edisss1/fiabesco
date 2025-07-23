@@ -32,5 +32,7 @@ export const createPost = async (
         })
 
         return res.data
-    } catch (error) {}
+    } catch (error) {
+        console.error(error)
+    }
 }

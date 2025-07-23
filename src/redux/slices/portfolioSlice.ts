@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Portfolio } from "../../types/Portfolio"
 import { RootState } from "../store"
 import { api } from "../../services/api"
+import { AxiosError } from "axios"
 
 interface PortfolioState {
     portfolioData: Portfolio
@@ -92,8 +93,9 @@ export const createPortfolio = createAsyncThunk(
                 }
             )
             return res.data
-        } catch (err: any) {
-            return rejectWithValue(err.response.data || "Upload failed")
+        } catch (err: unknown) {
+            const error = err as AxiosError<{ message?: string }>
+            return rejectWithValue(error.response?.data || "Upload failed")
         }
     }
 )

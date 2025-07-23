@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import Button from "./Button"
 import CrossIcon from "../../assets/CrossIcon"
 
@@ -9,21 +9,22 @@ interface DialogProps {
 }
 
 const Dialog = ({ dialogRef, children, header }: DialogProps) => {
-    const handleClickOutside = (e: MouseEvent) => {
+    const handleClickOutside = useCallback((e: MouseEvent) => {
         if (
             dialogRef.current &&
             !dialogRef.current.contains(e.target as Node)
         ) {
             dialogRef.current.close()
         }
-    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     useEffect(() => {
         window.addEventListener("mousedown", handleClickOutside)
         return () => {
             window.removeEventListener("mousedown", handleClickOutside)
         }
-    }, [])
+    }, [handleClickOutside])
 
     return (
         <dialog

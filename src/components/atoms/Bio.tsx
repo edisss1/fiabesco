@@ -6,7 +6,12 @@ import PencilIcon from "../../assets/PencilIcon"
 
 interface BioProps {
     bio: string | undefined
-    updateBio: UseMutateFunction<any, Error, FormEvent<Element>, unknown>
+    updateBio: UseMutateFunction<
+        string | undefined,
+        Error,
+        FormEvent<Element>,
+        unknown
+    >
     isEditing: boolean
     isOwner: boolean
     handleBioChange: (e: React.ChangeEvent<HTMLInputElement>) => void

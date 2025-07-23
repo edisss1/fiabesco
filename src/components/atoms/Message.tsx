@@ -57,7 +57,7 @@ const Message = ({
         return () => {
             document.removeEventListener("click", handleClickOutside)
         }
-    }, [])
+    }, [setOpenedContextMenu])
 
     useEffect(() => {
         if (openedContextMenu && contextMenuRef.current) {
@@ -79,7 +79,7 @@ const Message = ({
                 setContextMenuPosition({ x: newX, y: newY })
             }
         }
-    }, [openedContextMenu])
+    }, [openedContextMenu, contextMenuPosition])
 
     const handleStartEditing = () => {
         dispatch(setEditing(true))

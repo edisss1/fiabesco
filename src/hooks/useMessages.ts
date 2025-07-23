@@ -41,7 +41,7 @@ export function useMessages(
                 }
             }
         }
-    }, [socket])
+    }, [socket, conversationID])
 
     useEffect(() => {
         setMessages(conversationData?.messages ? conversationData.messages : [])

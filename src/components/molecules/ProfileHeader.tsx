@@ -35,7 +35,7 @@ const ProfileHeader = ({
                     bio: newBio
                 })
 
-                const data = res.data
+                const data = res.data as string
 
                 return data
             } catch (error) {

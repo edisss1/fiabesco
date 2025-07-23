@@ -44,7 +44,8 @@ const Post = ({
     const { truncatedContent, showButton, isReadingMore, setIsReadingMore } =
         useTruncate(caption)
 
-    const isOwner = userID === user?._id
+    // Use later for checking if the post is owned by the user
+    // const isOwner = userID === user?._id
 
     const { mutate: like } = useMutation({
         mutationKey: ["like"],

@@ -7,6 +7,7 @@ import { updatePhotoURL } from "../../redux/slices/authSlice"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "../../redux/store"
 import { changePFP } from "../../services/endpoints/users/changePFP"
+import { User } from "../../types/User"
 
 interface PFPUpdateProps {
     userID: string | undefined
@@ -30,16 +31,19 @@ const PfpUpdate = ({ userID, dialogRef }: PFPUpdateProps) => {
             }
         },
         onSuccess: () => {
-            client.setQueryData(["profileData", userID], (oldData: any) => {
-                dialogRef.current?.close()
-                if (!oldData) return oldData
-                const imgURL = URL.createObjectURL(profilePicture!)
-                dispatch(updatePhotoURL(imgURL))
-                return {
-                    ...oldData,
-                    photoURL: imgURL
+            client.setQueryData(
+                ["profileData", userID],
+                (oldData: User | undefined) => {
+                    dialogRef.current?.close()
+                    if (!oldData) return oldData
+                    const imgURL = URL.createObjectURL(profilePicture!)
+                    dispatch(updatePhotoURL(imgURL))
+                    return {
+                        ...oldData,
+                        photoURL: imgURL
+                    }
                 }
-            })
+            )
         }
     })
 
@@ -73,7 +77,7 @@ const PfpUpdate = ({ userID, dialogRef }: PFPUpdateProps) => {
         if (previewURL) {
             URL.revokeObjectURL(previewURL)
         }
-    }, [])
+    }, [previewURL])
 
     const clearImg = () => {
         setPreviewURL(null)

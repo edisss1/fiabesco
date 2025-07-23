@@ -12,9 +12,10 @@ interface BlockedUserCardProps {
 const BlockedUserCard = ({
     photoURL,
     firstName,
-    lastName,
-    id
-}: BlockedUserCardProps) => {
+    lastName
+}: // Use id later for removing/navigating to profile
+// id
+BlockedUserCardProps) => {
     return (
         <div className="w-full max-w-[300px] flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">

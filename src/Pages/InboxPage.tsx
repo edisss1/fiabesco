@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../redux/store"
 import Conversation from "../components/organisms/Conversation"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useConversations } from "../hooks/useConversations"
 import { setSocket } from "../redux/slices/websocketSlice"
 import { useMessages } from "../hooks/useMessages"
@@ -27,9 +27,9 @@ const Inbox = () => {
     const handleOpen = () => {
         setIsConversationOpened(true)
     }
-    const handleClose = () => {
+    const handleClose = useCallback(() => {
         setIsConversationOpened(false)
-    }
+    }, [])
 
     useEffect(() => {
         if (user?._id) {
@@ -47,21 +47,24 @@ const Inbox = () => {
                 socket.close()
             }
         }
-    }, [conversationID, user?._id])
+    }, [conversationID, user?._id, dispatch])
 
-    const handleExitConversation = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-            handleClose()
-            navigate("/app/inbox")
-        }
-    }
+    const handleExitConversation = useCallback(
+        (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                handleClose()
+                navigate("/app/inbox")
+            }
+        },
+        [handleClose, navigate]
+    )
 
     useEffect(() => {
         document.addEventListener("keydown", handleExitConversation)
         return () => {
             document.removeEventListener("keydown", handleExitConversation)
         }
-    }, [])
+    }, [handleExitConversation])
 
     return (
         <PageWrapper sidebarEnabled={false}>

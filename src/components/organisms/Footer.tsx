@@ -9,7 +9,9 @@ const Footer = () => {
                 <Fiabesco />
                 <div className="grid grid-cols-2 gap-4">
                     {footerLinks.map((link) => (
-                        <Link to={link.path}>{link.text}</Link>
+                        <Link key={link.text} to={link.path}>
+                            {link.text}
+                        </Link>
                     ))}
                 </div>
             </div>

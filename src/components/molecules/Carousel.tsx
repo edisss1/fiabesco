@@ -13,12 +13,12 @@ const Carousel = () => {
             <div className="flex gap-6 ">
                 <div className="flex gap-6 carousel">
                     {carouselImages.map((image) => (
-                        <CarouselImage {...image} />
+                        <CarouselImage key={image.src} {...image} />
                     ))}
                 </div>
                 <div className="flex gap-6 carousel">
                     {carouselImages.map((image) => (
-                        <CarouselImage {...image} />
+                        <CarouselImage key={image.src + "2"} {...image} />
                     ))}
                 </div>
             </div>

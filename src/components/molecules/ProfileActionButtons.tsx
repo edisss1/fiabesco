@@ -31,7 +31,7 @@ const ProfileActionButtons = () => {
         <div className="flex items-center [&>*]:cursor-pointer flex-wrap max-lg:gap-2 gap-4 ">
             <Button
                 onClick={follow}
-                className="flex items-center gap-2 p-2 bg-secondary hover:scale-105 transition-all duration-200 ease-in rounded-lg"
+                className="flex items-center gap-2 p-2 bg-secondary hover:scale-105 text-text-primary transition-all duration-200 ease-in rounded-lg"
             >
                 <FollowIcon />
                 Follow

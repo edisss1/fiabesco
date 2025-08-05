@@ -11,6 +11,7 @@ interface ButtonProps {
     ariaExpanded?: boolean
     ariaControls?: string
     style?: React.CSSProperties
+    disabled?: boolean
 }
 
 const Button = ({
@@ -25,7 +26,8 @@ const Button = ({
     ariaLabel,
     ariaExpanded,
     ariaControls,
-    style
+    style,
+    disabled
 }: ButtonProps) => {
     const variants = {
         primary:
@@ -47,6 +49,7 @@ const Button = ({
             className={appliedVariant || className}
             onClick={onClick}
             type={type}
+            disabled={disabled}
         >
             {children}
         </button>

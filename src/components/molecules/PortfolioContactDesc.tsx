@@ -17,7 +17,7 @@ const PortfolioContactDesc = ({
     return (
         <div
             style={{ color: textColor }}
-            className="flex flex-col justify-start gap-4 max-w-[300px]"
+            className="flex flex-col justify-start gap-4 md:max-w-[300px] "
         >
             <h3 className="text-[2rem] font-bold">Let's work together</h3>
             <p>

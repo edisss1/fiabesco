@@ -62,7 +62,7 @@ const Portfolio = () => {
                             textColor={portfolio.appearance.textColor}
                             projects={portfolio.projects}
                         />
-                        <div className="flex items-start w-full gap-9 flex-wrap  justify-between mx-auto ">
+                        <div className="flex items-start w-ful max-md:flex-wrap max-md:justify-center gap-9 mx-auto ">
                             <PortfolioContactDesc
                                 textColor={portfolio.appearance.textColor}
                                 contactInfo={portfolio.contactInfo}
@@ -70,7 +70,7 @@ const Portfolio = () => {
                             <PortfolioContactForm
                                 primaryColor={portfolio.appearance.primaryColor}
                                 textColor={portfolio.appearance.textColor}
-                                onSubmit={(e) => console.log(e)}
+                                ownerEmail={portfolio.contactInfo.email}
                             />
                         </div>
                     </div>

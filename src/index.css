@@ -176,3 +176,23 @@ body:has(dialog[open]) {
     @apply bg-secondary;
     border-radius: 9999px;
 }
+
+::view-transition-group(root) {
+    animation-duration: 0.8s;
+}
+
+::view-transition-new(root) {
+    animation: circle-in 0.8s ease-in forwards;
+}
+::view-transition-old(root) {
+    animation-delay: 0.8s;
+}
+
+@keyframes circle-in {
+    from {
+        clip-path: circle(0% at 0% 0%);
+    }
+    to {
+        clip-path: circle(150% at 0% 0%);
+    }
+}

@@ -11,25 +11,27 @@ const GeneralSettings = () => {
         ).matches
         return storedTheme === "dark" || (!storedTheme && prefersDark)
     })
-    const [isAnimating, setIsAnimating] = useState(false)
-    const [overlayTheme, setOverlayTheme] = useState<"light" | "dark">(
-        isDarkMode ? "dark" : "light"
-    )
 
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDarkMode)
     }, [isDarkMode])
 
-    const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newTheme = e.target.value as "light" | "dark"
-        localStorage.setItem("theme", newTheme)
-        setOverlayTheme(newTheme)
-        setIsAnimating(true)
+    const updateTheme = (selected: string) => {
+        localStorage.setItem("theme", selected)
+        setIsDarkMode(selected === "dark")
     }
 
-    const onAnimationEnd = () => {
-        setIsDarkMode(overlayTheme === "dark")
-        setIsAnimating(false)
+    const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selected = e.target.value
+
+        if (!document.startViewTransition) {
+            updateTheme(selected)
+            return
+        }
+
+        document.startViewTransition(() => {
+            updateTheme(selected)
+        })
     }
 
     return (
@@ -41,19 +43,6 @@ const GeneralSettings = () => {
                 options={themeOptions}
             />
             <Select label="Language" options={languageOptions} />
-
-            {isAnimating && (
-                <div
-                    onAnimationEnd={onAnimationEnd}
-                    className="fixed inset-0 z-50 pointer-events-none animate-theme"
-                    style={{
-                        backgroundColor:
-                            overlayTheme === "dark"
-                                ? "var(--color-background-dark)"
-                                : "var(--color-background)"
-                    }}
-                />
-            )}
         </div>
     )
 }

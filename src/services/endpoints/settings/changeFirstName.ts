@@ -8,6 +8,6 @@ export const changeFirstName = async (firstName: string) => {
 
         return res.data
     } catch (error) {
-        console.error(error)
+        throw error
     }
 }

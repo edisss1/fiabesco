@@ -8,6 +8,6 @@ export const changeEmail = async (email: string) => {
 
         return res.data
     } catch (error) {
-        console.error(error)
+        throw error
     }
 }

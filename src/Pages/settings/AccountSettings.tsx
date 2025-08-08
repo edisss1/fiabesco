@@ -17,13 +17,18 @@ const AccountSettings = () => {
         handle: user?.handle || "",
         password: ""
     })
-    const { updateFirstName, updateLastName, updateEmail, updateHandle } =
-        useAccountSettings(
-            formData.firstName,
-            formData.lastName,
-            formData.email,
-            formData.handle
-        )
+    const {
+        updateFirstName,
+        updateLastName,
+        updateEmail,
+        updateHandle,
+        errors
+    } = useAccountSettings(
+        formData.firstName,
+        formData.lastName,
+        formData.email,
+        formData.handle
+    )
 
     const fieldChanged = (key: keyof typeof formData) => {
         return formData[key] !== user?.[key]
@@ -44,6 +49,7 @@ const AccountSettings = () => {
     return (
         <div className="flex flex-col gap-4 ">
             <SettingsForm
+                error={errors.firstName}
                 hasChanged={fieldChanged("firstName")}
                 onSubmit={updateFirstName}
                 id="first-name"
@@ -58,6 +64,7 @@ const AccountSettings = () => {
                 type="text"
             />
             <SettingsForm
+                error={errors.lastName}
                 hasChanged={fieldChanged("lastName")}
                 onSubmit={updateLastName}
                 id="last-name"
@@ -72,6 +79,7 @@ const AccountSettings = () => {
                 type="text"
             />
             <SettingsForm
+                error={errors.email}
                 hasChanged={fieldChanged("email")}
                 onSubmit={updateEmail}
                 id="email"
@@ -86,6 +94,7 @@ const AccountSettings = () => {
                 type="email"
             />
             <SettingsForm
+                error={errors.handle}
                 hasChanged={fieldChanged("handle")}
                 onSubmit={updateHandle}
                 id="handle"

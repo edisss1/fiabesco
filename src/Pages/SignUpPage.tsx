@@ -5,10 +5,13 @@ import Button from "../components/atoms/Button"
 import Form from "../components/atoms/Form"
 import FormInput from "../components/atoms/FormInput"
 import Arrow from "../assets/Arrow"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../redux/store"
 import { signUp } from "../services/endpoints/auth/signUp"
+import PasswordStrengthRequirements from "../components/atoms/PasswordStrengthRequirements"
+import { checkPasswordStrength } from "../utils/checkPasswordStrength"
+import { PasswordStrength } from "../types/PasswordStrength"
 
 const SignUp = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -18,6 +21,11 @@ const SignUp = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmedPassword, setConfirmedPassword] = useState("")
+    const [passwordStrength, setPasswordStrength] = useState<PasswordStrength>({
+        longEnough: false,
+        hasNumber: false,
+        hasSpecialChar: false
+    })
 
     const navigate = useNavigate()
 
@@ -43,6 +51,12 @@ const SignUp = () => {
         setPassword("")
         setConfirmedPassword("")
     }
+
+    useEffect(() => {
+        const passwordStrength = checkPasswordStrength(password)
+
+        setPasswordStrength(passwordStrength)
+    }, [password])
 
     return (
         <AuthWrapper>
@@ -87,6 +101,11 @@ const SignUp = () => {
                         label="Password"
                         placeholder="Enter your password"
                         type="password"
+                    />
+                    <PasswordStrengthRequirements
+                        longEnough={passwordStrength.longEnough}
+                        hasNumber={passwordStrength.hasNumber}
+                        hasSpecialChar={passwordStrength.hasSpecialChar}
                     />
                     <FormInput
                         value={confirmedPassword}

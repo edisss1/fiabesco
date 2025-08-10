@@ -1,24 +1,33 @@
 import { Comment } from "../../../types/Comment"
-import { User } from "../../../types/User"
 import { api } from "../../api"
 
-export interface CommentsResponse {
+type CommentItem = {
     comment: Comment
-    user: User
+    userName: string
+    photoURL: string
 }
 
-export const getComments = async (postID: string | undefined) => {
-    if (!postID) return
+export interface CommentsResponse {
+    comments: CommentItem[]
+}
 
-    try {
-        const res = await api.get(
-            import.meta.env.VITE_BASE_URL + `/posts/${postID}/comments`
-        )
+export interface GetCommentsParams {
+    page: number
+}
 
-        const data = res.data as CommentsResponse[]
+export const getComments = async (
+    postID: string | undefined,
+    params: GetCommentsParams
+): Promise<CommentsResponse> => {
+    const { page } = params
 
-        return data
-    } catch (error) {
-        console.error(error)
-    }
+    const res = await api.get(
+        import.meta.env.VITE_BASE_URL + `/posts/${postID}/comments?page=${page}`
+    )
+
+    const data = res.data
+
+    const comments = (data as CommentItem[]) ?? []
+
+    return { comments }
 }

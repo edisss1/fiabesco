@@ -27,7 +27,7 @@ const ProfilePicture = ({
     return (
         <>
             <div
-                className={`relative group ${
+                className={`relative inline-block group ${dimensions} ${
                     updateEnabled && isOwner
                         ? "after:h-1/2 after:top-1/2 after:rounded-b-full after:opacity-50 after:absolute after:bg-none hover:after:bg-black after:transition-all after:duration-200 after:w-full after:content-['']  after:z-40"
                         : ""
@@ -35,7 +35,7 @@ const ProfilePicture = ({
             >
                 {url ? (
                     <img
-                        className={`${dimensions} rounded-full object-cover`}
+                        className={`${dimensions} rounded-full object-cover `}
                         src={url}
                         key={url}
                     />

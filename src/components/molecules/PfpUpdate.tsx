@@ -97,6 +97,7 @@ const PfpUpdate = ({ userID, dialogRef }: PFPUpdateProps) => {
                     </div>
                 }
                 className="bg-primary w-full block text-center py-3 rounded-full"
+                accept="image/jpeg, image/png, image/jpg"
             />
             <span>or</span>
             <div
@@ -121,7 +122,7 @@ const PfpUpdate = ({ userID, dialogRef }: PFPUpdateProps) => {
                 <input
                     ref={fileInputRef}
                     type="file"
-                    accept="image/*"
+                    accept="image/jpeg, image/png, image/jpg"
                     className="hidden"
                 />
             </div>

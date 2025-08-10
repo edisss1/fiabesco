@@ -4,11 +4,27 @@ import Post from "../components/atoms/Post"
 import CreateCommentForm from "../components/molecules/CreateCommentForm"
 import Comment from "../components/molecules/Comment"
 import { usePostView } from "../hooks/usePostView"
+import { useEffect } from "react"
 
 const PostView = () => {
     const { postID } = useParams()
 
-    const { postData, comments, currentUserID } = usePostView(postID)
+    const {
+        postData,
+        comments,
+        currentUserID,
+        scrollContainerRef,
+        inView,
+        hasNextPage,
+        isFetchingNextPage,
+        fetchNextPage
+    } = usePostView(postID)
+
+    useEffect(() => {
+        if (inView && hasNextPage && !isFetchingNextPage) {
+            fetchNextPage()
+        }
+    }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage])
 
     return (
         <PageWrapper>
@@ -22,17 +38,24 @@ const PostView = () => {
                     />
                 )}
                 <CreateCommentForm />
-                {comments && (
+                {comments ? (
                     <div className="flex flex-col gap-4 w-full">
-                        {comments.map((comment) => (
-                            <Comment
-                                currentUserID={currentUserID}
-                                userName={`${comment.user.firstName} ${comment.user.lastName}`}
-                                key={comment.comment?._id}
-                                {...comment.comment}
-                            />
-                        ))}
+                        {comments.map((commentItem) => {
+                            console.log(JSON.stringify(commentItem))
+                            return (
+                                <Comment
+                                    key={commentItem.comment._id}
+                                    comment={commentItem.comment}
+                                    currentUserID={currentUserID}
+                                    userName={commentItem.userName}
+                                    photoURL={commentItem.photoURL}
+                                />
+                            )
+                        })}
+                        <div ref={scrollContainerRef} className="h-10" />
                     </div>
+                ) : (
+                    <p>There are no comments yet</p>
                 )}
             </div>
         </PageWrapper>

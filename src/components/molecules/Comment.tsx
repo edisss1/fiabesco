@@ -10,37 +10,38 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"
 import { editComment } from "../../services/endpoints/comments/editComment"
+import { Link } from "react-router-dom"
 
-interface CommentProps extends CommentType {
-    userName: string | undefined
+interface CommentProps {
+    comment: CommentType
+    userName: string
+    photoURL: string
     currentUserID: string | undefined
 }
 
 const Comment = ({
-    content,
-    createdAt,
     userName,
-    userID,
+    comment,
     currentUserID,
-    _id
+    photoURL
 }: CommentProps) => {
     const contentRef = useRef<HTMLParagraphElement | null>(null)
     const { truncatedContent, showButton, isReadingMore, setIsReadingMore } =
-        useTruncate(content)
+        useTruncate(comment.content ?? "")
     const { user } = useSelector((state: RootState) => state.auth)
 
-    const isOwner = userID === currentUserID
+    const isOwner = comment.userID === currentUserID
     const client = useQueryClient()
 
     const [isEditing, setIsEditing] = useState(false)
-    const [newContent, setNewContent] = useState(content)
+    const [newContent, setNewContent] = useState(comment.content)
 
     const inputRef = useRef<HTMLTextAreaElement | null>(null)
 
     const { mutate: edit } = useMutation({
         mutationKey: ["editComment"],
         mutationFn: (e: FormEvent) =>
-            editComment(newContent, _id, user?._id, e),
+            editComment(newContent, comment._id, user?._id, e),
         onSuccess: () => {
             setNewContent("")
             setIsEditing(false)
@@ -51,7 +52,9 @@ const Comment = ({
     return (
         <div className="w-full relative p-2 hover:bg-text-primary/10 transition-colors duration-200 rounded-lg">
             <div className="flex items-start gap-2">
-                <ProfilePicture url="" />
+                <Link className="h-14" to={`/profile/${comment.userID}`}>
+                    <ProfilePicture dimensions="w-14 h-14" url={photoURL} />
+                </Link>
                 <div className="flex flex-col gap-2 relative w-full">
                     <p>{userName}</p>
 
@@ -87,16 +90,16 @@ const Comment = ({
             </div>
             <div className="absolute top-2 right-2 flex flex-row-reverse items-center gap-2">
                 <div className="flex items-center gap-4 ">
-                    <Popover id={`comment-actions-${_id}`}>
+                    <Popover id={`comment-actions-${comment._id}`}>
                         <CommentActions
                             isOwner={isOwner}
                             setIsEditing={setIsEditing}
-                            commentContent={content}
-                            commentID={_id}
+                            commentContent={comment.content}
+                            commentID={comment._id}
                         />
                     </Popover>
                 </div>
-                <span className="text-sm">{formatDate(createdAt)}</span>
+                <span className="text-sm">{formatDate(comment.createdAt)}</span>
             </div>
         </div>
     )

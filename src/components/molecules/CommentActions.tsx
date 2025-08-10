@@ -3,7 +3,7 @@ import Button from "../atoms/Button"
 
 interface CommentActionsProps {
     isOwner: boolean
-    commentContent: string
+    commentContent: string | undefined
     commentID: string | undefined
     setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -17,7 +17,7 @@ const CommentActions = ({
 
     const copyComment = () => {
         setIsCopying(true)
-        navigator.clipboard.writeText(commentContent)
+        navigator.clipboard.writeText(commentContent || "")
         setTimeout(() => setIsCopying(false), 2000)
     }
 

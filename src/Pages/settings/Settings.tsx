@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
-import PageWrapper from "../../components/atoms/PageWrapper"
-import SettingsNav from "../../components/organisms/SettingsNav"
+import PageWrapper from "../../components/Layout/PageWrapper"
+import SettingsNav from "../../components/Layout/SettingsNav"
 
 const Settings = () => {
     return (

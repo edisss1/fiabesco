@@ -1,8 +1,8 @@
-import Discover from "../components/molecules/Discover"
-import Explore from "../components/molecules/Explore"
-import Hero from "../components/molecules/Hero"
-import Footer from "../components/organisms/Footer"
-import NavBar from "../components/organisms/NavBar"
+import Discover from "../components/Layout/Discover"
+import Explore from "../components/Layout/Explore"
+import Hero from "../components/Layout/Hero"
+import Footer from "../components/Layout/Footer"
+import NavBar from "../components/Layout/NavBar"
 
 const Home = () => {
     return (

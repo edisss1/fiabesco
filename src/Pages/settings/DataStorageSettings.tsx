@@ -1,4 +1,4 @@
-import Button from "../../components/atoms/Button"
+import Button from "../../components/Common/Button"
 import { downloadUserData } from "../../services/endpoints/users/downloadUserData"
 
 const DataStorageSettings = () => {

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
-import PageWrapper from "../components/atoms/PageWrapper"
+import PageWrapper from "../components/Layout/PageWrapper"
 import { User } from "../types/User"
 import { useSelector } from "react-redux"
 import { RootState } from "../redux/store"
-import FollowedWrapper from "../components/molecules/FollowedWrapper"
-import SearchBar from "../components/atoms/SearchBar"
+import FollowedWrapper from "../components/Layout/FollowedWrapper"
+import SearchBar from "../components/Common/SearchBar"
 import { getFollowing } from "../services/endpoints/relations/getFollowing"
 
 const Following = () => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Select from "../../components/atoms/Select"
+import Select from "../../components/Common/Select"
 import { languageOptions } from "../../constants/languageOptions"
 import { themeOptions } from "../../constants/themeOptions"
 

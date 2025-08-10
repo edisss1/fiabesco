@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../redux/store"
-import PageWrapper from "../components/atoms/PageWrapper"
-import ProfileWrapper from "../components/atoms/ProfileWrapper"
-import Banner from "../components/atoms/Banner"
+import PageWrapper from "../components/Layout/PageWrapper"
+import ProfileWrapper from "../components/Profile/ProfileWrapper"
+import Banner from "../components/Profile/Banner"
 
 import { useProfileData } from "../hooks/useProfileData"
-import ProfileHeader from "../components/molecules/ProfileHeader"
-import PostsContainer from "../components/atoms/PostsContainer"
-import PostSkeleton from "../components/atoms/PostSkeleton"
+import ProfileHeader from "../components/Profile/ProfileHeader"
+import PostsContainer from "../components/Post/PostsContainer"
+import PostSkeleton from "../components/Skeletons/PostSkeleton"
 
 const Profile = () => {
     const { userID } = useParams()

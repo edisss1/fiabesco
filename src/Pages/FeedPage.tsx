@@ -1,9 +1,9 @@
-import PageWrapper from "../components/atoms/PageWrapper"
-import CreatePostForm from "../components/molecules/CreatePostForm"
+import PageWrapper from "../components/Layout/PageWrapper"
+import CreatePostForm from "../components/Post/CreatePostForm"
 import { useEffect } from "react"
-import PostsContainer from "../components/atoms/PostsContainer"
+import PostsContainer from "../components/Post/PostsContainer"
 import { useFeedData } from "../hooks/useFeedData"
-import PostSkeleton from "../components/atoms/PostSkeleton"
+import PostSkeleton from "../components/Skeletons/PostSkeleton"
 
 const Feed = () => {
     const {

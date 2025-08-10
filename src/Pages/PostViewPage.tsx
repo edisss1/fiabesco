@@ -1,8 +1,8 @@
-import PageWrapper from "../components/atoms/PageWrapper"
+import PageWrapper from "../components/Layout/PageWrapper"
 import { useParams } from "react-router-dom"
-import Post from "../components/atoms/Post"
-import CreateCommentForm from "../components/molecules/CreateCommentForm"
-import Comment from "../components/molecules/Comment"
+import Post from "../components/Post/Post"
+import CreateCommentForm from "../components/Comment/CreateCommentForm"
+import Comment from "../components/Comment/Comment"
 import { usePostView } from "../hooks/usePostView"
 import { useEffect } from "react"
 

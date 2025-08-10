@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import { lazy, Suspense } from "react"
-import Loading from "./components/atoms/Loading"
+import Loading from "./components/Common/Loading"
 import CreatePortfolio from "./Pages/CreatePortfolioPage"
 
 const Portfolio = lazy(() => import("./Pages/PortfolioPage"))
@@ -9,7 +9,7 @@ const PrivacySettings = lazy(() => import("./Pages/settings/PrivacySettings"))
 const DataStorageSettings = lazy(
     () => import("./Pages/settings/DataStorageSettings")
 )
-const NonExistingPath = lazy(() => import("./components/atoms/NonExistingPath"))
+const NonExistingPath = lazy(() => import("./components/Error/NonExistingPath"))
 const Settings = lazy(() => import("./Pages/settings/Settings"))
 const GeneralSettings = lazy(() => import("./Pages/settings/GeneralSettings"))
 const AccountSettings = lazy(() => import("./Pages/settings/AccountSettings"))

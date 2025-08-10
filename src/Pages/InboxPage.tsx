@@ -1,14 +1,14 @@
-import InboxContainer from "../components/atoms/InboxContainer"
-import PageWrapper from "../components/atoms/PageWrapper"
+import InboxContainer from "../components/Messaging/InboxContainer"
+import PageWrapper from "../components/Layout/PageWrapper"
 import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../redux/store"
-import Conversation from "../components/organisms/Conversation"
+import Conversation from "../components/Messaging/Conversation"
 import { useCallback, useEffect, useState } from "react"
 import { useConversations } from "../hooks/useConversations"
 import { setSocket } from "../redux/slices/websocketSlice"
 import { useMessages } from "../hooks/useMessages"
-import InboxSidebar from "../components/organisms/InboxSidebar"
+import InboxSidebar from "../components/Messaging/InboxSidebar"
 
 const Inbox = () => {
     const { socket } = useSelector((state: RootState) => state.socket)

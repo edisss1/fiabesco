@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import BlockedUserCard from "../../components/atoms/BlockedUserCard"
-import Select from "../../components/atoms/Select"
+import BlockedUserCard from "../../components/Profile/BlockedUserCard"
+import Select from "../../components/Common/Select"
 import { profileVisibilityOptions } from "../../constants/profileVisibilityOptions"
 import { useSelector } from "react-redux"
 import { RootState } from "../../redux/store"

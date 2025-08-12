@@ -70,22 +70,19 @@ const Post = ({
             </div>
             <div className="flex flex-col gap-4 mt-2  w-full">
                 <div className="relative">
-                    <p
-                        ref={contentRef}
-                        className={`break-words ${
-                            !isReadingMore ? "line-clamp-2" : ""
-                        } `}
-                    >
+                    <p ref={contentRef} className="break-words">
                         {truncatedContent}
+                        {showButton && (
+                            <Button
+                                className="text-message-bg hover:opacity-70 transition-opacity rounded-md  px-2 "
+                                onClick={() =>
+                                    setIsReadingMore((prev) => !prev)
+                                }
+                            >
+                                {isReadingMore ? "Read less" : "Read more"}
+                            </Button>
+                        )}
                     </p>
-                    {showButton && (
-                        <Button
-                            className="absolute bottom-0 right-0 bg-background dark:bg-background-dark rounded-md  px-2 "
-                            onClick={() => setIsReadingMore((prev) => !prev)}
-                        >
-                            {isReadingMore ? "Read less" : "Read more"}
-                        </Button>
-                    )}
                 </div>
                 {images && <PostImages images={images} />}
             </div>

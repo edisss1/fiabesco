@@ -141,29 +141,6 @@ body:has(dialog[open]) {
     translate: 100%;
 }
 
-.portfolio-projects {
-    --grid-max-col-count: 4;
-    --grid-min-col-size: 200px;
-    --grid-gap: 1rem;
-
-    --grid-col-size-calc: calc(
-        (100% - var(--grid-gap) * var(--grid-max-col-count)) /
-            var(--grid-max-col-count)
-    );
-    --grid-col-min-size-calc: min(
-        100%,
-        max(var(--grid-min-col-size), var(--grid-col-size-calc))
-    );
-
-    display: grid;
-    gap: var(--grid-gap);
-
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(var(--grid-col-min-size-calc), 1fr)
-    );
-}
-
 .post-images::-webkit-scrollbar {
     height: 3px;
 }

@@ -15,7 +15,7 @@ const PortfolioProjectCard = ({
             href={project.link}
             target="_blank"
             aria-label={`View project: ${project.title}`}
-            className="w-full max-w-[250px]"
+            className="w-full max-w-[250px] max-md:max-w-[180px]"
         >
             <img
                 src={project.img as string}

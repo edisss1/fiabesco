@@ -15,7 +15,7 @@ const PortfolioProjects = ({ projects, textColor }: PortfolioProjectsProps) => {
                 header="Latest projects"
             />
 
-            <div className="portfolio-projects place-items-center  max-w-[1100px]">
+            <div className="flex items-center gap-4 flex-wrap justify-center  max-w-[1100px]">
                 {projects.map((project) => (
                     <PortfolioProjectCard
                         textColor={textColor}

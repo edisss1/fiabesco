@@ -43,6 +43,7 @@ const FormInput = ({
                     color: textColor && textColor,
                     borderColor: textColor && textColor
                 }}
+                id={id}
                 className={className}
                 type={type ?? "text"}
                 value={value}

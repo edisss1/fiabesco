@@ -2,6 +2,9 @@
 
 Fiabesco is a modern social media application crafted exclusively for artists to showcase their work, connect with fellow creatives, and grow their audience. The app is designed with performance, interactivity, and creative freedom in mind.
 
+# MVP version - lacks reposts, replies, setting profile visibility and other stuff. 
+# Status - development stopped on August 14, 2025
+
 ## 🧠 Idea
 
 Fiabesco aims to be a networking platform where visual artists, illustrators, and digital designers can:

@@ -14,7 +14,7 @@
     --color-danger: #bb2124;
     --color-success: #22bb33;
     --color-warning: #f0ad4e;
-    --color-message-bg: #48a6cf;
+    --color-message-bg: #3193bf;
 
     --color-primary-dark: #f8d57e;
     --color-secondary-dark: #eadaff;
@@ -23,7 +23,7 @@
     --color-danger-dark: #ff5c5c;
     --color-success-dark: #34d399;
     --color-warning-dark: #fbbf24;
-    --color-message-bg-dark: #38bdf8;
+    --color-message-bg-dark: #3193bf;
 }
 
 @layer utilities {

@@ -7,4 +7,6 @@ export interface MessageType {
     read: boolean
     createdAt: string
     updatedAt: string
+    isReply: boolean
+    replyTo: string
 }

@@ -49,7 +49,11 @@ const Conversation = ({
                 messages={messages}
                 recipientName={recipientName}
             />
-            <MessageComposer ref={messageListRef} recipientID={recipientID} />
+            <MessageComposer
+                recipientName={recipientName}
+                userName={user?.firstName + " " + user?.lastName}
+                recipientID={recipientID}
+            />
         </div>
     )
 }

@@ -9,6 +9,7 @@ interface FormInputProps {
     flexDirection?: "flex-col" | "flex-row"
     alignItems?: "items-center" | ""
     textColor?: string
+    autoComplete?: string
 }
 
 const FormInput = ({
@@ -21,7 +22,8 @@ const FormInput = ({
     className = "border-2 user-invalid:border-danger border-text-primary dark:border-text-primary-dark dark:focus:outline-primary-dark focus:outline-primary p-2 rounded-lg",
     flexDirection = "flex-col",
     alignItems = "",
-    textColor
+    textColor,
+    autoComplete = "off"
 }: FormInputProps) => {
     return (
         <div
@@ -50,6 +52,7 @@ const FormInput = ({
                 onChange={onChange}
                 placeholder={placeholder}
                 required
+                autoComplete={autoComplete}
             />
         </div>
     )

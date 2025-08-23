@@ -9,9 +9,11 @@ import { useConversations } from "../hooks/useConversations"
 import { setSocket } from "../redux/slices/websocketSlice"
 import { useMessages } from "../hooks/useMessages"
 import InboxSidebar from "../components/Messaging/InboxSidebar"
+import { setMessageToReply } from "../redux/slices/messagesSlice"
 
 const Inbox = () => {
     const { socket } = useSelector((state: RootState) => state.socket)
+    const { messageToReply } = useSelector((state: RootState) => state.messages)
     const dispatch = useDispatch<AppDispatch>()
     const { conversationID } = useParams()
     const { user } = useSelector((state: RootState) => state.auth)
@@ -49,22 +51,27 @@ const Inbox = () => {
         }
     }, [conversationID, user?._id, dispatch])
 
-    const handleExitConversation = useCallback(
+    const handleKeyBindings = useCallback(
         (e: KeyboardEvent) => {
-            if (e.key === "Escape") {
-                handleClose()
-                navigate("/app/inbox")
+            if (e.key !== "Escape") return
+
+            if (e.key === "Escape" && messageToReply) {
+                dispatch(setMessageToReply(null))
+                return
             }
+
+            handleClose()
+            navigate("/app/inbox")
         },
-        [handleClose, navigate]
+        [handleClose, navigate, messageToReply, dispatch]
     )
 
     useEffect(() => {
-        document.addEventListener("keydown", handleExitConversation)
+        document.addEventListener("keydown", handleKeyBindings)
         return () => {
-            document.removeEventListener("keydown", handleExitConversation)
+            document.removeEventListener("keydown", handleKeyBindings)
         }
-    }, [handleExitConversation])
+    }, [handleKeyBindings])
 
     return (
         <PageWrapper sidebarEnabled={false}>

@@ -9,7 +9,8 @@ import ContextMenu from "../Common/ContextMenu"
 import {
     setEditing,
     setMessageID,
-    setMessageToEdit
+    setMessageToEdit,
+    setMessageToReply
 } from "../../redux/slices/messagesSlice"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { deleteMessage } from "../../services/endpoints/messages/deleteMessage"
@@ -101,6 +102,11 @@ const Reply = ({
         }
     })
 
+    const handleStartReplying = () => {
+        dispatch(setMessageToReply(message))
+        setOpenedContextMenu("")
+    }
+
     return (
         <div
             ref={messageRef}
@@ -129,6 +135,7 @@ const Reply = ({
                         isOwnMessage={isOwnMessage}
                         onEdit={handleStartEditing}
                         onDelete={deleteMsg}
+                        onReply={handleStartReplying}
                     />
                 )}
             </AnimatePresence>

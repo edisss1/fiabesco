@@ -8,6 +8,7 @@ interface ContextMenuProps {
     isOwnMessage: boolean
     onEdit?: () => void
     onDelete?: () => void
+    onReply?: () => void
 }
 
 const ContextMenu = ({
@@ -15,7 +16,8 @@ const ContextMenu = ({
     contextMenuPosition,
     isOwnMessage,
     onEdit,
-    onDelete
+    onDelete,
+    onReply
 }: ContextMenuProps) => {
     return (
         <motion.div
@@ -28,16 +30,19 @@ const ContextMenu = ({
                 top: contextMenuPosition.y,
                 left: contextMenuPosition.x
             }}
-            className="fixed bg-primary min-w-[150px]  text-white rounded-lg p-2 flex flex-col items-start gap-2"
+            className="fixed bg-primary min-w-[150px]  text-text-primary rounded-lg p-2 flex flex-col items-start gap-2"
         >
             {isOwnMessage && (
                 <Button onClick={onEdit} className="flex items-center ">
-                    <PencilIcon className="[&>*]:fill-white" />
+                    <PencilIcon />
                     Edit
                 </Button>
             )}
             <Button onClick={onDelete} className="flex items-center">
                 Delete
+            </Button>
+            <Button onClick={onReply} className="flex items-center">
+                Reply
             </Button>
         </motion.div>
     )

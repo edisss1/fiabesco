@@ -3,13 +3,13 @@ import { MessageType } from "../../types/Message"
 import { AppDispatch, RootState } from "../../redux/store"
 import { formatDate } from "../../utils/formatTime"
 import { useEffect, useRef, useState } from "react"
-
 import { AnimatePresence } from "framer-motion"
 import ContextMenu from "../Common/ContextMenu"
 import {
     setEditing,
     setMessageID,
-    setMessageToEdit
+    setMessageToEdit,
+    setMessageToReply
 } from "../../redux/slices/messagesSlice"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { deleteMessage } from "../../services/endpoints/messages/deleteMessage"
@@ -43,6 +43,19 @@ const Message = ({
         setContextMenuPosition({ x: e.clientX, y: e.clientY })
         onShowContextMenu?.()
     }
+
+    const handleCloseContextMenu = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+            setOpenedContextMenu("")
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleCloseContextMenu)
+        return () => {
+            document.removeEventListener("keydown", handleCloseContextMenu)
+        }
+    }, [])
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -96,6 +109,11 @@ const Message = ({
         }
     })
 
+    const handleStartReplying = () => {
+        dispatch(setMessageToReply(message))
+        setOpenedContextMenu("")
+    }
+
     return (
         <div
             ref={messageRef}
@@ -121,6 +139,7 @@ const Message = ({
                         isOwnMessage={isOwnMessage}
                         onEdit={handleStartEditing}
                         onDelete={deleteMsg}
+                        onReply={handleStartReplying}
                     />
                 )}
             </AnimatePresence>

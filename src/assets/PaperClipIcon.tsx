@@ -1,6 +1,7 @@
 const PaperClipIcon = () => {
     return (
         <svg
+            className="[&>*]:fill-text-primary dark:[&>*]:fill-text-primary-dark"
             width="20"
             height="20"
             viewBox="0 0 20 20"

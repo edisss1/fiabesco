@@ -36,7 +36,7 @@ const MessageList = ({ messages, ref, recipientName }: MessageListProps) => {
                         (m) => m._id === message.replyTo
                     )
                     const repliedUserName = repliedMessage
-                        ? repliedMessage.senderID !== currentUser?._id
+                        ? repliedMessage.senderID === currentUser?._id
                             ? currentUser?.firstName +
                               " " +
                               currentUser?.lastName

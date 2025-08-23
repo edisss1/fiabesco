@@ -10,6 +10,7 @@ interface FormInputProps {
     alignItems?: "items-center" | ""
     textColor?: string
     autoComplete?: string
+    ref?: React.RefObject<HTMLInputElement | null>
 }
 
 const FormInput = ({
@@ -23,7 +24,8 @@ const FormInput = ({
     flexDirection = "flex-col",
     alignItems = "",
     textColor,
-    autoComplete = "off"
+    autoComplete = "off",
+    ref
 }: FormInputProps) => {
     return (
         <div
@@ -41,6 +43,7 @@ const FormInput = ({
                 </label>
             )}
             <input
+                ref={ref}
                 style={{
                     color: textColor && textColor,
                     borderColor: textColor && textColor

@@ -1,6 +1,6 @@
 import FormInput from "../Common/FormInput"
 import { useParams } from "react-router-dom"
-import { FormEvent, useEffect, useState } from "react"
+import { FormEvent, useEffect, useRef, useState } from "react"
 import Button from "../Common/Button"
 import PlaneIcon from "../../assets/PlaneIcon"
 import PaperClipIcon from "../../assets/PaperClipIcon"
@@ -23,6 +23,7 @@ const MessageComposer = ({
     const { conversationID } = useParams()
     const [content, setContent] = useState("")
     const [newContent, setNewContent] = useState("")
+    const inputRef = useRef<HTMLInputElement | null>(null)
 
     const {
         isEditing,
@@ -73,6 +74,16 @@ const MessageComposer = ({
         dispatch(setMessageToReply(null))
     }
 
+    const handleInputFocus = () => {
+        if (messageToReply && inputRef.current) {
+            inputRef.current.focus()
+        }
+    }
+
+    useEffect(() => {
+        handleInputFocus()
+    }, [messageToReply, inputRef.current])
+
     return (
         <form
             aria-label="Message Input"
@@ -96,6 +107,7 @@ const MessageComposer = ({
                 </Button>
                 {!isEditing && (
                     <FormInput
+                        ref={inputRef}
                         id="send-message"
                         value={content}
                         onChange={(e) => setContent(e.target.value)}

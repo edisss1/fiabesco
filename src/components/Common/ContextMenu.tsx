@@ -1,6 +1,8 @@
 import { motion } from "framer-motion"
 import Button from "./Button"
-import PencilIcon from "../../assets/PencilIcon"
+import ReplyIcon from "../../assets/ReplyIcon"
+import TrashCanIcon from "../../assets/TrashCanIcon"
+import EditIcon from "../../assets/EditIcon"
 
 interface ContextMenuProps {
     contextMenuRef: React.RefObject<HTMLDivElement | null>
@@ -33,15 +35,26 @@ const ContextMenu = ({
             className="fixed bg-primary min-w-[150px]  text-text-primary rounded-lg p-2 flex flex-col items-start gap-2"
         >
             {isOwnMessage && (
-                <Button onClick={onEdit} className="flex items-center ">
-                    <PencilIcon />
+                <Button
+                    onClick={onEdit}
+                    className="flex items-center justify-center gap-2 "
+                >
+                    <EditIcon />
                     Edit
                 </Button>
             )}
-            <Button onClick={onDelete} className="flex items-center">
+            <Button
+                onClick={onDelete}
+                className="flex items-center  justify-center gap-2"
+            >
+                <TrashCanIcon />
                 Delete
             </Button>
-            <Button onClick={onReply} className="flex items-center">
+            <Button
+                onClick={onReply}
+                className="flex items-center justify-center gap-2"
+            >
+                <ReplyIcon className="" />
                 Reply
             </Button>
         </motion.div>

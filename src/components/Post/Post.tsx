@@ -74,7 +74,7 @@ const Post = ({
                         {truncatedContent}
                         {showButton && (
                             <Button
-                                className="text-message-bg hover:opacity-70 transition-opacity rounded-md  px-2 "
+                                className="text-message-bg hover:opacity-70 cursor-pointer transition-opacity rounded-md  px-2 "
                                 onClick={() =>
                                     setIsReadingMore((prev) => !prev)
                                 }

@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { MessageType } from "../../types/Message"
 import Message from "../Messaging/Message"
-import Reply from "./Reply"
 import { RootState } from "../../redux/store"
 import { useSelector } from "react-redux"
 
@@ -44,7 +43,7 @@ const MessageList = ({ messages, ref, recipientName }: MessageListProps) => {
                         : "Message unavailable"
 
                     return (
-                        <Reply
+                        <Message
                             key={message._id}
                             message={message}
                             onShowContextMenu={() =>

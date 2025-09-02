@@ -3,6 +3,7 @@ import { MessageType } from "../../types/Message"
 import { AppDispatch, RootState } from "../../redux/store"
 import { formatDate } from "../../utils/formatTime"
 import { useEffect, useRef, useState } from "react"
+
 import { AnimatePresence } from "framer-motion"
 import ContextMenu from "../Common/ContextMenu"
 import {
@@ -13,19 +14,24 @@ import {
 } from "../../redux/slices/messagesSlice"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { deleteMessage } from "../../services/endpoints/messages/deleteMessage"
-interface MessageProps {
+import MessagePreview from "./MessagePreview"
+interface ReplyProps {
     message: MessageType
     onShowContextMenu?: () => void
     openedContextMenu?: boolean
     setOpenedContextMenu: React.Dispatch<React.SetStateAction<string>>
+    userName?: string | undefined
+    replyToMessage?: string | undefined
 }
 
 const Message = ({
     message,
     onShowContextMenu,
     openedContextMenu,
-    setOpenedContextMenu
-}: MessageProps) => {
+    setOpenedContextMenu,
+    userName,
+    replyToMessage
+}: ReplyProps) => {
     const dispatch = useDispatch<AppDispatch>()
     const { user: currentUser } = useSelector((state: RootState) => state.auth)
     const messageRef = useRef<HTMLDivElement | null>(null)
@@ -43,19 +49,6 @@ const Message = ({
         setContextMenuPosition({ x: e.clientX, y: e.clientY })
         onShowContextMenu?.()
     }
-
-    const handleCloseContextMenu = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-            setOpenedContextMenu("")
-        }
-    }
-
-    useEffect(() => {
-        document.addEventListener("keydown", handleCloseContextMenu)
-        return () => {
-            document.removeEventListener("keydown", handleCloseContextMenu)
-        }
-    }, [])
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -116,16 +109,22 @@ const Message = ({
 
     return (
         <div
+            id={message._id}
             ref={messageRef}
             onContextMenu={handleContextMenu}
-            className={`flex flex-col gap-1 rounded-xl min-w-[100px] lg:max-w-[400px] text-white relative ${
+            className={`flex flex-col gap-1  rounded-xl min-w-[100px] lg:max-w-[400px] text-white relative ${
                 currentUser?._id === message.senderID
                     ? "self-end rounded-br-none"
                     : "self-start rounded-bl-none"
-            } bg-message-bg w-max px-4 pt-3 pb-6 max-w-[50%]`}
+            } bg-message-bg w-max p-2 pb-6 max-w-[50%]`}
         >
+            {replyToMessage && (
+                <MessagePreview
+                    replyToMessage={replyToMessage}
+                    userName={userName || ""}
+                />
+            )}
             <p className="break-words">{message.content}</p>
-
             <span className="absolute bottom-1 right-2 text-sm text-gray-300">
                 {formatDate(message.createdAt)}
             </span>

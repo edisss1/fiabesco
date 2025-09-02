@@ -9,11 +9,16 @@ import { useConversations } from "../hooks/useConversations"
 import { setSocket } from "../redux/slices/websocketSlice"
 import { useMessages } from "../hooks/useMessages"
 import InboxSidebar from "../components/Messaging/InboxSidebar"
-import { setMessageToReply } from "../redux/slices/messagesSlice"
+import {
+    setMessageToEdit,
+    setMessageToReply
+} from "../redux/slices/messagesSlice"
 
 const Inbox = () => {
     const { socket } = useSelector((state: RootState) => state.socket)
-    const { messageToReply } = useSelector((state: RootState) => state.messages)
+    const { messageToReply, messageToEdit } = useSelector(
+        (state: RootState) => state.messages
+    )
     const dispatch = useDispatch<AppDispatch>()
     const { conversationID } = useParams()
     const { user } = useSelector((state: RootState) => state.auth)
@@ -59,11 +64,15 @@ const Inbox = () => {
                 dispatch(setMessageToReply(null))
                 return
             }
+            if (e.key === "Escape" && messageToEdit) {
+                dispatch(setMessageToEdit(undefined))
+                return
+            }
 
             handleClose()
             navigate("/app/inbox")
         },
-        [handleClose, navigate, messageToReply, dispatch]
+        [handleClose, navigate, messageToReply, messageToEdit, dispatch]
     )
 
     useEffect(() => {

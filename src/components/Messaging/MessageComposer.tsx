@@ -75,7 +75,7 @@ const MessageComposer = ({
     }
 
     const handleInputFocus = () => {
-        if (messageToReply && inputRef.current) {
+        if ((messageToReply || messageToEdit) && inputRef.current) {
             inputRef.current.focus()
         }
     }
@@ -83,6 +83,16 @@ const MessageComposer = ({
     useEffect(() => {
         handleInputFocus()
     }, [messageToReply, inputRef.current])
+
+    useEffect(() => {
+        handleInputFocus()
+    }, [messageToEdit, inputRef.current])
+
+    useEffect(() => {
+        if (!messageToEdit) {
+            setNewContent("")
+        }
+    }, [messageToEdit])
 
     return (
         <form
@@ -117,6 +127,7 @@ const MessageComposer = ({
                 )}
                 {isEditing && (
                     <FormInput
+                        ref={inputRef}
                         id="send-message"
                         value={newContent as string}
                         onChange={(e) => setNewContent(e.target.value)}
